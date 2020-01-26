@@ -12,8 +12,8 @@ import static org.junit.Assert.*;
 public class AccountTests {
     @Test
     public void create_account() {
-
-//        assertEquals(..., ...);
+        CreateAccount createaccount = new CreateAccount();
+        assertTrue(createaccount.create_account("abalabahaha", "abalabahaha"));
     }
 }
 
