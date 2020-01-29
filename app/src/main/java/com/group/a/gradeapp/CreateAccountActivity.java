@@ -14,7 +14,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
-        final Button button = findViewById(R.id.create_button);
+        final Button button = findViewById(R.id.create_account_button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 create_account();
@@ -23,8 +23,8 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
     public boolean create_account(){
-        final EditText username = findViewById(R.id.create_username);
-        final EditText password = findViewById(R.id.create_password);
+        final EditText username = findViewById(R.id.username);
+        final EditText password = findViewById(R.id.password);
 
         return create_account(username.getText().toString(), password.getText().toString());
     }
