@@ -27,19 +27,9 @@ public class LoginActivity extends AppCompatActivity {
                 EditText username = findViewById(R.id.username);
                 EditText password = findViewById(R.id.password);
 
-//                if (username.getText().toString().equals("!admiM2") &&
-//                        password.getText().toString().equals("!admiM2")) {
-//                    // special admin userid
-//                    MainActivity.username = username.getText().toString();
-//
-//                    finish();
-//                }
 
                 String name = username.getText().toString();
                 String pw = password.getText().toString();
-
-
-
 
             }
         });
