@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class AccountTests {
     @Test
     public void create_account() {
-        CreateAccount createaccount = new CreateAccount();
+        CreateAccountActivity createaccount = new CreateAccountActivity();
         assertTrue(createaccount.create_account("abalabahaha", "abalabahaha"));
     }
 }
