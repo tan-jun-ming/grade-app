@@ -34,8 +34,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         boolean result = create_account(username.getText().toString(), password.getText().toString(), firstname.getText().toString(), lastname.getText().toString());
         String notify_string = result ? "Account Created Successfully" : "Account Creation Failed";
 
-        Toast.makeText(this, notify_string,
-                Toast.LENGTH_LONG).show();
+        utils.display_toast(this, notify_string);
 
         if (result) {
             finish();
