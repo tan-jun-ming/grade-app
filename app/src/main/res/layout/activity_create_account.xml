@@ -68,10 +68,4 @@
         android:text="Create Account"
         android:id="@+id/create_account_button" />
 
-    <TextView
-        android:id="@+id/notify"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="24sp" />
-
 </LinearLayout>
