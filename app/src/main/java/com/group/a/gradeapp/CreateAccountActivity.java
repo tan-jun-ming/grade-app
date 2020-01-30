@@ -25,11 +25,14 @@ public class CreateAccountActivity extends AppCompatActivity {
     public boolean create_account(){
         final EditText username = findViewById(R.id.username);
         final EditText password = findViewById(R.id.password);
+        final EditText firstname = findViewById(R.id.firstname);
+        final EditText lastname = findViewById(R.id.lastname);
 
-        return create_account(username.getText().toString(), password.getText().toString());
+
+        return create_account(username.getText().toString(), password.getText().toString(), firstname.getText().toString(), lastname.getText().toString());
     }
 
-    public boolean create_account(String username, String password){
+    public boolean create_account(String username, String password, String firstname, String lastname){
         // access database here
         return true;
     }
