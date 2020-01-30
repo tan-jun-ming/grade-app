@@ -20,9 +20,10 @@
         android:text="Username"/>
 
     <EditText
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/username" />
+        android:hint="Username" />
 
     <TextView
         android:layout_width="match_parent"
@@ -34,6 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPassword" />
 
     <TextView
@@ -45,7 +47,8 @@
     <EditText
         android:id="@+id/firstname"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:hint="First Name" />
 
     <TextView
         android:id="@+id/textView2"
@@ -56,7 +59,8 @@
     <EditText
         android:id="@+id/lastname"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:hint="Last Name" />
 
     <Button
         android:layout_width="match_parent"
