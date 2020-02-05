@@ -20,6 +20,8 @@ public class LoginActivity extends AppCompatActivity {
 
         Button login_button = findViewById(R.id.login_button);
         login_button.setOnClickListener(new View.OnClickListener() {
+            //calls the onclick method 
+            //will ask username and password on page
             @Override
             public void onClick(View v) {
                 EditText username = findViewById(R.id.username);
