@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
             //will ask username and password on page
             @Override
             public void onClick(View v) {
+
                 EditText username = findViewById(R.id.username);
                 EditText password = findViewById(R.id.password);
 
