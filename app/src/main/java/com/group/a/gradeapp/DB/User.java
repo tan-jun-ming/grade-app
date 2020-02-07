@@ -1,18 +1,17 @@
 package com.group.a.gradeapp.DB;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 
-@Entity
+@Entity(tableName = AppDatabase.USER_TABLE)
 public class User {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     private int id;
-
-
 
     @NonNull
     private String username;

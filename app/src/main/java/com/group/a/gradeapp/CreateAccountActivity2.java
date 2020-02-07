@@ -7,19 +7,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import java.util.Date;
-
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.room.Room;
 
 import com.group.a.gradeapp.DB.AppDatabase;
-import com.group.a.gradeapp.DB.GradeLogDAO;
-import com.group.a.gradeapp.DB.GradeRoom;
 import com.group.a.gradeapp.DB.LogRecord;
+import com.group.a.gradeapp.DB.GradeLogDAO;
+import com.group.a.gradeapp.DB.GradeLog;
 import com.group.a.gradeapp.DB.User;
+import com.group.a.gradeapp.DB.UserDAO;
+
 
 
 public class CreateAccountActivity2  extends AppCompatActivity {
@@ -30,8 +29,7 @@ public class CreateAccountActivity2  extends AppCompatActivity {
         Log.d("CreateAccountActivity2", "onCreate called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createaccount2);
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+
 
         Button create_button = findViewById(R.id.create_account_button);
         create_button.setOnClickListener(new View.OnClickListener() {
@@ -44,8 +42,8 @@ public class CreateAccountActivity2  extends AppCompatActivity {
                 EditText lastname = findViewById(R.id.lastname);
 
 
-                User user = GradeRoom.getGradeRoom(CreateAccountActivity2.this).
-                        dao().getUserByName(username.getText().toString());
+                User user = AppDatabase.getAppDatabase(CreateAccountActivity2.this).
+                        UserDAO().getUserByName(username.getText().toString());
 
                 if (user == null) {
                     // username does not exist, so add the new account
@@ -77,17 +75,17 @@ public class CreateAccountActivity2  extends AppCompatActivity {
                         return;
                     }
 
-                    User newUser = new User(name, pw, first_name, last_name);
-                    GradeLogDAO dao = GradeRoom.getGradeRoom(CreateAccountActivity2.this).dao();
-                    dao.addUser(newUser);
 
 
+                    // add the new user account into the database
+//                    User newUser = new User(name, pw, first_name, last_name);
+//                    UserDAO dao = AppDatabase.getAppDatabase(CreateAccountActivity2.this).dao();
+//                    dao.addUser(newUser);
 
-
-
-                    Date now = new Date();
-                    LogRecord rec = new LogRecord(now, LogRecord.TYPE_NEW_ACCOUNT, name, "");
-                    dao.addLogRecord(rec);
+//                  //  Show in the log record that a new account was created
+//                    Date now = new Date();
+//                    LogRecord rec = new LogRecord(now, LogRecord.TYPE_NEW_ACCOUNT, name, "");
+//                    dao.addLogRecord(rec);
 
 
 

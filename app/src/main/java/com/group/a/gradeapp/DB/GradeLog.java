@@ -1,12 +1,8 @@
-package com.group.a.gradeapp;
-
+package com.group.a.gradeapp.DB;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.group.a.gradeapp.DB.AppDatabase;
-
-import java.util.Date;
 
 
 @Entity(tableName = AppDatabase.GRADELOG_TABLE)
