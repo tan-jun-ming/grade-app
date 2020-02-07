@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        myGradeLogDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.dbName)
-                .allowMainThreadQueries()
-                .build()
-                .getGradeLogDAO();
+//        myGradeLogDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.dbName)
+//                .allowMainThreadQueries()
+//                .build()
+//                .getGradeLogDAO();
 
         Button create_account_button = findViewById(R.id.create_account);
         create_account_button.setOnClickListener(new View.OnClickListener(){

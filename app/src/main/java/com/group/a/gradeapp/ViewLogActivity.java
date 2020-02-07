@@ -9,17 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.util.List;
-
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.group.a.gradeapp.DB.GradeRoom;
+import com.group.a.gradeapp.DB.AppDatabase;
 import com.group.a.gradeapp.DB.LogRecord;
 
 
@@ -49,7 +45,7 @@ public class ViewLogActivity  extends AppCompatActivity {
 
 
         // retrieve all log records from database
-        records = GradeRoom.getGradeRoom(this).dao().getAllLogRecords();
+        //records = AppDatabase.getAppDatabase(this).dao().getAllLogRecords();
 
 
 
