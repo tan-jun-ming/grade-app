@@ -1,6 +1,7 @@
 package com.group.a.gradeapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,12 +9,26 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.group.a.gradeapp.DB.AppDatabase;
+import com.group.a.gradeapp.DB.GradeLogDAO;
+import com.group.a.gradeapp.DB.User;
+
 public class MainActivity extends AppCompatActivity {
+
+
+    GradeLogDAO myGradeLogDAO;
+    User myUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+//        myGradeLogDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.dbName)
+//                .allowMainThreadQueries()
+//                .build()
+//                .getGradeLogDAO();
 
         Button create_account_button = findViewById(R.id.create_account);
         create_account_button.setOnClickListener(new View.OnClickListener(){
@@ -21,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // call the create account activity
                 Log.d("MainActivity", "onClick for create account called");
-                Intent intent = new Intent(MainActivity.this, CreateAccountActivity.class);
+                Intent intent = new Intent(MainActivity.this, CreateAccountActivity2.class);
                 startActivity(intent);
 
             }

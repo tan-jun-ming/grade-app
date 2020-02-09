@@ -17,13 +17,14 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("LoginActivity", "onCreate called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         Button login_button = findViewById(R.id.login_button);
         login_button.setOnClickListener(new View.OnClickListener() {
+            //calls the onclick method 
+            //will ask username and password on page
             @Override
             public void onClick(View v) {
+
                 EditText username = findViewById(R.id.username);
                 EditText password = findViewById(R.id.password);
 
