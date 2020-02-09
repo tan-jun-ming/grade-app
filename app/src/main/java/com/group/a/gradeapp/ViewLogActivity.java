@@ -1,7 +1,6 @@
 package com.group.a.gradeapp;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,9 +13,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.group.a.gradeapp.DB.AppDatabase;
 import com.group.a.gradeapp.DB.LogRecord;
+import com.group.a.gradeapp.DB.User;
 
 
 public class ViewLogActivity  extends AppCompatActivity {
@@ -24,6 +23,7 @@ public class ViewLogActivity  extends AppCompatActivity {
     private ViewLogAdapter adapter;
 
     private List<LogRecord> records;
+    //private List<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +34,8 @@ public class ViewLogActivity  extends AppCompatActivity {
 
 
 
-        Button return_main_button = findViewById(R.id.return_button);
-        return_main_button.setOnClickListener(new View.OnClickListener() {
+        Button return_button = findViewById(R.id.return_button);
+        return_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("ViewLogActivity", "onClick return called");
@@ -45,8 +45,8 @@ public class ViewLogActivity  extends AppCompatActivity {
 
 
         // retrieve all log records from database
-        //records = AppDatabase.getAppDatabase(this).dao().getAllLogRecords();
-
+        records = AppDatabase.getAppDatabase(this).dao().getAllLogRecords();
+       // users = AppDatabase.getAppDatabase(this).dao().getAllLogRecords();
 
 
         RecyclerView rv = findViewById(R.id.recycler_view);
@@ -57,7 +57,7 @@ public class ViewLogActivity  extends AppCompatActivity {
         if (adapter.getItemCount() == 0){
             AlertDialog.Builder builder = new AlertDialog.Builder(ViewLogActivity.this);
             builder.setTitle("No log activity found");
-            builder.setPositiveButton("Continue to main menu", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton("Continue to Home Page", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     finish();

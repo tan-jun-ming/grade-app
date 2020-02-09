@@ -1,17 +1,17 @@
 package com.group.a.gradeapp.DB;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
 
 
 @Entity(tableName = AppDatabase.USER_TABLE)
 public class User {
     @PrimaryKey(autoGenerate = true)
     @NonNull
-    private int id;
+    private int UserID;
 
     @NonNull
     private String username;
@@ -21,33 +21,36 @@ public class User {
     private String first_name;
     @NonNull
     private String last_name;
+    @NonNull
+    private long time;
 
     public User() {}
 
 
 
     @Ignore
-    public User(String username, String password, String first_name, String last_name){
+    public User(java.util.Date datetime, String username, String password, String first_name, String last_name){
         this.username=username;
         this.password=password;
         this.first_name=first_name;
         this.last_name=last_name;
+        this.time=datetime.getTime();
     }
 
-    public int getId() {
-        return id;
+    public int getUserID() {
+        return UserID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserID(int userID) {
+        this.UserID = userID;
     }
 
     public int getUser_id() {
-        return id;
+        return UserID;
     }
 
     public void setUser_id(int user_id) {
-        this.id = id;
+        this.UserID = UserID;
     }
 
     public String getUsername() {
@@ -82,7 +85,13 @@ public class User {
         this.last_name = last_name;
     }
 
+    public long getTime() {
+        return time;
+    }
 
+    public void setTime(long time) {
+        this.time = time;
+    }
 }
 
 
