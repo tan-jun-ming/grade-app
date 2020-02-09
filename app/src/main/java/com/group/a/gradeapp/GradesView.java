@@ -1,10 +1,12 @@
 package com.group.a.gradeapp;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 public class GradesView extends AppCompatActivity {
 
@@ -12,6 +14,9 @@ public class GradesView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grades_view);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         RecyclerView recycler_view = findViewById(R.id.gradeview_list);
 
@@ -22,5 +27,10 @@ public class GradesView extends AppCompatActivity {
 
         GradeViewAdapter grade_adapter = new GradeViewAdapter(grades);
         recycler_view.setAdapter(grade_adapter);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        finish();
+        return true;
     }
 }
