@@ -1,7 +1,6 @@
 package com.group.a.gradeapp.DB;
 
 import java.util.List;
-
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -26,6 +25,14 @@ public interface UserDAO {
 
     @Insert
     void addUser(User user);
+
+    @Query("select * from User order by time desc")
+    List<User> getAllLogRecords();
+
+    @Insert
+    void addLogRecord(LogRecord rec);
+
+
 
 
 

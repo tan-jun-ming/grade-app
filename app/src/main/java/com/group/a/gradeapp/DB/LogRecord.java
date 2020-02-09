@@ -10,12 +10,13 @@ import androidx.room.Ignore;
 public class LogRecord {
 
     public static final String TYPE_NEW_ACCOUNT ="Account Created";
+    public static final String TYPE_GRADE_LOG ="Grade Log";
 
 
 
     @NonNull
     @PrimaryKey(autoGenerate=true)
-    private int id;
+    private int UserID;
     @NonNull
     private long time;
     @NonNull
@@ -42,12 +43,12 @@ public class LogRecord {
 
 
 
-    public int getId() {
-        return id;
+    public int getUserID() {
+        return UserID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserID(int userID) {
+        this.UserID = userID;
     }
 
     @NonNull

@@ -1,22 +1,29 @@
 package com.group.a.gradeapp.DB;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 
 
 @Entity(tableName = AppDatabase.GRADELOG_TABLE)
 
-public class GradeLog {
+public class Grade {
     @PrimaryKey(autoGenerate = true)
+    @NonNull
     private int gradeID;
+
     private int score;
     private int assignmentID;
     private int studentID;
     private int courseID;
     private long date_earned;
 
-    public GradeLog(int gradeID, int score, int assignmentID, int studentID, int courseID, long date_earned) {
+    public Grade(){  }
+
+    @Ignore
+    public Grade(int gradeID, int score, int assignmentID, int studentID, int courseID, long date_earned) {
         this.gradeID=gradeID;
         this.score=score;
         this.assignmentID=assignmentID;
@@ -26,14 +33,14 @@ public class GradeLog {
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        GradeLog GradeLog = (GradeLog) o;
-        return  score == GradeLog.score &&
-                date_earned == GradeLog.date_earned ;
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Grade Grade = (Grade) o;
+//        return  score == Grade.score &&
+//                date_earned == Grade.date_earned ;
+//    }
 
     @Override
     public String toString() {
