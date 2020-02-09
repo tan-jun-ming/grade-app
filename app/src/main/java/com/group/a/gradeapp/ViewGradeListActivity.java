@@ -16,7 +16,9 @@ public class ViewGradeListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_grade_list);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if (actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         RecyclerView recycler_view = findViewById(R.id.gradeview_list);
 
