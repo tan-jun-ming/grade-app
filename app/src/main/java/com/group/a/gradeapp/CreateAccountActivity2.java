@@ -7,18 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import java.util.Date;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import com.group.a.gradeapp.DB.AppDatabase;
-import com.group.a.gradeapp.DB.LogRecord;
-import com.group.a.gradeapp.DB.GradeLogDAO;
-import com.group.a.gradeapp.DB.GradeLog;
 import com.group.a.gradeapp.DB.User;
-import com.group.a.gradeapp.DB.UserDAO;
-
 
 
 public class CreateAccountActivity2  extends AppCompatActivity {

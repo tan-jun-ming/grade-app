@@ -1,7 +1,7 @@
 package com.group.a.gradeapp.DB;
 
 import android.content.Context;
-import android.util.Log;
+
 import androidx.room.Entity;
 import androidx.room.Database;
 import androidx.room.TypeConverters;
@@ -10,8 +10,7 @@ import androidx.room.RoomDatabase;
 import com.group.a.gradeapp.DB.TypeConverter.DateTypeConverter;
 
 
-
-@Database(entities = {LogRecord.class, User.class, GradeLog.class }, version =1, exportSchema = false)
+@Database(entities = {LogRecord.class, User.class, Grade.class }, version =1, exportSchema = false)
 @TypeConverters(DateTypeConverter.class)
 
 @Entity
@@ -48,7 +47,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
         return instance;
     }
-//
+
 //    public void loadData(Context context){
 //
 //        // if user table is empty, then load data for users
@@ -61,7 +60,7 @@ public abstract class AppDatabase extends RoomDatabase {
 //
 //        }
 //    }
-
+//
 //    private void loadUsers(Context context) {
 //        UserDAO dao = getAppDatabase(context).dao();
 //
