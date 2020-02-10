@@ -1,5 +1,6 @@
 package com.group.a.gradeapp;
 
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -11,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 // Adapted from https://developer.android.com/guide/topics/ui/layout/recyclerview
 public class GradeViewAdapter extends RecyclerView.Adapter<GradeViewAdapter.GradeViewHolder> {
-    private String[] mDataset;
+    private ViewGradeListItem[] mDataset;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -26,7 +27,7 @@ public class GradeViewAdapter extends RecyclerView.Adapter<GradeViewAdapter.Grad
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public GradeViewAdapter(String[] myDataset) {
+    public GradeViewAdapter(ViewGradeListItem[] myDataset) {
         mDataset = myDataset;
     }
 
@@ -47,8 +48,25 @@ public class GradeViewAdapter extends RecyclerView.Adapter<GradeViewAdapter.Grad
     public void onBindViewHolder(GradeViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        ((TextView)holder.layout.findViewById(R.id.gradeviewname)).setText(mDataset[position]);
-        ((TextView)holder.layout.findViewById(R.id.gradeviewnum)).setText("50 million %");
+
+        TextView item_name = holder.layout.findViewById(R.id.gradeviewname);
+        TextView item_grade = holder.layout.findViewById(R.id.gradeviewnum);
+
+        ViewGradeListItem item = mDataset[position];
+
+        if (item.is_category){
+            item_name.setTypeface(null, Typeface.BOLD);
+        } else {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) item_name.getLayoutParams();
+            params.leftMargin = utils.dp_to_pixels(40);
+        }
+
+        item_name.setText(item.name);
+
+        String gradepercentage = item.grade == null ? "- %" : String.format("%.2f%%", item.grade) ;
+
+        item_grade.setText(gradepercentage);
+
 
     }
 
