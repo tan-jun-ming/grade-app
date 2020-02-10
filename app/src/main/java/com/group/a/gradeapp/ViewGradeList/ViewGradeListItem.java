@@ -1,4 +1,4 @@
-package com.group.a.gradeapp;
+package com.group.a.gradeapp.ViewGradeList;
 
 public class ViewGradeListItem {
     public boolean is_category;

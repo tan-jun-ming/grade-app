@@ -1,11 +1,15 @@
-package com.group.a.gradeapp;
+package com.group.a.gradeapp.ViewGradeList;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.group.a.gradeapp.R;
+import com.group.a.gradeapp.utils;
 
 import java.util.ArrayList;
 
@@ -39,8 +43,8 @@ public class ViewGradeListAdapter extends RecyclerView.Adapter<ViewGradeListAdap
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ViewGradeListAdapter(ArrayList<ViewGradeListItem> myDataset, RecyclerItemClickListener l) {
-        mDataset = myDataset;
+    public ViewGradeListAdapter(RecyclerItemClickListener l) {
+        mDataset = new ArrayList<ViewGradeListItem>();
         listener = l;
     }
 
@@ -75,6 +79,10 @@ public class ViewGradeListAdapter extends RecyclerView.Adapter<ViewGradeListAdap
 
         ViewGradeListItem item = mDataset.get(position);
 
+        if (position % 2 == 0){
+            holder.layout.setBackgroundColor(Color.LTGRAY);
+        }
+
         if (item.is_category){
             item_name.setTypeface(null, Typeface.BOLD);
         } else {
@@ -87,8 +95,6 @@ public class ViewGradeListAdapter extends RecyclerView.Adapter<ViewGradeListAdap
         String gradepercentage = item.grade == null ? "- %" : String.format("%.2f%%", item.grade) ;
 
         item_grade.setText(gradepercentage);
-
-
     }
 
     // Return the size of your dataset (invoked by the layout manager)
