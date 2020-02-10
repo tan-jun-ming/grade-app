@@ -1,4 +1,4 @@
-package com.group.a.gradeapp;
+package com.group.a.gradeapp.ViewGradeList;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.group.a.gradeapp.R;
+import com.group.a.gradeapp.utils;
 
 import java.util.ArrayList;
 

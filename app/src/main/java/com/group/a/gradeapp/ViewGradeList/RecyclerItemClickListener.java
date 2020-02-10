@@ -1,4 +1,4 @@
-package com.group.a.gradeapp;
+package com.group.a.gradeapp.ViewGradeList;
 
 import android.view.View;
 

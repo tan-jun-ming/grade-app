@@ -1,4 +1,4 @@
-package com.group.a.gradeapp;
+package com.group.a.gradeapp.ViewGradeList;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.group.a.gradeapp.R;
+import com.group.a.gradeapp.utils;
 
 import java.util.ArrayList;
 
