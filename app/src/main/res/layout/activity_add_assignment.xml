@@ -19,97 +19,109 @@
         android:scaleY="2"
         android:text="Add Assignment" />
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Category" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/categoryname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <Spinner
-        android:id="@+id/categoryspinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Category" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Name" />
+            <TextView
+                android:id="@+id/categoryname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+            <Spinner
+                android:id="@+id/categoryspinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Assigned" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name" />
 
-    <Button
-        android:id="@+id/assigneddate"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2020-20-20" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Due" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Assigned" />
 
-    <Button
-        android:id="@+id/duedate"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2020-20-20" />
+            <Button
+                android:id="@+id/assigneddate"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2020-20-20" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Due" />
+
+            <Button
+                android:id="@+id/duedate"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2020-20-20" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Details" />
+
+            <EditText
+                android:id="@+id/detailsbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Maximum Score" />
+
+            <EditText
+                android:id="@+id/maxscorebox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Earned Score" />
+
+            <EditText
+                android:id="@+id/maxscorebox2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal" />
+
+            <Button
+                android:id="@+id/savebutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save" />
+        </LinearLayout>
+    </ScrollView>
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Details" />
-
-    <EditText
-        android:id="@+id/detailsbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Maximum Score" />
-
-    <EditText
-        android:id="@+id/maxscorebox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Earned Score" />
-
-    <EditText
-        android:id="@+id/maxscorebox2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal" />
-
-    <Button
-        android:id="@+id/savebutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save" />
 </LinearLayout>
