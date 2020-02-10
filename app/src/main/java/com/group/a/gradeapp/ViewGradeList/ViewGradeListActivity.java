@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.group.a.gradeapp.AddAssignmentActivity;
 import com.group.a.gradeapp.R;
 import com.group.a.gradeapp.utils;
 
@@ -59,7 +61,10 @@ public class ViewGradeListActivity extends AppCompatActivity {
         ViewGradeListItem item = grades.get(position);
 
         if (item.is_category){
-            // open add assignment here
+            Intent intent = new Intent(ViewGradeListActivity.this, AddAssignmentActivity.class);
+            intent.putExtra("category_id", item.category_id);
+            intent.putExtra("category_name", item.name);
+            startActivity(intent);
         } else {
             // open edit assignment here
         }

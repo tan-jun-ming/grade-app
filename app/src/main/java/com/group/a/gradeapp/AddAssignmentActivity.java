@@ -18,8 +18,22 @@ public class AddAssignmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_assignment);
 
+        String category_name = "";
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras != null) {
+                category_name = extras.getString("category_name");
+            }
+        } else {
+            category_name = (String) savedInstanceState.getSerializable("category_name");
+        }
+
         final Button duedate = findViewById(R.id.duedate);
         final Button assigneddate = findViewById(R.id.assigneddate);
+
+        TextView categoryname = findViewById(R.id.categoryname);
+        categoryname.setText(category_name);
 
         Calendar c = Calendar.getInstance();
 
