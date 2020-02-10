@@ -1,5 +1,6 @@
 package com.group.a.gradeapp;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,6 +75,10 @@ public class ViewGradeListAdapter extends RecyclerView.Adapter<ViewGradeListAdap
         TextView item_grade = holder.layout.findViewById(R.id.gradeviewnum);
 
         ViewGradeListItem item = mDataset.get(position);
+
+        if (position % 2 == 0){
+            holder.layout.setBackgroundColor(Color.LTGRAY);
+        }
 
         if (item.is_category){
             item_name.setTypeface(null, Typeface.BOLD);
