@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 
 
-@Entity(tableName = AppDatabase.GRADELOG_TABLE)
+@Entity(tableName = AppDatabase.GRADE_TABLE)
 
 public class Grade {
     @PrimaryKey(autoGenerate = true)

@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.group.a.gradeapp.DB.GradeLogDAO;
+import com.group.a.gradeapp.DB.GradeDAO;
 import com.group.a.gradeapp.DB.User;
 
 public class HomePageActivity extends AppCompatActivity {
@@ -16,7 +16,7 @@ public class HomePageActivity extends AppCompatActivity {
     // check database
 //        AppDatabase.getAppDatabase(HomePageActivity.this).loadData(this);
 
-    GradeLogDAO myGradeLogDAO;
+    GradeDAO myGradeDAO;
     User myUser;
 
     @Override
@@ -24,7 +24,7 @@ public class HomePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-//        myGradeLogDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.dbName)
+//        myGradeDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.dbName)
 //                .allowMainThreadQueries()
 //                .build()
 //                .getGradeLogDAO();

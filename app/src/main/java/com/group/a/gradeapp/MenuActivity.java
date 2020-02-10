@@ -21,8 +21,8 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // call the add course activity
                 Log.d("HomePageActivity", "onClick for add course called");
-               // Intent intent = new Intent(MenuActivity.this, AddCourseActivity.class);
-                // startActivity(intent);
+               Intent intent = new Intent(MenuActivity.this, AddCourseActivity.class);
+               startActivity(intent);
 
             }
         });

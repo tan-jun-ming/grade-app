@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey;
 
 
 @Entity(tableName = AppDatabase.USER_TABLE)
+
 public class User {
     @PrimaryKey(autoGenerate = true)
     @NonNull

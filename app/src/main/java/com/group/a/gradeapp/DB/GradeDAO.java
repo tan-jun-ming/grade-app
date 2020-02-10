@@ -10,7 +10,7 @@ import androidx.room.Update;
 
 
 @Dao
-public interface GradeLogDAO {
+public interface GradeDAO {
 
         @Insert
         void addGradeLog( Grade gradelog);
@@ -20,10 +20,10 @@ public interface GradeLogDAO {
         @Delete
         void delete(Grade grade);
 
-        @Query("select * from " + AppDatabase.GRADELOG_TABLE)
+        @Query("select * from " + AppDatabase.GRADE_TABLE)
         List<Grade> getGradeLogs();
 
-//        @Query("SELECT * FROM " + AppDatabase.GRADELOG_TABLE + " WHERE gLogId = :logID")
+//        @Query("SELECT * FROM " + AppDatabase.GRADE_TABLE + " WHERE gLogId = :logID")
 //        Grade getGradeLogWithId(int logID);
 
 //        @Query("select * from LogRecord order by time desc")

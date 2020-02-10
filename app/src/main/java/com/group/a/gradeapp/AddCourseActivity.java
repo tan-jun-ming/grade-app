@@ -11,9 +11,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-public class AddCourseAcitivity extends AppCompatActivity {
+public class AddCourseActivity extends AppCompatActivity {
 
     public static final String TAG = "AddCourseActivity";
 
@@ -41,7 +40,7 @@ public class AddCourseAcitivity extends AppCompatActivity {
     //In case of error on the on click method will provide an alert dialog.
     public void alert(String error) {
         Log.d(TAG, "alerting error");
-        AlertDialog.Builder builder = new AlertDialog.Builder(AddCourseAcitivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddCourseActivity.this);
         builder.setTitle("Error");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override

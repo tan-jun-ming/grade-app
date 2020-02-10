@@ -37,6 +37,19 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                 startActivity(intent);
 
+//                FlightDao dao = FlightRoom.getFlightRoom(LoginActivity.this).dao();
+//                User user = dao.login(name, pw);
+//                if (user == null) {
+//                    // unsuccessful login
+//                    TextView msg = findViewById(R.id.message);
+//                    msg.setText("User name or password is invalid.");
+//
+//                } else {
+//                    // successful login
+//                    MainActivity.username = username.getText().toString();
+//                    finish();
+//                }
+
 
             }
         });
