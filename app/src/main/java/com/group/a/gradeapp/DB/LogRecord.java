@@ -10,7 +10,7 @@ import androidx.room.Ignore;
 public class LogRecord {
 
     public static final String TYPE_NEW_ACCOUNT ="Account Created";
-    public static final String TYPE_GRADE_LOG ="Grade Log";
+  //  public static final String TYPE_GRADE_LOG ="Grade Log";
 
 
 

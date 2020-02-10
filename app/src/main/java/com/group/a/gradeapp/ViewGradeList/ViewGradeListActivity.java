@@ -1,4 +1,4 @@
-package com.group.a.gradeapp;
+package com.group.a.gradeapp.ViewGradeList;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,14 +8,22 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.group.a.gradeapp.R;
+import com.group.a.gradeapp.utils;
+
 import java.util.ArrayList;
 
 public class ViewGradeListActivity extends AppCompatActivity {
+
+    private ViewGradeListAdapter grade_adapter;
+    private ArrayList<ViewGradeListItem> grades;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_grade_list);
+
+        grades = new ArrayList<ViewGradeListItem>();
 
         RecyclerView recycler_view = findViewById(R.id.gradeview_list);
 
@@ -25,17 +33,40 @@ public class ViewGradeListActivity extends AppCompatActivity {
         RecyclerItemClickListener listener = new RecyclerItemClickListener() {
             @Override
             public void onClick(View view, int position) {
-                utils.display_toast(ViewGradeListActivity.this, position + " Clicked");
+                utils.display_toast(ViewGradeListActivity.this, "Item " + position + " Clicked");
+                open_assignment(position);
             }
         };
 
-        ArrayList<ViewGradeListItem> grades = get_all_grades();
-
-        ViewGradeListAdapter grade_adapter = new ViewGradeListAdapter(grades, listener);
+        grade_adapter = new ViewGradeListAdapter(listener);
         recycler_view.setAdapter(grade_adapter);
+
+        update_grades();
     }
 
-    private ArrayList<ViewGradeListItem> get_all_grades(){
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        update_grades();
+    }
+
+    private void update_grades(){
+        grades = get_grades();
+        grade_adapter.update(grades);
+    }
+
+    private void open_assignment(int position){
+        ViewGradeListItem item = grades.get(position);
+
+        if (item.is_category){
+            // open add assignment here
+        } else {
+            // open edit assignment here
+        }
+
+    }
+
+    private ArrayList<ViewGradeListItem> get_grades(){
         // Placeholder grades
         // Call a DB-interface method in the future
 

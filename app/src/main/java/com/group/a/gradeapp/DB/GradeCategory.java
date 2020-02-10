@@ -1,12 +1,13 @@
 package com.group.a.gradeapp.DB;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 
 
-//@Entity(tableName = AppDatabase.COURSE_TABLE)
+@Entity(tableName = AppDatabase.GRADE_CATEGORY_TABLE)
 
 public class GradeCategory {
     @PrimaryKey(autoGenerate = true)

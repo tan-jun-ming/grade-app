@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 
 
-//@Entity(tableName = AppDatabase.COURSE_TABLE)
+@Entity(tableName = AppDatabase.ASSIGNMENT_TABLE)
 
 public class Assignment {
     @PrimaryKey(autoGenerate = true)

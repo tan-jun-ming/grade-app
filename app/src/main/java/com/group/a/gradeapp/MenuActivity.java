@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.group.a.gradeapp.ViewGradeList.ViewGradeListActivity;
+
 public class MenuActivity extends AppCompatActivity {
 
     @Override
