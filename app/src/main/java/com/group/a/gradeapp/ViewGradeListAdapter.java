@@ -7,12 +7,14 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 // Adapted from https://developer.android.com/guide/topics/ui/layout/recyclerview
 public class ViewGradeListAdapter extends RecyclerView.Adapter<ViewGradeListAdapter.GradeViewHolder> {
     private RecyclerItemClickListener listener;
-    private ViewGradeListItem[] mDataset;
+    private ArrayList<ViewGradeListItem> mDataset;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -37,13 +39,15 @@ public class ViewGradeListAdapter extends RecyclerView.Adapter<ViewGradeListAdap
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ViewGradeListAdapter(ViewGradeListItem[] myDataset, RecyclerItemClickListener l) {
+    public ViewGradeListAdapter(ArrayList<ViewGradeListItem> myDataset, RecyclerItemClickListener l) {
         mDataset = myDataset;
         listener = l;
     }
 
-    public void update(ViewGradeListItem[] myDataset) {
-        mDataset = myDataset;
+    public void update(ArrayList<ViewGradeListItem> newdata) {
+        mDataset.clear();
+        mDataset.addAll(newdata);
+
         notifyDataSetChanged();
     }
 
@@ -69,7 +73,7 @@ public class ViewGradeListAdapter extends RecyclerView.Adapter<ViewGradeListAdap
         TextView item_name = holder.layout.findViewById(R.id.gradeviewname);
         TextView item_grade = holder.layout.findViewById(R.id.gradeviewnum);
 
-        ViewGradeListItem item = mDataset[position];
+        ViewGradeListItem item = mDataset.get(position);
 
         if (item.is_category){
             item_name.setTypeface(null, Typeface.BOLD);
@@ -90,6 +94,6 @@ public class ViewGradeListAdapter extends RecyclerView.Adapter<ViewGradeListAdap
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
     }
 }

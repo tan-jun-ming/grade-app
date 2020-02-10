@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
+
 public class ViewGradeListActivity extends AppCompatActivity {
 
     @Override
@@ -27,30 +29,30 @@ public class ViewGradeListActivity extends AppCompatActivity {
             }
         };
 
-        ViewGradeListItem[] grades = get_all_grades();
+        ArrayList<ViewGradeListItem> grades = get_all_grades();
 
         ViewGradeListAdapter grade_adapter = new ViewGradeListAdapter(grades, listener);
         recycler_view.setAdapter(grade_adapter);
     }
 
-    private ViewGradeListItem[] get_all_grades(){
+    private ArrayList<ViewGradeListItem> get_all_grades(){
         // Placeholder grades
         // Call a DB-interface method in the future
 
-        ViewGradeListItem[] grades = {
-                new ViewGradeListItem(true, "Exams", 1, 0),
-                new ViewGradeListItem(false, "Test 1", 1, 1, 50.0f),
-                new ViewGradeListItem(false, "Test 2", 1, 2, 75.0f),
-                new ViewGradeListItem(false, "Test 3", 1, 3, null),
-                new ViewGradeListItem(true, "Labs", 1, 0, 90f),
-                new ViewGradeListItem(false, "Lab 1", 1, 1, 10.0f),
-                new ViewGradeListItem(false, "Lab 2", 1, 2, 0.0f),
-                new ViewGradeListItem(false, "Lab 3", 1, 3, 20.0f),
-                new ViewGradeListItem(true, "Quizzes", 1, 0, 0f),
-                new ViewGradeListItem(false, "Quiz 1", 1, 1, 0.0f),
-                new ViewGradeListItem(false, "Quiz 2", 1, 2, 0.0f),
-                new ViewGradeListItem(false, "Quiz 3", 1, 3, null),
-        };
+        ArrayList<ViewGradeListItem> grades = new ArrayList<ViewGradeListItem>();
+
+        grades.add(new ViewGradeListItem(true, "Exams", 1, 0));
+        grades.add(new ViewGradeListItem(false, "Test 1", 1, 1, 50.0f));
+        grades.add(new ViewGradeListItem(false, "Test 2", 1, 2, 75.0f));
+        grades.add(new ViewGradeListItem(false, "Test 3", 1, 3, null));
+        grades.add(new ViewGradeListItem(true, "Labs", 1, 0, 90f));
+        grades.add(new ViewGradeListItem(false, "Lab 1", 1, 1, 10.0f));
+        grades.add(new ViewGradeListItem(false, "Lab 2", 1, 2, 0.0f));
+        grades.add(new ViewGradeListItem(false, "Lab 3", 1, 3, 20.0f));
+        grades.add(new ViewGradeListItem(true, "Quizzes", 1, 0, 0f));
+        grades.add(new ViewGradeListItem(false, "Quiz 1", 1, 1, 0.0f));
+        grades.add(new ViewGradeListItem(false, "Quiz 2", 1, 2, 0.0f));
+        grades.add(new ViewGradeListItem(false, "Quiz 3", 1, 3, null));
 
         return grades;
     }
