@@ -52,11 +52,19 @@ public class ViewGradeListActivity extends AppCompatActivity {
         update_grades();
     }
 
+    /**
+     * Update grades
+     */
     private void update_grades(){
         grades = get_grades();
         grade_adapter.update(grades);
     }
 
+    /**
+     * Opens the assigment or category at the position as a Grade Summary or Add Assignment Activity
+     *
+     * @param position Position of the item in the recycler
+     */
     private void open_assignment(int position){
         ViewGradeListItem item = grades.get(position);
 
@@ -71,6 +79,11 @@ public class ViewGradeListActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Gets the category and assignment grades from the database
+     *
+     * @return ArrayList of ViewGradeListItem for displaying in the recycler
+     */
     private ArrayList<ViewGradeListItem> get_grades(){
         // Placeholder grades
         // Call a DB-interface method in the future
@@ -92,8 +105,5 @@ public class ViewGradeListActivity extends AppCompatActivity {
 
         return grades;
     }
-    public boolean onOptionsItemSelected(MenuItem item){
-        finish();
-        return true;
-    }
+
 }

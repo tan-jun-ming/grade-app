@@ -79,7 +79,7 @@ public class AddAssignmentActivity extends AppCompatActivity {
 
         assigneddate.setOnClickListener(
                 new View.OnClickListener(){
-                    public void onClick(View v){
+                    public void onClick(View v){2
                         assigneddatepicker.show();
                     }
 
