@@ -35,7 +35,7 @@ public class HomePageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // call the create account activity
                 Log.d("HomePageActivity", "onClick for create account called");
-                Intent intent = new Intent(HomePageActivity.this, CreateAccountActivity2.class);
+                Intent intent = new Intent(HomePageActivity.this, CreateAccountActivity.class);
                 startActivity(intent);
 
             }
