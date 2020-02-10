@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class ViewGradeListActivity extends AppCompatActivity {
 
     private ViewGradeListAdapter grade_adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,12 @@ public class ViewGradeListActivity extends AppCompatActivity {
         grade_adapter = new ViewGradeListAdapter(listener);
         recycler_view.setAdapter(grade_adapter);
 
+        update_grades();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
         update_grades();
     }
 
