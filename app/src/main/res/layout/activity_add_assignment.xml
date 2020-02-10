@@ -24,6 +24,11 @@
         android:layout_height="wrap_content"
         android:text="Category" />
 
+    <TextView
+        android:id="@+id/categoryname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <Spinner
         android:id="@+id/categoryspinner"
         android:layout_width="match_parent"
