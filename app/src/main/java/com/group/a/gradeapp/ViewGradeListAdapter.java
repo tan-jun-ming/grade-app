@@ -92,8 +92,6 @@ public class ViewGradeListAdapter extends RecyclerView.Adapter<ViewGradeListAdap
         String gradepercentage = item.grade == null ? "- %" : String.format("%.2f%%", item.grade) ;
 
         item_grade.setText(gradepercentage);
-
-
     }
 
     // Return the size of your dataset (invoked by the layout manager)

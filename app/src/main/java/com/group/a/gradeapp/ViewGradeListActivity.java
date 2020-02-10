@@ -13,11 +13,14 @@ import java.util.ArrayList;
 public class ViewGradeListActivity extends AppCompatActivity {
 
     private ViewGradeListAdapter grade_adapter;
+    private ArrayList<ViewGradeListItem> grades;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_grade_list);
+
+        grades = new ArrayList<ViewGradeListItem>();
 
         RecyclerView recycler_view = findViewById(R.id.gradeview_list);
 
@@ -27,7 +30,8 @@ public class ViewGradeListActivity extends AppCompatActivity {
         RecyclerItemClickListener listener = new RecyclerItemClickListener() {
             @Override
             public void onClick(View view, int position) {
-                utils.display_toast(ViewGradeListActivity.this, position + " Clicked");
+                utils.display_toast(ViewGradeListActivity.this, "Item " + position + " Clicked");
+                open_assignment(position);
             }
         };
 
@@ -44,7 +48,19 @@ public class ViewGradeListActivity extends AppCompatActivity {
     }
 
     private void update_grades(){
-        grade_adapter.update(get_grades());
+        grades = get_grades();
+        grade_adapter.update(grades);
+    }
+
+    private void open_assignment(int position){
+        ViewGradeListItem item = grades.get(position);
+
+        if (item.is_category){
+            // open add assignment here
+        } else {
+            // open edit assignment here
+        }
+
     }
 
     private ArrayList<ViewGradeListItem> get_grades(){
