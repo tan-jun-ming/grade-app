@@ -30,12 +30,12 @@ public class User {
 
 
     @Ignore
-    public User(java.util.Date datetime, String username, String password, String first_name, String last_name){
+    public User( String username, String password, String first_name, String last_name){
         this.username=username;
         this.password=password;
         this.first_name=first_name;
         this.last_name=last_name;
-        this.time=datetime.getTime();
+        //this.time=datetime.getTime();  java.util.Date datetime, enter this into parameter
     }
 
     public int getUserID() {

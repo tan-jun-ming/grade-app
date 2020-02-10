@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.group.a.gradeapp.DB.AppDatabase;
 import com.group.a.gradeapp.DB.LogRecord;
-import com.group.a.gradeapp.DB.User;
 
 
 public class ViewLogActivity  extends AppCompatActivity {
@@ -45,8 +44,8 @@ public class ViewLogActivity  extends AppCompatActivity {
 
 
         // retrieve all log records from database
-        records = AppDatabase.getAppDatabase(this).dao().getAllLogRecords();
-       // users = AppDatabase.getAppDatabase(this).dao().getAllLogRecords();
+        records = AppDatabase.getAppDatabase(this).gradeDAO().getAllLogRecords();
+       // users = AppDatabase.getAppDatabase(this).gradeDAO().getAllLogRecords();
 
 
         RecyclerView rv = findViewById(R.id.recycler_view);

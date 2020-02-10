@@ -37,8 +37,8 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                 startActivity(intent);
 
-//                FlightDao dao = FlightRoom.getFlightRoom(LoginActivity.this).dao();
-//                User user = dao.login(name, pw);
+//                FlightDao gradeDAO = FlightRoom.getFlightRoom(LoginActivity.this).gradeDAO();
+//                User user = gradeDAO.login(name, pw);
 //                if (user == null) {
 //                    // unsuccessful login
 //                    TextView msg = findViewById(R.id.message);

@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.group.a.gradeapp.DB.AppDatabase;
 import com.group.a.gradeapp.DB.User;
+import com.group.a.gradeapp.DB.UserDAO;
 
 
 public class CreateAccountActivity extends AppCompatActivity {
@@ -37,7 +38,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
 
                 User user = AppDatabase.getAppDatabase(CreateAccountActivity.this).
-                        UserDAO().getUserByName(username.getText().toString());
+                        userDAO().getUserByName(username.getText().toString());
 
                 if (user == null) {
                     // username does not exist, so add the new account
@@ -72,14 +73,16 @@ public class CreateAccountActivity extends AppCompatActivity {
 
 
                     // add the new user account into the database
-//                    User newUser = new User(name, pw, first_name, last_name);
-//                    UserDAO dao = AppDatabase.getAppDatabase(CreateAccountActivity.this).dao();
-//                    dao.addUser(newUser);
+                    User newUser = new User(name, pw, first_name, last_name);
+
+                    UserDAO dao = AppDatabase.getAppDatabase(CreateAccountActivity.this).userDAO();
+                    dao.addUser(newUser);
+
 
 //                  //  Show in the log record that a new account was created
 //                    Date now = new Date();
 //                    LogRecord rec = new LogRecord(now, LogRecord.TYPE_NEW_ACCOUNT, name, "");
-//                    dao.addLogRecord(rec);
+//                    gradeDAO.addLogRecord(rec);
 
 
 
