@@ -1,12 +1,12 @@
 package com.group.a.gradeapp;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 public class ViewGradeListActivity extends AppCompatActivity {
 
@@ -20,9 +20,16 @@ public class ViewGradeListActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layout_manager = new LinearLayoutManager(this);
         recycler_view.setLayoutManager(layout_manager);
 
+        RecyclerItemClickListener listener = new RecyclerItemClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                utils.display_toast(ViewGradeListActivity.this, position + " Clicked");
+            }
+        };
+
         ViewGradeListItem[] grades = get_all_grades();
 
-        GradeViewAdapter grade_adapter = new GradeViewAdapter(grades);
+        ViewGradeListAdapter grade_adapter = new ViewGradeListAdapter(grades, listener);
         recycler_view.setAdapter(grade_adapter);
     }
 

@@ -2,34 +2,51 @@ package com.group.a.gradeapp;
 
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import androidx.recyclerview.widget.RecyclerView;
 
 // Adapted from https://developer.android.com/guide/topics/ui/layout/recyclerview
-public class GradeViewAdapter extends RecyclerView.Adapter<GradeViewAdapter.GradeViewHolder> {
+public class ViewGradeListAdapter extends RecyclerView.Adapter<ViewGradeListAdapter.GradeViewHolder> {
+    private RecyclerItemClickListener listener;
     private ViewGradeListItem[] mDataset;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class GradeViewHolder extends RecyclerView.ViewHolder {
+    public static class GradeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // each data item is just a string in this case
+
         public RelativeLayout layout;
-        public GradeViewHolder(RelativeLayout v) {
+        private RecyclerItemClickListener listener;
+
+        public GradeViewHolder(RelativeLayout v, RecyclerItemClickListener l) {
             super(v);
             layout = v;
+            listener = l;
+            v.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            listener.onClick(view, getAdapterPosition());
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public GradeViewAdapter(ViewGradeListItem[] myDataset) {
+    public ViewGradeListAdapter(ViewGradeListItem[] myDataset, RecyclerItemClickListener l) {
         mDataset = myDataset;
+        listener = l;
     }
+
+    public void update(ViewGradeListItem[] myDataset) {
+        mDataset = myDataset;
+        notifyDataSetChanged();
+    }
+
 
     // Create new views (invoked by the layout manager)
     @Override
@@ -39,7 +56,7 @@ public class GradeViewAdapter extends RecyclerView.Adapter<GradeViewAdapter.Grad
         RelativeLayout v = (RelativeLayout) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.gradeview_item, parent, false);
 
-        GradeViewHolder vh = new GradeViewHolder(v);
+        GradeViewHolder vh = new GradeViewHolder(v, listener);
         return vh;
     }
 
