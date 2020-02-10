@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class ViewGradeListActivity extends AppCompatActivity {
 
+    private ViewGradeListAdapter grade_adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +30,17 @@ public class ViewGradeListActivity extends AppCompatActivity {
             }
         };
 
-        ArrayList<ViewGradeListItem> grades = get_all_grades();
-
-        ViewGradeListAdapter grade_adapter = new ViewGradeListAdapter(grades, listener);
+        grade_adapter = new ViewGradeListAdapter(listener);
         recycler_view.setAdapter(grade_adapter);
+
+        update_grades();
     }
 
-    private ArrayList<ViewGradeListItem> get_all_grades(){
+    private void update_grades(){
+        grade_adapter.update(get_grades());
+    }
+
+    private ArrayList<ViewGradeListItem> get_grades(){
         // Placeholder grades
         // Call a DB-interface method in the future
 

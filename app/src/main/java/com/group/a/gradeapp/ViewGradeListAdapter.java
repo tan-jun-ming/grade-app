@@ -39,8 +39,8 @@ public class ViewGradeListAdapter extends RecyclerView.Adapter<ViewGradeListAdap
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ViewGradeListAdapter(ArrayList<ViewGradeListItem> myDataset, RecyclerItemClickListener l) {
-        mDataset = myDataset;
+    public ViewGradeListAdapter(RecyclerItemClickListener l) {
+        mDataset = new ArrayList<ViewGradeListItem>();
         listener = l;
     }
 
