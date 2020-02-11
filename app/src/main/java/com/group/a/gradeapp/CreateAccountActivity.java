@@ -12,11 +12,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.group.a.gradeapp.DB.AppDatabase;
+import com.group.a.gradeapp.DB.LogRecord;
 import com.group.a.gradeapp.DB.User;
+import com.group.a.gradeapp.DB.UserDAO;
+
+import java.util.Date;
 
 
 public class CreateAccountActivity extends AppCompatActivity {
-    private int counterrors = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +37,36 @@ public class CreateAccountActivity extends AppCompatActivity {
                 EditText firstname = findViewById(R.id.firstname);
                 EditText lastname = findViewById(R.id.lastname);
 
+                String name = username.getText().toString();
+                String pw = password.getText().toString();
+                String first_name = firstname.getText().toString();
+                String last_name = lastname.getText().toString();
+
+                if (name.equals("")||pw.equals("")||first_name.equals("")||last_name.equals("")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccountActivity.this);
+                    builder.setMessage("Please fill all fields");
+                    builder.setPositiveButton("OK", null);
+
+                    builder.show();
+                    return;
+                }
 
                 User user = AppDatabase.getAppDatabase(CreateAccountActivity.this).
-                        UserDAO().getUserByName(username.getText().toString());
+                        userDAO().getUserByName(name);
 
                 if (user == null) {
-                    // username does not exist, so add the new account
-                    String name = username.getText().toString();
-                    String pw = password.getText().toString();
-                    String first_name = firstname.getText().toString();
-                    String last_name = lastname.getText().toString();
+
+                    // add the new user account into the database
+                    User newUser = new User(name, pw, first_name, last_name);
+
+                    UserDAO user_dao = AppDatabase.getAppDatabase(CreateAccountActivity.this).userDAO();
+                    user_dao.addUser(newUser);
+
+
+                    //  Show in the log record that a new account was created
+                    Date now = new Date();
+                    LogRecord rec = new LogRecord(now, LogRecord.TYPE_NEW_ACCOUNT, name, "");
+                    user_dao.addLogRecord(rec);
 
                     // inform user that new account has been created
                     utils.display_toast(getApplicationContext(), "Account created successfully", true);
@@ -51,8 +74,11 @@ public class CreateAccountActivity extends AppCompatActivity {
 
                 } else {
                     // username already exists.
-                    utils.display_toast(getApplicationContext(), "Username not available", true);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccountActivity.this);
+                    builder.setMessage("Username not available");
+                    builder.setPositiveButton("OK", null);
 
+                    builder.show();
                 }
 
             }
