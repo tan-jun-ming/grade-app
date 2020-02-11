@@ -12,6 +12,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.group.a.gradeapp.DB.AppDatabase;
+import com.group.a.gradeapp.DB.User;
+import com.group.a.gradeapp.DB.UserDAO;
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -34,21 +38,23 @@ public class LoginActivity extends AppCompatActivity {
                 String name = username.getText().toString();
                 String pw = password.getText().toString();
 
-                Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                startActivity(intent);
 
-//                FlightDao gradeDAO = FlightRoom.getFlightRoom(LoginActivity.this).gradeDAO();
-//                User user = gradeDAO.login(name, pw);
-//                if (user == null) {
-//                    // unsuccessful login
-//                    TextView msg = findViewById(R.id.message);
-//                    msg.setText("User name or password is invalid.");
-//
-//                } else {
-//                    // successful login
-//                    MainActivity.username = username.getText().toString();
-//                    finish();
-//                }
+
+                UserDAO userDAO = AppDatabase.getAppDatabase(LoginActivity.this).userDAO();
+                User user = userDAO.login(name, pw);
+                if (user == null) {
+                    // unsuccessful login
+                    TextView msg = findViewById(R.id.message);
+                    msg.setText("User name or password is invalid.");
+//                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+//                    startActivity(intent);
+
+                } else {
+                    // successful login
+                    HomePageActivity.username = username.getText().toString();
+                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                    startActivity(intent);
+                }
 
 
             }

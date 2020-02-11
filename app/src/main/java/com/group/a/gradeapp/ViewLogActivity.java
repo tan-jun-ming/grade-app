@@ -15,14 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.group.a.gradeapp.DB.AppDatabase;
 import com.group.a.gradeapp.DB.LogRecord;
+import com.group.a.gradeapp.DB.User;
 
 
 public class ViewLogActivity  extends AppCompatActivity {
 
     private ViewLogAdapter adapter;
 
+    private List<User> users;
     private List<LogRecord> records;
-    //private List<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +44,9 @@ public class ViewLogActivity  extends AppCompatActivity {
         });
 
 
-        // retrieve all log records from database
-        records = AppDatabase.getAppDatabase(this).gradeDAO().getAllLogRecords();
-       // users = AppDatabase.getAppDatabase(this).gradeDAO().getAllLogRecords();
+        // retrieve all log grades from database
+        //records = AppDatabase.getAppDatabase(this).gradeDAO().getAllLogRecords();
+        records = AppDatabase.getAppDatabase(this).userDAO().getAllLogRecords();
 
 
         RecyclerView rv = findViewById(R.id.recycler_view);

@@ -33,11 +33,11 @@ public class LogRecord {
     }
 
     @Ignore
-    public LogRecord(java.util.Date datetime, String type, String username, String message){
+    public LogRecord(java.util.Date datetime, String type, String username, String detailed_message){
         this.time = datetime.getTime();
         this.transaction_type = type;
         this.username = username;
-        this.detailed_message = message;
+        this.detailed_message = detailed_message;
     }
 
 

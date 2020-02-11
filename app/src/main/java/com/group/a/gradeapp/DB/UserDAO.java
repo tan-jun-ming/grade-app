@@ -26,11 +26,15 @@ public interface UserDAO {
     @Insert
     void addUser(User user);
 
-    @Query("select * from userTable order by time desc")
-    List<User> getAllLogRecords();
+
+    @Query("select * from LogRecord order by time desc")
+    List<LogRecord> getAllLogRecords();
 
     @Insert
     void addLogRecord(LogRecord rec);
+
+    @Query("select * from userTable where username = :username and password= :password")
+    User login(String username, String password);
 
 
 
