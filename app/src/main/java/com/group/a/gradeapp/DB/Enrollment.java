@@ -1,11 +1,15 @@
 package com.group.a.gradeapp.DB;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-public class Enrollment {
 
+@Entity(tableName = AppDatabase.ENROLLMENT_TABLE)
+
+
+public class Enrollment {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     private int EnrollmentID;

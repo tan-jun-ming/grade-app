@@ -22,8 +22,8 @@ public class ViewLogActivity  extends AppCompatActivity {
 
     private ViewLogAdapter adapter;
 
+    private List<User> users;
     private List<LogRecord> records;
-    //private List<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +44,9 @@ public class ViewLogActivity  extends AppCompatActivity {
         });
 
 
-        // retrieve all log records from database
-        records = AppDatabase.getAppDatabase(this).dao().getAllLogRecords();
-       // users = AppDatabase.getAppDatabase(this).dao().getAllLogRecords();
+        // retrieve all log grades from database
+        //records = AppDatabase.getAppDatabase(this).gradeDAO().getAllLogRecords();
+        records = AppDatabase.getAppDatabase(this).userDAO().getAllLogRecords();
 
 
         RecyclerView rv = findViewById(R.id.recycler_view);

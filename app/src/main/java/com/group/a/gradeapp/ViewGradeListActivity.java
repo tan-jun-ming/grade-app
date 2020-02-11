@@ -1,4 +1,4 @@
-package com.group.a.gradeapp.ViewGradeList;
+package com.group.a.gradeapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,9 +9,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.group.a.gradeapp.AddAssignmentActivity;
-import com.group.a.gradeapp.R;
-import com.group.a.gradeapp.utils;
+import com.group.a.gradeapp.ViewGradeList.RecyclerItemClickListener;
+import com.group.a.gradeapp.ViewGradeList.ViewGradeListAdapter;
+import com.group.a.gradeapp.ViewGradeList.ViewGradeListItem;
 
 import java.util.ArrayList;
 

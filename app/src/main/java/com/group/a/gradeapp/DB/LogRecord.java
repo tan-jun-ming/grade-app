@@ -10,7 +10,7 @@ import androidx.room.Ignore;
 public class LogRecord {
 
     public static final String TYPE_NEW_ACCOUNT ="Account Created";
-    public static final String TYPE_GRADE_LOG ="Grade Log";
+  //  public static final String TYPE_GRADE_LOG ="Grade Log";
 
 
 
@@ -33,11 +33,11 @@ public class LogRecord {
     }
 
     @Ignore
-    public LogRecord(java.util.Date datetime, String type, String username, String message){
+    public LogRecord(java.util.Date datetime, String type, String username, String detailed_message){
         this.time = datetime.getTime();
         this.transaction_type = type;
         this.username = username;
-        this.detailed_message = message;
+        this.detailed_message = detailed_message;
     }
 
 
