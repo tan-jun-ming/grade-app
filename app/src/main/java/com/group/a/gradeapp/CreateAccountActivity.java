@@ -19,6 +19,8 @@ import com.group.a.gradeapp.DB.UserDAO;
 import java.util.Date;
 
 
+
+
 public class CreateAccountActivity extends AppCompatActivity {
     private int counterrors = 0;
 

@@ -46,13 +46,6 @@ public class User {
         this.UserID = userID;
     }
 
-    public int getUser_id() {
-        return UserID;
-    }
-
-    public void setUser_id(int user_id) {
-        this.UserID = UserID;
-    }
 
     public String getUsername() {
         return username;
