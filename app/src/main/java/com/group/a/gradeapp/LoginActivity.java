@@ -1,7 +1,9 @@
 package com.group.a.gradeapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,6 +11,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.group.a.gradeapp.DB.AppDatabase;
+import com.group.a.gradeapp.DB.User;
+import com.group.a.gradeapp.DB.UserDAO;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,12 +30,32 @@ public class LoginActivity extends AppCompatActivity {
             //will ask username and password on page
             @Override
             public void onClick(View v) {
+
                 EditText username = findViewById(R.id.username);
                 EditText password = findViewById(R.id.password);
 
 
                 String name = username.getText().toString();
                 String pw = password.getText().toString();
+
+
+
+                UserDAO userDAO = AppDatabase.getAppDatabase(LoginActivity.this).userDAO();
+                User user = userDAO.login(name, pw);
+                if (user == null) {
+                    // unsuccessful login
+                    TextView msg = findViewById(R.id.message);
+                    msg.setText("User name or password is invalid.");
+//                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+//                    startActivity(intent);
+
+                } else {
+                    // successful login
+                    HomePageActivity.username = username.getText().toString();
+                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                    startActivity(intent);
+                }
+
 
             }
         });
