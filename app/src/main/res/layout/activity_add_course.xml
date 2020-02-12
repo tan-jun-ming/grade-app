@@ -19,7 +19,7 @@
         android:gravity="center"
         android:scaleX="2"
         android:scaleY="2"
-        android:text="Add Course" />
+        android:text="Add Course"/>
 
     <TextView
     android:id="@+id/add_course"
