@@ -20,75 +20,87 @@
         android:scaleX="2"
         android:scaleY="2"
         android:text="Add Course"/>
-
-    <TextView
-    android:id="@+id/add_course"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="" />
-
-    <EditText
-        android:id="@+id/activity_add_course"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="CourseID: "
-        android:inputType="textPersonName" />
-    <TextView
-        android:id="@+id/cour"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/course"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Course Title"
-        android:inputType="textPersonName" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Name" />
+            <TextView
+            android:id="@+id/add_course"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
 
-    <EditText
-        android:id="@+id/courseInstructor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Course Instructor"
-        android:inputType="textPersonName" />
+            <EditText
+                android:id="@+id/activity_add_course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="CourseID: "
+                android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/cour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Start Date: " />
-    <Button
-        android:id="@+id/start_date"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=" 01-14-2020" />
+            <EditText
+                android:id="@+id/course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Course Title"
+                android:inputType="textPersonName" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="End Date: " />
-    <Button
-        android:id="@+id/end_date"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=" 05-15-2020" />
+            <TextView
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name" />
 
-    <Button
-        android:id="@+id/submit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:text="Submit" />
+            <EditText
+                android:id="@+id/courseInstructor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Course Instructor"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Start Date: " />
+            <Button
+                android:id="@+id/start_date"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 2020-20-20" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="End Date: " />
+            <Button
+                android:id="@+id/end_date"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 05-15-2020" />
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:text="Submit" />
+        </LinearLayout>
+    </ScrollView>
+
+
 
 </LinearLayout>

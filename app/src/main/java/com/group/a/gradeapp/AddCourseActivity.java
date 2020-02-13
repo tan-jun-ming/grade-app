@@ -12,6 +12,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.group.a.gradeapp.DB.Course;
+
 public class AddCourseActivity extends AppCompatActivity {
 
     public static final String TAG = "AddCourseActivity";
@@ -55,4 +57,22 @@ public class AddCourseActivity extends AppCompatActivity {
         dialog.setMessage(error);
         dialog.show();
     }
+    //informs user
+    public void inform(String msg) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddCourseActivity.this);
+        builder.setTitle("Success");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.setMessage(msg);
+        dialog.show();
+    }
+
+
+
 }
