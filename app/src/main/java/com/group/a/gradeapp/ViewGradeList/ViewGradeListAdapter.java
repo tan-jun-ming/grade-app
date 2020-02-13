@@ -81,12 +81,17 @@ public class ViewGradeListAdapter extends RecyclerView.Adapter<ViewGradeListAdap
 
         if (position % 2 == 0){
             holder.layout.setBackgroundColor(Color.LTGRAY);
+        } else {
+            holder.layout.setBackgroundColor(Color.WHITE);
+
         }
 
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) item_name.getLayoutParams();
         if (item.is_category){
             item_name.setTypeface(null, Typeface.BOLD);
+            params.leftMargin = utils.dp_to_pixels(20);
         } else {
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) item_name.getLayoutParams();
+            item_name.setTypeface(null, Typeface.NORMAL);
             params.leftMargin = utils.dp_to_pixels(40);
         }
 
