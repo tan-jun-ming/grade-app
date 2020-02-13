@@ -83,7 +83,7 @@ public class AddCourseActivity extends AppCompatActivity {
 
                 }
         );
-        
+
         //button is created attached to a setOnClickListener to be able to see when the button submit course is being clicked
         Button submit_button = findViewById(R.id.submit);
         submit_button.setOnClickListener(new View.OnClickListener() {
