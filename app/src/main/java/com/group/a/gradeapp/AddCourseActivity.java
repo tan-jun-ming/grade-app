@@ -23,6 +23,9 @@ public class AddCourseActivity extends AppCompatActivity {
         //On Create
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_course);
+
+        final Button duedate = findViewById(R.id.end_date);
+        final Button assigneddate = findViewById(R.id.start_date);
         
 
 
