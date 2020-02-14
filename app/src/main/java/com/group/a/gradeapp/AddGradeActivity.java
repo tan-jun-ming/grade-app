@@ -1,8 +1,10 @@
 package com.group.a.gradeapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -81,5 +83,36 @@ public class AddGradeActivity extends AppCompatActivity {
             }
         });
 
+
     }
+    public void alert(String error) {
+        Log.d(TAG, "alerting error");
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddGradeActivity.this);
+        builder.setTitle("Error");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.setMessage(error);
+        dialog.show();
+    }
+    //informs user
+    public void inform(String msg) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddGradeActivity.this);
+        builder.setTitle("Success");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.setMessage(msg);
+        dialog.show();
+    }
+
 }
