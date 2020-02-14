@@ -50,6 +50,30 @@
 <!--                android:layout_height="wrap_content"-->
 <!--                android:ems="10"-->
 <!--                android:inputType="textPersonName" />-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weight"/>
+
+            <EditText
+                android:id="@+id/maxscorebox2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Grade ID:"/>
+
+            <EditText
+                android:id="@+id/gradeId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="" />
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -68,23 +92,28 @@
                 android:layout_height="wrap_content"
                 android:text="2020-20-20" />
 
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Due" />-->
 
-<!--            <Button-->
-<!--                android:id="@+id/duedate"-->
-<!--                style="@style/Widget.AppCompat.Button.Borderless"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="2020-20-20" />-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Grade ID:"/>
+
+            <EditText
+                android:id="@+id/categoryId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+
 
             <Button
                 android:id="@+id/savebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Save" />
+
+
         </LinearLayout>
     </ScrollView>
 
