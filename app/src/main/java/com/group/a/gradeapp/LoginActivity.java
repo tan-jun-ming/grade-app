@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     // successful login
                     HomePageActivity.username = username.getText().toString();
+                   // HomePageActivity.userID= user.getUserID();
                     Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                     startActivity(intent);
                 }

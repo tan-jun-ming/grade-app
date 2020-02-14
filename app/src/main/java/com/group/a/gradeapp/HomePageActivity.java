@@ -14,6 +14,7 @@ import com.group.a.gradeapp.DB.User;
 public class HomePageActivity extends AppCompatActivity {
 
     public static String username = null;   // username if logged in
+    //public static Integer userID = null;
 
     // check database
 //        AppDatabase.getAppDatabase(HomePageActivity.this).loadData(this);
