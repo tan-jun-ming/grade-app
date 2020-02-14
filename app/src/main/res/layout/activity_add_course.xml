@@ -42,6 +42,20 @@
                 android:hint="CourseID: "
                 android:inputType="textPersonName" />
 
+            <TextView
+                android:id="@+id/editTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title:" />
+
+            <EditText
+                android:id="@+id/Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Title: "
+                android:inputType="text" />
+
 
             <TextView
                 android:id="@+id/editText"
