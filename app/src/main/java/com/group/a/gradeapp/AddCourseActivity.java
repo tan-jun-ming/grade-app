@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.group.a.gradeapp.DB.Course;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class AddCourseActivity extends AppCompatActivity {
 
@@ -34,15 +35,11 @@ public class AddCourseActivity extends AppCompatActivity {
         final Button start_date = findViewById(R.id.start_date);
         final Button end_date = findViewById(R.id.end_date);
 
+        final Calendar start_c = Calendar.getInstance();
+        final Calendar end_c = Calendar.getInstance();
 
-        Calendar c = Calendar.getInstance();
-
-        int mYear = c.get(Calendar.YEAR);
-        int mMonth = c.get(Calendar.MONTH);
-        int mDay = c.get(Calendar.DAY_OF_MONTH);
-
-        start_date.setText(utils.format_date(c));
-        end_date.setText(utils.format_date(c));
+        start_date.setText(utils.format_date(start_c));
+        end_date.setText(utils.format_date(end_c));
 
         final DatePickerDialog start_datepicker = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
@@ -50,22 +47,22 @@ public class AddCourseActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-
+                        start_c.set(year, monthOfYear, dayOfMonth);
                         start_date.setText(utils.format_date(year, monthOfYear, dayOfMonth));
 
                     }
-                }, mYear, mMonth, mDay);
+                }, start_c.get(Calendar.YEAR), start_c.get(Calendar.MONTH), start_c.get(Calendar.DAY_OF_MONTH));
         final DatePickerDialog end_datepicker = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
 
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-
+                        end_c.set(year, monthOfYear, dayOfMonth);
                         end_date.setText(utils.format_date(year, monthOfYear, dayOfMonth));
 
                     }
-                }, mYear, mMonth, mDay);
+                }, end_c.get(Calendar.YEAR), end_c.get(Calendar.MONTH), end_c.get(Calendar.DAY_OF_MONTH));
         start_date.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
