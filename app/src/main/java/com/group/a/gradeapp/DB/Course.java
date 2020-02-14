@@ -45,6 +45,10 @@ public class Course {
 
     @Override
     public String toString() {
+        return Title;
+    }
+
+    public String get_info() {
         return Title + "\n" +
                 Instructor + "\n" +
                 Description + "\n" +

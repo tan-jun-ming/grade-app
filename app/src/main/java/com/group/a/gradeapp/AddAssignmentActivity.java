@@ -50,7 +50,7 @@ public class AddAssignmentActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-
+                        ;
                         duedate.setText(utils.format_date(year, monthOfYear, dayOfMonth));
 
                     }

@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (user == null) {
                     // unsuccessful login
                     TextView msg = findViewById(R.id.message);
-                    msg.setText("User name or password is invalid.");
+                    msg.setText("User name or password is incorrect.");
 //                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
 //                    startActivity(intent);
 

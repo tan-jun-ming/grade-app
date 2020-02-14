@@ -24,6 +24,13 @@
         android:text="Add Course" />
 
     <Button
+        android:id="@+id/enroll_course_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Enroll In A Course" />
+
+    <Button
         android:id="@+id/add_grade_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
