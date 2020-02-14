@@ -9,13 +9,6 @@
     android:orientation="vertical"
     tools:context=".AddCourseActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
 
     <TextView
         android:layout_width="match_parent"
@@ -57,7 +50,7 @@
                 android:text="Name" />
 
             <EditText
-                android:id="@+id/courseInstructor"
+                android:id="@+id/Instructor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

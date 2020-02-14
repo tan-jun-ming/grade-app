@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.group.a.gradeapp.CourseSpinner.CourseListItem;
 import com.group.a.gradeapp.DB.Course;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EnrollCourseActivity extends AppCompatActivity {
 
@@ -19,20 +21,22 @@ public class EnrollCourseActivity extends AppCompatActivity {
 
         Spinner course_spinner = (Spinner) findViewById(R.id.course_spinner);
 
-//        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<Course>(this,
-//                get_course_array(), android.R.layout.simple_spinner_item);
-//
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//        course_spinner.setAdapter(adapter);
+        ArrayAdapter<CourseListItem> adapter = new ArrayAdapter<CourseListItem>(this,
+                android.R.layout.simple_spinner_item, get_course_array());
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        course_spinner.setAdapter(adapter);
 
     }
 
-    ArrayList<Course> get_course_array(){
-        ArrayList<Course> ret = new ArrayList<Course>();
-        ret.add(new Course("Dr. C", "Software Engineering", "Professional Code Smelling", 0, 0, 0));
-        ret.add(new Course("Dr. Byun", "Algorithms", "This reminds me of a puzzle Luke.", 0, 0, 1));
+    List<CourseListItem> get_course_array(){
+        List<CourseListItem> ret = new ArrayList<>();
+        ret.add(new CourseListItem(0, "CST200"));
+        ret.add(new CourseListItem(1, "CST300"));
 
         return ret;
     }
+
+
 }
