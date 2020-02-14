@@ -28,6 +28,7 @@ public class GradeCategory {
         this.Weight=Weight;
         this.CourseID = CourseID;
         this.AssignedDate=AssignedDate;
+
     }
 
 
