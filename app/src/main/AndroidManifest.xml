@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        
-      <activity
+        <activity android:name=".EnrollCourseActivity"></activity>
+        <activity
             android:name=".HomePageActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -18,8 +18,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-      </activity>
-            
+        </activity>
         <activity
             android:name=".MenuActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -29,7 +28,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ViewGradeSummaryActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -39,7 +37,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ViewGradeListActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -49,7 +46,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ViewAssignmentListActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -59,7 +55,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".AddGradeActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -69,7 +64,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".AddAssignmentActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -79,7 +73,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".AddCourseActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -98,9 +91,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-
-        <!-- <activity -->
+        </activity> <!-- <activity -->
         <!-- android:name=".CreateAccountActivity" -->
         <!-- android:theme="@style/AppTheme.NoActionBar"> -->
         <!-- <intent-filter> -->
@@ -108,7 +99,6 @@
         <!-- <category android:name="android.intent.category.DEFAULT" /> -->
         <!-- </intent-filter> -->
         <!-- </activity> -->
-
         <activity
             android:name=".CreateAccountActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -118,7 +108,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ViewLogActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -146,7 +135,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
     </application>
+
 </manifest>
