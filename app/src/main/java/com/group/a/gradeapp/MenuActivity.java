@@ -20,9 +20,21 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // call the add course activity
-                Log.d("HomePageActivity", "onClick for add course called");
+                Log.d("MenuActivity", "onClick for add course called");
                Intent intent = new Intent(MenuActivity.this, AddCourseActivity.class);
                startActivity(intent);
+
+            }
+        });
+
+        Button enroll_course_button = findViewById(R.id.enroll_course_button);
+        enroll_course_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                // call the enroll course activity
+                Log.d("MenuActivity", "onClick add grade category activity called");
+                Intent intent = new Intent(MenuActivity.this, EnrollCourseActivity.class);
+                startActivity(intent);
 
             }
         });
@@ -32,7 +44,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // call the add grade category activity
-                Log.d("Login", "onClick add grade category activity called");
+                Log.d("MenuActivity", "onClick add grade category activity called");
                 Intent intent = new Intent(MenuActivity.this, AddGradeCategoryActivity.class);
                 startActivity(intent);
 
@@ -44,7 +56,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // call the add assignment activity
-                Log.d("Logout", "onClick for add assignment activity called");
+                Log.d("MenuActivity", "onClick for add assignment activity called");
                 Intent intent = new Intent(MenuActivity.this, AddAssignmentActivity.class);
                 startActivity(intent);
 
@@ -56,7 +68,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // call the add grade activity
-                Log.d("HomePageActivity", "onClick for add grade activity called");
+                Log.d("MenuActivity", "onClick for add grade activity called");
                 Intent intent = new Intent(MenuActivity.this, AddGradeActivity.class);
                 startActivity(intent);
 
@@ -68,7 +80,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // call the view assignment list activity
-                Log.d("HomePageActivity", "onClick for view assignment list activity called");
+                Log.d("MenuActivity", "onClick for view assignment list activity called");
                 Intent intent = new Intent(MenuActivity.this, ViewAssignmentListActivity.class);
                 startActivity(intent);
 
@@ -80,7 +92,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // call the view grade list activity
-                Log.d("Login", "onClick for view grade list activity called");
+                Log.d("MenuActivity", "onClick for view grade list activity called");
                 Intent intent = new Intent(MenuActivity.this, ViewGradeListActivity.class);
                 startActivity(intent);
 
@@ -92,7 +104,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // call the view grade summary activity
-                Log.d("Logout", "onClick for view grade summary activity called");
+                Log.d("MenuActivity", "onClick for view grade summary activity called");
                 Intent intent = new Intent(MenuActivity.this, ViewGradeSummaryActivity.class);
                 startActivity(intent);
 
