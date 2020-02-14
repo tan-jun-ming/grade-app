@@ -74,7 +74,7 @@
                 android:hint="Last Name" />
 
             <Button
-                android:id="@+id/enroll_course_button"
+                android:id="@+id/create_account_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Create Account" />
