@@ -16,7 +16,7 @@ public class LogRecord {
 
     @NonNull
     @PrimaryKey(autoGenerate=true)
-    private int UserID;
+    private int userID;
     @NonNull
     private long time;
     @NonNull
@@ -44,11 +44,11 @@ public class LogRecord {
 
 
     public int getUserID() {
-        return UserID;
+        return userID;
     }
 
     public void setUserID(int userID) {
-        this.UserID = userID;
+        this.userID = userID;
     }
 
     @NonNull
