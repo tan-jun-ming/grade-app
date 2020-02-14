@@ -90,7 +90,7 @@ public class AddCourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "submit clicked");
-               // check_inputs();
+
             }
         });
     }
@@ -125,7 +125,5 @@ public class AddCourseActivity extends AppCompatActivity {
         dialog.setMessage(msg);
         dialog.show();
     }
-
-
 
 }
