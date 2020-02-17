@@ -8,17 +8,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 
+import com.group.a.gradeapp.DB.Course;
 import com.group.a.gradeapp.ViewGradeList.RecyclerItemClickListener;
 import com.group.a.gradeapp.ViewGradeList.ViewGradeListAdapter;
 import com.group.a.gradeapp.ViewGradeList.ViewGradeListItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ViewGradeListActivity extends AppCompatActivity {
 
     private ViewGradeListAdapter grade_adapter;
     private ArrayList<ViewGradeListItem> grades;
+    private int selected_course_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +50,30 @@ public class ViewGradeListActivity extends AppCompatActivity {
         grade_adapter = new ViewGradeListAdapter(listener);
         recycler_view.setAdapter(grade_adapter);
 
-        update_grades();
+        final Spinner course_spinner = (Spinner) findViewById(R.id.course_spinner);
+
+        List<Course> course_array = get_course_array();
+
+        ArrayAdapter<Course> adapter = new ArrayAdapter<Course>(this,
+                android.R.layout.simple_spinner_item, course_array);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        course_spinner.setAdapter(adapter);
+
+        course_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                selected_course_id = position;
+                update_grades();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     @Override
@@ -56,8 +86,16 @@ public class ViewGradeListActivity extends AppCompatActivity {
      * Update grades
      */
     private void update_grades(){
-        grades = get_grades();
+        grades = get_grades(selected_course_id);
         grade_adapter.update(grades);
+    }
+
+    List<Course> get_course_array(){
+        List<Course> ret = new ArrayList<>();
+        ret.add(new Course("Dr. C", "Software Engineering", "Professional Code Smelling", 0, 0, 0));
+        ret.add(new Course("Dr. Byun", "Algorithms", "This reminds me of a puzzle Luke.", 0, 0, 1));
+
+        return ret;
     }
 
     /**
@@ -84,7 +122,7 @@ public class ViewGradeListActivity extends AppCompatActivity {
      *
      * @return ArrayList of ViewGradeListItem for displaying in the recycler
      */
-    private ArrayList<ViewGradeListItem> get_grades(){
+    private ArrayList<ViewGradeListItem> get_grades(int selected_course_id){
         // Placeholder grades
         // Call a DB-interface method in the future
 
