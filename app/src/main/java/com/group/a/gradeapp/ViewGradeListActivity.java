@@ -26,6 +26,7 @@ public class ViewGradeListActivity extends AppCompatActivity {
     private ViewGradeListAdapter grade_adapter;
     private ArrayList<ViewGradeListItem> grades;
     private int selected_course_id;
+    private List<Course> course_array;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class ViewGradeListActivity extends AppCompatActivity {
 
         final Spinner course_spinner = (Spinner) findViewById(R.id.course_spinner);
 
-        List<Course> course_array = get_course_array();
+        course_array = get_course_array();
 
         ArrayAdapter<Course> adapter = new ArrayAdapter<Course>(this,
                 android.R.layout.simple_spinner_item, course_array);
@@ -66,6 +67,8 @@ public class ViewGradeListActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 selected_course_id = position;
                 update_grades();
+
+                utils.display_toast(getApplicationContext(), course_array.get(position).getTitle() + " selected.");
             }
 
             @Override
