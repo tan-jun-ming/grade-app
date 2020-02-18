@@ -1,3 +1,11 @@
+/**
+ * class for creating the GradeCategory object
+ * @PrimaryKey: categoryID
+ * @takes in the CourseID foreign key from the Course table
+ * Gives us the GCTitle (name of the grade category. eg. Exam, Quiz, Lab),
+ * Weight (What percentage of the total grade this grade category is worth),
+ * and Assigned Date
+ */
 package com.group.a.gradeapp.DB;
 
 import androidx.annotation.NonNull;

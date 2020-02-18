@@ -1,5 +1,7 @@
-/*
-* The AddCourseActivity will help in tracking the courses being added and will be integrated into the database
+/**
+ * Print a number on the screen.
+ *
+ * @param number The number that will be print on the screen.
  */
 package com.group.a.gradeapp;
 
@@ -19,11 +21,20 @@ import com.group.a.gradeapp.DB.Course;
 
 import java.util.Calendar;
 
+/**
+ * The type Add course activity.
+ */
 public class AddCourseActivity extends AppCompatActivity {
 
+    /**
+     * The constant TAG.
+     */
     public static final String TAG = "AddCourseActivity";
 
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate called");
@@ -95,7 +106,12 @@ public class AddCourseActivity extends AppCompatActivity {
         });
     }
 
-    //In case of error on the on click method will provide an alert dialog.
+    /**
+     * Alert.
+     *
+     * @param error creates an error to alert user
+     */
+//In case of error on the on click method will provide an alert dialog.
     public void alert(String error) {
         Log.d(TAG, "alerting error");
         AlertDialog.Builder builder = new AlertDialog.Builder(AddCourseActivity.this);
@@ -110,7 +126,13 @@ public class AddCourseActivity extends AppCompatActivity {
         dialog.setMessage(error);
         dialog.show();
     }
-    //informs user
+
+    /**
+     * Inform.
+     *
+     * @param msg the msg
+     */
+//informs user
     public void inform(String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(AddCourseActivity.this);
         builder.setTitle("Success");

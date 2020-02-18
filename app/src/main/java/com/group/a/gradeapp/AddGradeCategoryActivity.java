@@ -16,7 +16,13 @@ import java.util.Calendar;
 
 import com.group.a.gradeapp.DB.Course;
 
+/**
+ * The type Add grade category activity.
+ */
 public class AddGradeCategoryActivity extends AppCompatActivity {
+    /**
+     * The constant TAG.
+     */
     public static final String TAG = "AddGradeCategoryAct";
 
     @Override
@@ -87,6 +93,12 @@ public class AddGradeCategoryActivity extends AppCompatActivity {
         });
 
     }
+
+    /**
+     * Alert.
+     *
+     * @param error the error
+     */
     public void alert(String error) {
         Log.d(TAG, "alerting error");
         AlertDialog.Builder builder = new AlertDialog.Builder(AddGradeCategoryActivity.this);
@@ -101,7 +113,13 @@ public class AddGradeCategoryActivity extends AppCompatActivity {
         dialog.setMessage(error);
         dialog.show();
     }
-    //informs user
+
+    /**
+     * Inform.
+     *
+     * @param msg the msg
+     */
+//informs user
     public void inform(String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(AddGradeCategoryActivity.this);
         builder.setTitle("Success");

@@ -15,6 +15,9 @@ import com.group.a.gradeapp.ViewGradeList.ViewGradeListItem;
 
 import java.util.ArrayList;
 
+/**
+ * View grade list activity which contains methods that logs grades. s
+ */
 public class ViewGradeListActivity extends AppCompatActivity {
 
     private ViewGradeListAdapter grade_adapter;

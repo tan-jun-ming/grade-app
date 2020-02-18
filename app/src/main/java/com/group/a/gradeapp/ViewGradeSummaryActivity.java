@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+/**
+ * View grade summary activity shows the users grade summary.
+ */
 public class ViewGradeSummaryActivity extends AppCompatActivity {
 
     @Override

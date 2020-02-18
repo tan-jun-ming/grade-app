@@ -1,3 +1,11 @@
+/**
+ * class for creating the Grade object
+ * @PrimaryKey: GradeID
+ * @takes in the CourseID foreign key from the Course table
+ * @takes in the AssignmentID foreign key from the Assignment table
+ * @takes in the UserID foreign key from the User table
+ * Gives us the grade the student earned for the assignment and the date they earned that grade
+ */
 package com.group.a.gradeapp.DB;
 
 import androidx.annotation.NonNull;

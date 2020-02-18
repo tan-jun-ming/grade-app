@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
+/**
+ * The type Add assignment activity.
+ */
 public class AddAssignmentActivity extends AppCompatActivity {
 
     @Override

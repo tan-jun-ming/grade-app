@@ -19,8 +19,9 @@ import com.group.a.gradeapp.DB.UserDAO;
 import java.util.Date;
 
 
-
-
+/**
+ * The type Create account activity.
+ */
 public class CreateAccountActivity extends AppCompatActivity {
 
     @Override

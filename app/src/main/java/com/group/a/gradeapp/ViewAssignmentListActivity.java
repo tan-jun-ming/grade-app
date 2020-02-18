@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+/**
+ * View assignment list activity.
+ */
 public class ViewAssignmentListActivity extends AppCompatActivity {
 
     @Override

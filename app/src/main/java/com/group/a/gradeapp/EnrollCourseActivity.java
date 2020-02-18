@@ -11,6 +11,9 @@ import com.group.a.gradeapp.DB.Course;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Enroll course activity.
+ */
 public class EnrollCourseActivity extends AppCompatActivity {
 
     @Override
@@ -29,6 +32,11 @@ public class EnrollCourseActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Get course array list.
+     *
+     * @return the list
+     */
     List<Course> get_course_array(){
         List<Course> ret = new ArrayList<>();
         ret.add(new Course("Dr. C", "Software Engineering", "Professional Code Smelling", 0, 0, 0));

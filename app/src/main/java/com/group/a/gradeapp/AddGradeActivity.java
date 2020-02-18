@@ -13,7 +13,13 @@ import android.widget.DatePicker;
 
 import java.util.Calendar;
 
+/**
+ * The type Add grade activity.
+ */
 public class AddGradeActivity extends AppCompatActivity {
+    /**
+     * The constant TAG.
+     */
     public static final String TAG = "AddGradeActivity";
 
     @Override
@@ -83,6 +89,12 @@ public class AddGradeActivity extends AppCompatActivity {
 
 
     }
+
+    /**
+     * Alert.
+     *
+     * @param error the error
+     */
     public void alert(String error) {
         Log.d(TAG, "alerting error");
         AlertDialog.Builder builder = new AlertDialog.Builder(AddGradeActivity.this);
@@ -97,7 +109,13 @@ public class AddGradeActivity extends AppCompatActivity {
         dialog.setMessage(error);
         dialog.show();
     }
-    //informs user
+
+    /**
+     * Inform.
+     *
+     * @param msg the msg
+     */
+//informs user
     public void inform(String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(AddGradeActivity.this);
         builder.setTitle("Success");

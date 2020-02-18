@@ -64,10 +64,8 @@
                 android:id="@+id/descriptionbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:gravity="start|top"
+                android:ems="10"
                 android:inputType="textMultiLine" />
-
 
             <TextView
                 android:id="@+id/editText"
@@ -113,7 +111,5 @@
                 android:text="Submit" />
         </LinearLayout>
     </ScrollView>
-
-
 
 </LinearLayout>

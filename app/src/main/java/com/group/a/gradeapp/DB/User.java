@@ -1,3 +1,4 @@
+
 package com.group.a.gradeapp.DB;
 
 import androidx.annotation.NonNull;
@@ -5,10 +6,19 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+/**
+ * @author      Shaun Kallis <skallis@csumb.edu>
+ * @version     1.6
+ * @since       1.2
+ */
 
-
+/**
+ *
+ * class for creating the User object
+ * @PrimaryKey: UserID
+ * Gives us username, password, first and last names
+ */
 @Entity(tableName = AppDatabase.USER_TABLE)
-
 public class User {
     @PrimaryKey(autoGenerate = true)
     @NonNull

@@ -11,15 +11,27 @@ import android.widget.Button;
 import com.group.a.gradeapp.DB.GradeDAO;
 import com.group.a.gradeapp.DB.User;
 
+/**
+ * Home page activity.
+ */
 public class HomePageActivity extends AppCompatActivity {
 
+    /**
+     * The constant username.
+     */
     public static String username = null;   // username if logged in
     //public static Integer userID = null;
 
     // check database
 //        AppDatabase.getAppDatabase(HomePageActivity.this).loadData(this);
 
+    /**
+     * The My grade dao.
+     */
     GradeDAO myGradeDAO;
+    /**
+     * The My user.
+     */
     User myUser;
 
     @Override
