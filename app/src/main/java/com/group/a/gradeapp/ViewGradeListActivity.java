@@ -75,6 +75,17 @@ public class ViewGradeListActivity extends AppCompatActivity {
             }
         });
 
+        Button add_grade_category_button = findViewById(R.id.add_grade_category_button);
+
+        add_grade_category_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewGradeListActivity.this, AddAssignmentActivity.class);
+                intent.putExtra("course_id", selected_course_id);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
