@@ -28,10 +28,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Title" />
+
             <EditText
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text = ""/>
+                />
 
 <!--            <TextView-->
 <!--                android:layout_width="match_parent"-->
@@ -49,7 +51,7 @@
                 android:text="Weight"/>
 
             <EditText
-                android:id="@+id/maxscorebox2"
+                android:id="@+id/weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

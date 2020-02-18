@@ -56,18 +56,6 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
-        Button logout_button = findViewById(R.id.logout);
-        logout_button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                // call the logout Activity
-                Log.d("Logout", "onClick for logout activity called");
-                Intent intent = new Intent(HomePageActivity.this, LogoutActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
         Button view_logs_button = findViewById(R.id.viewlogs);
         view_logs_button.setOnClickListener(new View.OnClickListener(){
             @Override

@@ -10,11 +10,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 
 
 import java.util.Calendar;
 
+import com.group.a.gradeapp.DB.AppDatabase;
 import com.group.a.gradeapp.DB.Course;
+import com.group.a.gradeapp.DB.GradeCategory;
+import com.group.a.gradeapp.DB.GradeCategoryDAO;
+import com.group.a.gradeapp.DB.TypeConverter.DateTypeConverter;
 
 public class AddGradeCategoryActivity extends AppCompatActivity {
     public static final String TAG = "AddGradeCategoryAct";
@@ -82,6 +87,40 @@ public class AddGradeCategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "submit clicked");
+
+                EditText title = findViewById(R.id.title);
+                EditText weight = findViewById(R.id.weight);
+
+                Integer categoryID =Integer.parseInt(weight.getText().toString());
+
+                String Weight = title.getText().toString();
+
+                long Start_date = DateTypeConverter.convertDateToLong(date);
+                long End_date = DateTypeConverter.convertDateToLong(date);
+
+                GradeCategory gradeCategory= AppDatabase.getAppDatabase(AddGradeCategoryActivity.this).
+                        gradeCategoryDAO().getGradeCategory(categoryID);
+
+                if (gradeCategory== null) {
+
+                    // add the new Grade Category into the database
+                    GradeCategory newGradeCategory = new Course(title, Weight, Start_date, End_date, categoryID);
+                    GradeCategoryDAO gradeCategoryDAO = AppDatabase.getAppDatabase(AddGradeCategoryActivity.this).gradeCategoryDAO();
+                    gradeCategoryDAO.addGradeCategory(newGradeCategory);
+
+
+                    //  Show in the log record that a new account was created
+//                    Date now = new Date();
+//                    LogRecord rec = new LogRecord(now, LogRecord.TYPE_NEW_ACCOUNT, name, "");
+//                    user_dao.addLogRecord(rec);
+
+
+
+                    // inform user that new account has been created
+                    utils.display_toast(getApplicationContext(), "Grade Category created successfully", true);
+                    finish();
+
+                }
 
             }
         });

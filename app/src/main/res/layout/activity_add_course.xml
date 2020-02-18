@@ -35,7 +35,7 @@
             android:text="Course ID:" />
 
             <EditText
-                android:id="@+id/activity_add_course"
+                android:id="@+id/courseID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
