@@ -8,7 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.group.a.gradeapp.DB.AppDatabase;
 import com.group.a.gradeapp.DB.Course;
+import com.group.a.gradeapp.DB.CourseDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,11 +44,8 @@ public class EnrollCourseActivity extends AppCompatActivity {
     }
 
     List<Course> get_course_array(){
-        List<Course> ret = new ArrayList<>();
-        ret.add(new Course("Dr. C", "Software Engineering", "Professional Code Smelling", 0, 0, 0));
-        ret.add(new Course("Dr. Byun", "Algorithms", "This reminds me of a puzzle Luke.", 0, 0, 1));
-
-        return ret;
+        return AppDatabase.getAppDatabase(EnrollCourseActivity.this).
+                courseDAO().getAllCourses();
     }
 
 
