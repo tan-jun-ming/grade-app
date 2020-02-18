@@ -80,7 +80,7 @@ public class ViewGradeListActivity extends AppCompatActivity {
         add_grade_category_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ViewGradeListActivity.this, AddAssignmentActivity.class);
+                Intent intent = new Intent(ViewGradeListActivity.this, AddGradeCategoryActivity.class);
                 intent.putExtra("course_id", selected_course_id);
                 startActivity(intent);
             }
