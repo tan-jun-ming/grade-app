@@ -13,11 +13,6 @@ public interface CourseDAO {
     @Query("select * from courseTable")
     List<Course> getAllCourses();
 
-
-
-    @Query("select * from " + AppDatabase.COURSE_TABLE)
-    List<Course> getcourse();
-
     @Query("select * from courseTable where courseID = :courseID")
     Course getCourseByID(int courseID);
 
