@@ -20,12 +20,13 @@ tools:context=".ViewGradeListActivity">
         android:id="@+id/course_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/gradeview_list"
-    android:layout_width="409dp"
-    android:layout_height="match_parent"
-    tools:itemCount="5" />
+        android:id="@+id/gradeview_list"
+        android:layout_width="409dp"
+        android:layout_height="match_parent" />
 </LinearLayout>

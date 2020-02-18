@@ -67,8 +67,6 @@ public class ViewGradeListActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 selected_course_id = position;
                 update_grades();
-
-                utils.display_toast(getApplicationContext(), course_array.get(position).getTitle() + " selected.");
             }
 
             @Override
@@ -131,18 +129,27 @@ public class ViewGradeListActivity extends AppCompatActivity {
 
         ArrayList<ViewGradeListItem> grades = new ArrayList<ViewGradeListItem>();
 
-        grades.add(new ViewGradeListItem(true, "Exams", 1, 0));
-        grades.add(new ViewGradeListItem(false, "Test 1", 1, 1, 50.0f));
-        grades.add(new ViewGradeListItem(false, "Test 2", 1, 2, 75.0f));
-        grades.add(new ViewGradeListItem(false, "Test 3", 1, 3, null));
-        grades.add(new ViewGradeListItem(true, "Labs", 1, 0, 90f));
-        grades.add(new ViewGradeListItem(false, "Lab 1", 1, 1, 10.0f));
-        grades.add(new ViewGradeListItem(false, "Lab 2", 1, 2, 0.0f));
-        grades.add(new ViewGradeListItem(false, "Lab 3", 1, 3, 20.0f));
-        grades.add(new ViewGradeListItem(true, "Quizzes", 1, 0, 0f));
-        grades.add(new ViewGradeListItem(false, "Quiz 1", 1, 1, 0.0f));
-        grades.add(new ViewGradeListItem(false, "Quiz 2", 1, 2, 0.0f));
-        grades.add(new ViewGradeListItem(false, "Quiz 3", 1, 3, null));
+        if (selected_course_id == 0){
+            grades.add(new ViewGradeListItem(true, "Exams", 1, 0));
+            grades.add(new ViewGradeListItem(false, "Test 1", 1, 1, 50.0f));
+            grades.add(new ViewGradeListItem(false, "Test 2", 1, 2, 75.0f));
+            grades.add(new ViewGradeListItem(true, "Quizzes", 1, 0, 2f));
+            grades.add(new ViewGradeListItem(false, "Quiz 1", 1, 1, 51.0f));
+            grades.add(new ViewGradeListItem(false, "Quiz 2", 1, 2, 23.0f));
+            grades.add(new ViewGradeListItem(false, "Attendance Quiz 1", 1, 3, null));
+        } else {
+            grades.add(new ViewGradeListItem(true, "Tests", 1, 0));
+            grades.add(new ViewGradeListItem(false, "Test 1", 1, 1, 40.0f));
+            grades.add(new ViewGradeListItem(true, "Labs", 1, 0, 90f));
+            grades.add(new ViewGradeListItem(false, "Lab 1", 1, 1, 10.0f));
+            grades.add(new ViewGradeListItem(false, "Lab 2", 1, 2, 0.0f));
+            grades.add(new ViewGradeListItem(false, "Lab 3", 1, 3, 20.0f));
+            grades.add(new ViewGradeListItem(true, "Assignments", 1, 0, 87f));
+            grades.add(new ViewGradeListItem(false, "Homework 1", 1, 1, 76.0f));
+            grades.add(new ViewGradeListItem(false, "Homework 2", 1, 2, 12.0f));
+            grades.add(new ViewGradeListItem(false, "Homework 3", 1, 3, 20f));
+        }
+
 
         return grades;
     }
