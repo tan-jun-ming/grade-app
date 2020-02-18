@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -21,6 +22,7 @@ import com.group.a.gradeapp.DB.CourseDAO;
 import com.group.a.gradeapp.DB.GradeCategory;
 import com.group.a.gradeapp.DB.TypeConverter.DateTypeConverter;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -28,7 +30,6 @@ public class AddAssignmentActivity extends AppCompatActivity {
 
     private List<Course> courses;
     private List<GradeCategory> categories;
-    private ArrayAdapter<GradeCategory> category_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,8 @@ public class AddAssignmentActivity extends AppCompatActivity {
 
         courses = AppDatabase.getAppDatabase(AddAssignmentActivity.this).
                 courseDAO().getAllCourses();
+
+        categories = new ArrayList<GradeCategory>();
 
         if (courses.size() == 0){
             // error and quit here
@@ -64,6 +67,23 @@ public class AddAssignmentActivity extends AppCompatActivity {
         course_id = selected_category.getCourseID();
         update_categories(selected_category.getCourseID());
 
+
+        final Spinner category_spinner = findViewById(R.id.category_spinner);
+
+        final ArrayAdapter<GradeCategory> category_adapter = new ArrayAdapter<GradeCategory>(this,
+                android.R.layout.simple_spinner_item, categories);
+
+        category_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        category_spinner.setAdapter(category_adapter);
+
+        for (int i=0; i<categories.size(); i++) {
+            if (categories.get(i).getCategoryID() == category_id) {
+                category_spinner.setSelection(i);
+                break;
+            }
+        }
+
         final Spinner course_spinner = findViewById(R.id.course_spinner);
 
         ArrayAdapter<Course> course_adapter = new ArrayAdapter<Course>(this,
@@ -77,6 +97,8 @@ public class AddAssignmentActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 update_categories(courses.get(position).getCourseID());
+                Log.d("aaa", "category count = " + categories.size());
+                category_adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -91,23 +113,6 @@ public class AddAssignmentActivity extends AppCompatActivity {
                 break;
             }
         }
-
-        final Spinner category_spinner = findViewById(R.id.category_spinner);
-
-        ArrayAdapter<GradeCategory> category_adapter = new ArrayAdapter<GradeCategory>(this,
-                android.R.layout.simple_spinner_item, categories);
-
-        category_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        category_spinner.setAdapter(category_adapter);
-
-        for (int i=0; i<categories.size(); i++) {
-            if (categories.get(i).getCategoryID() == category_id) {
-                category_spinner.setSelection(i);
-                break;
-            }
-        }
-
 
         final Button duedate = findViewById(R.id.duedate);
         final Button assigneddate = findViewById(R.id.assigneddate);
@@ -189,9 +194,9 @@ public class AddAssignmentActivity extends AppCompatActivity {
     }
 
     private void update_categories(int course_id){
-        categories = AppDatabase.getAppDatabase(AddAssignmentActivity.this).
+        categories.clear();
+        List<GradeCategory> new_categories = AppDatabase.getAppDatabase(AddAssignmentActivity.this).
                 gradeCategoryDAO().getCategoriesByCourseID(course_id);
-
-        category_adapter.notifyDataSetChanged();
+        categories.addAll(new_categories);
     }
 }
