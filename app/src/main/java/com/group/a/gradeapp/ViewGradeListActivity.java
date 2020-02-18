@@ -13,7 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.group.a.gradeapp.DB.AppDatabase;
+import com.group.a.gradeapp.DB.Assignment;
 import com.group.a.gradeapp.DB.Course;
+import com.group.a.gradeapp.DB.GradeCategory;
 import com.group.a.gradeapp.ViewGradeList.RecyclerItemClickListener;
 import com.group.a.gradeapp.ViewGradeList.ViewGradeListAdapter;
 import com.group.a.gradeapp.ViewGradeList.ViewGradeListItem;
@@ -103,11 +106,8 @@ public class ViewGradeListActivity extends AppCompatActivity {
     }
 
     List<Course> get_course_array(){
-        List<Course> ret = new ArrayList<>();
-        ret.add(new Course("Dr. C", "Software Engineering", "Professional Code Smelling", 0, 0, 0));
-        ret.add(new Course("Dr. Byun", "Algorithms", "This reminds me of a puzzle Luke.", 0, 0, 1));
-
-        return ret;
+        return AppDatabase.getAppDatabase(ViewGradeListActivity.this).
+                courseDAO().getAllCourses();
     }
 
     /**
@@ -140,27 +140,14 @@ public class ViewGradeListActivity extends AppCompatActivity {
 
         ArrayList<ViewGradeListItem> grades = new ArrayList<ViewGradeListItem>();
 
-        if (selected_course_id == 0){
-            grades.add(new ViewGradeListItem(true, "Exams", 1, 0));
-            grades.add(new ViewGradeListItem(false, "Test 1", 1, 1, 50.0f));
-            grades.add(new ViewGradeListItem(false, "Test 2", 1, 2, 75.0f));
-            grades.add(new ViewGradeListItem(true, "Quizzes", 1, 0, 2f));
-            grades.add(new ViewGradeListItem(false, "Quiz 1", 1, 1, 51.0f));
-            grades.add(new ViewGradeListItem(false, "Quiz 2", 1, 2, 23.0f));
-            grades.add(new ViewGradeListItem(false, "Attendance Quiz 1", 1, 3, null));
-        } else {
-            grades.add(new ViewGradeListItem(true, "Tests", 1, 0));
-            grades.add(new ViewGradeListItem(false, "Test 1", 1, 1, 40.0f));
-            grades.add(new ViewGradeListItem(true, "Labs", 1, 0, 90f));
-            grades.add(new ViewGradeListItem(false, "Lab 1", 1, 1, 10.0f));
-            grades.add(new ViewGradeListItem(false, "Lab 2", 1, 2, 0.0f));
-            grades.add(new ViewGradeListItem(false, "Lab 3", 1, 3, 20.0f));
-            grades.add(new ViewGradeListItem(true, "Assignments", 1, 0, 87f));
-            grades.add(new ViewGradeListItem(false, "Homework 1", 1, 1, 76.0f));
-            grades.add(new ViewGradeListItem(false, "Homework 2", 1, 2, 12.0f));
-            grades.add(new ViewGradeListItem(false, "Homework 3", 1, 3, 20f));
-        }
+        List<GradeCategory> categories = AppDatabase.getAppDatabase(ViewGradeListActivity.this).
+                gradeCategoryDAO().getCategoriesByCourseID(selected_course_id);
 
+        for (GradeCategory c: categories){
+            grades.add(new ViewGradeListItem(true, c.getTitle(), c.getCategoryID(), 0));
+
+            List<Assignment> assignments; // Get assignments by category here
+        }
 
         return grades;
     }
