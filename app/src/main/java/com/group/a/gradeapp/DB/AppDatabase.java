@@ -25,8 +25,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract CourseDAO courseDAO();
     public abstract GradeDAO gradeDAO();
     public abstract GradeCategoryDAO gradeCategoryDAO();
-    public abstract AssignmentDAO assignmentDAO();
-    public abstract EnrollmentDAO enrollmentDAO();
+//    public abstract AssignmentDAO assignmentDAO();
+//    public abstract EnrollmentDAO enrollmentDAO();
 
     public static final String dbName="GradeDB";
 

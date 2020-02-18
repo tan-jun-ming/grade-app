@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -17,6 +18,7 @@ import android.widget.Spinner;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.group.a.gradeapp.DB.AppDatabase;
 import com.group.a.gradeapp.DB.Course;
@@ -67,7 +69,7 @@ public class AddGradeCategoryActivity extends AppCompatActivity {
         }
 
         //button is created attached to a setOnClickListener to be able to see when the button submit course is being clicked
-        Button submit_button = findViewById(R.id.submit);
+        Button submit_button = findViewById(R.id.submit_button);
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,6 +103,7 @@ public class AddGradeCategoryActivity extends AppCompatActivity {
         });
 
     }
+
     public void alert(String error) {
         Log.d(TAG, "alerting error");
         AlertDialog.Builder builder = new AlertDialog.Builder(AddGradeCategoryActivity.this);

@@ -1,5 +1,6 @@
 package com.group.a.gradeapp.DB;
 
+import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -8,6 +9,7 @@ import com.group.a.gradeapp.DB.Course;
 
 import java.util.List;
 
+@Dao
 public interface CourseDAO {
 
     @Query("select * from courseTable")

@@ -112,6 +112,9 @@ public class AddCourseActivity extends AppCompatActivity {
                 CourseDAO courseDAO = AppDatabase.getAppDatabase(AddCourseActivity.this).courseDAO();
                 courseDAO.addCourse(new_course);
 
+                utils.display_toast(getApplicationContext(), "Course " + course_title + " created successfully");
+                finish();
+
             }
         });
     }

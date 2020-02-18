@@ -41,10 +41,7 @@ public class GradeCategory {
 
     @Override
     public String toString() {
-        return Title + "\n" +
-                categoryID + "\n" +
-                Weight + "\n" +
-                CourseID + "\n" + "\n";
+        return Title;
     }
 
     public String getTitle() {
