@@ -16,7 +16,6 @@ import android.widget.EditText;
 import java.util.Calendar;
 
 import com.group.a.gradeapp.DB.AppDatabase;
-import com.group.a.gradeapp.DB.Course;
 import com.group.a.gradeapp.DB.GradeCategory;
 import com.group.a.gradeapp.DB.GradeCategoryDAO;
 import com.group.a.gradeapp.DB.TypeConverter.DateTypeConverter;
@@ -88,23 +87,26 @@ public class AddGradeCategoryActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d(TAG, "submit clicked");
 
-                EditText title = findViewById(R.id.title);
+                EditText gradeCatTitle = findViewById(R.id.title);
                 EditText weight = findViewById(R.id.weight);
 
-                Integer categoryID =Integer.parseInt(weight.getText().toString());
 
-                String Weight = title.getText().toString();
+                Integer Weight =Integer.parseInt(weight.getText().toString());
+                String GradeCatTitle = gradeCatTitle.getText().toString();
+                Integer courseID = 0;
+                Integer AssignedDate = 02142020;
 
-                long Start_date = DateTypeConverter.convertDateToLong(date);
-                long End_date = DateTypeConverter.convertDateToLong(date);
+
+//                long Start_date = DateTypeConverter.convertDateToLong(date);
+//                long End_date = DateTypeConverter.convertDateToLong(date);
 
                 GradeCategory gradeCategory= AppDatabase.getAppDatabase(AddGradeCategoryActivity.this).
-                        gradeCategoryDAO().getGradeCategory(categoryID);
+                        gradeCategoryDAO().getGradeCategoryByTitle(GradeCatTitle);
 
                 if (gradeCategory== null) {
 
                     // add the new Grade Category into the database
-                    GradeCategory newGradeCategory = new Course(title, Weight, Start_date, End_date, categoryID);
+                    GradeCategory newGradeCategory = new GradeCategory(GradeCatTitle,Weight,courseID, AssignedDate);
                     GradeCategoryDAO gradeCategoryDAO = AppDatabase.getAppDatabase(AddGradeCategoryActivity.this).gradeCategoryDAO();
                     gradeCategoryDAO.addGradeCategory(newGradeCategory);
 

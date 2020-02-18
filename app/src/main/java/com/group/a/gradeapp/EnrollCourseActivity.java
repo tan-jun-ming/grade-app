@@ -43,8 +43,8 @@ public class EnrollCourseActivity extends AppCompatActivity {
 
     List<Course> get_course_array(){
         List<Course> ret = new ArrayList<>();
-        ret.add(new Course("Dr. C", "Software Engineering", "Professional Code Smelling", 0, 0, 0));
-        ret.add(new Course("Dr. Byun", "Algorithms", "This reminds me of a puzzle Luke.", 0, 0, 1));
+        ret.add(new Course("Dr. C", "Software Engineering", "Professional Code Smelling"));
+        ret.add(new Course("Dr. Byun", "Algorithms", "This reminds me of a puzzle Luke."));
 
         return ret;
     }
