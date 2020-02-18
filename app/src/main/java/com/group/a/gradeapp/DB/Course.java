@@ -23,13 +23,12 @@ public class Course {
     public Course(){    }
 
     @Ignore
-    public Course(String Instructor, String Title, String Description, long Start_date, long End_date, int courseID) {
+    public Course(String Instructor, String Title, String Description, long Start_date, long End_date) {
         this.Instructor = Instructor;
         this.Title = Title;
         this.Description = Description;
         this.Start_date = Start_date;
         this.End_date = End_date;
-        this.courseID = courseID;
     }
 
 

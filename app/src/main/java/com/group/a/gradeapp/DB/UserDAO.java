@@ -36,11 +36,4 @@ public interface UserDAO {
     @Query("select * from userTable where username = :username and password= :password")
     User login(String username, String password);
 
-
-
-
-
-
-
-
 }
