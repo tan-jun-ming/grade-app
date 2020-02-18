@@ -63,7 +63,6 @@ public class AddGradeActivity extends AppCompatActivity {
 
                 }
         );
-
         end_date.setOnClickListener(
                 new View.OnClickListener(){
                     public void onClick(View v){
@@ -72,7 +71,6 @@ public class AddGradeActivity extends AppCompatActivity {
 
                 }
         );
-
         //button is created attached to a setOnClickListener to be able to see when the button submit course is being clicked
         Button submit_button = findViewById(R.id.submit);
         submit_button.setOnClickListener(new View.OnClickListener() {

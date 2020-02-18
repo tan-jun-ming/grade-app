@@ -3,10 +3,11 @@ package com.group.a.gradeapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
-import com.group.a.gradeapp.CourseSpinner.CourseListItem;
 import com.group.a.gradeapp.DB.Course;
 
 import java.util.ArrayList;
@@ -19,21 +20,31 @@ public class EnrollCourseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enroll_course);
 
-        Spinner course_spinner = (Spinner) findViewById(R.id.course_spinner);
+        final Spinner course_spinner = (Spinner) findViewById(R.id.course_spinner);
 
-        ArrayAdapter<CourseListItem> adapter = new ArrayAdapter<CourseListItem>(this,
+        ArrayAdapter<Course> adapter = new ArrayAdapter<Course>(this,
                 android.R.layout.simple_spinner_item, get_course_array());
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         course_spinner.setAdapter(adapter);
 
+        Button enroll_course_button = findViewById(R.id.enroll_course_button);
+
+        enroll_course_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Course item = (Course) course_spinner.getSelectedItem();
+                utils.display_toast(getApplicationContext(), item.toString() + " selected");
+            }
+        });
+
     }
 
-    List<CourseListItem> get_course_array(){
-        List<CourseListItem> ret = new ArrayList<>();
-        ret.add(new CourseListItem(0, "CST200"));
-        ret.add(new CourseListItem(1, "CST300"));
+    List<Course> get_course_array(){
+        List<Course> ret = new ArrayList<>();
+        ret.add(new Course("Dr. C", "Software Engineering", "Professional Code Smelling", 0, 0, 0));
+        ret.add(new Course("Dr. Byun", "Algorithms", "This reminds me of a puzzle Luke.", 0, 0, 1));
 
         return ret;
     }
