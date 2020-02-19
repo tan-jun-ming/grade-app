@@ -27,6 +27,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * The Assignment Activity allows the user to add an assignments to the courses.
+ */
 public class AddAssignmentActivity extends AppCompatActivity {
 
     private List<Course> courses;
