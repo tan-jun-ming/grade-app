@@ -11,7 +11,7 @@ import androidx.room.RoomDatabase;
 import com.group.a.gradeapp.DB.TypeConverter.DateTypeConverter;
 
 
-@Database(entities = {Assignment.class, Course.class, Enrollment.class, Grade.class, GradeCategory.class, LogRecord.class, User.class }, version =1, exportSchema = false)
+@Database(entities = {Assignment.class, Course.class, Enrollment.class, Grade.class, GradeCategory.class, LogRecord.class, User.class }, version =2, exportSchema = false)
 @TypeConverters(DateTypeConverter.class)
 
 @Entity
@@ -25,8 +25,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract CourseDAO courseDAO();
     public abstract GradeDAO gradeDAO();
     public abstract GradeCategoryDAO gradeCategoryDAO();
-//    public abstract AssignmentDAO assignmentDAO();
-//    public abstract EnrollmentDAO enrollmentDAO();
+    public abstract AssignmentDAO assignmentDAO();
+   // public abstract EnrollmentDAO enrollmentDAO();
 
     public static final String dbName="GradeDB";
 

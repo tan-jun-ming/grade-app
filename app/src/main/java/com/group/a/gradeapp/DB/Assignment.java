@@ -14,6 +14,7 @@ public class Assignment {
     @NonNull
     private int AssignmentID;
 
+    private String AssTitle;
     private int CategoryID;
     private int CourseID;
     private long AssignedDate;
@@ -22,19 +23,22 @@ public class Assignment {
     private int MaxScore;
     private int EarnedScore;
 
-   //public Assignment() {   }
+   public Assignment() {   }
 
-   //@Ignore
-    public Assignment() {
+   @Ignore
+    public Assignment(String AssTitle, String Details, Integer Maxscore, Integer EarnedScore, Integer CategoryID) {
     this.AssignmentID=AssignmentID;
     this.CategoryID=CategoryID;
     this.CourseID=CourseID;
+    this.AssTitle=AssTitle;
     this.AssignedDate=AssignedDate;
     this.DueDate=DueDate;
     this.Details=Details;
     this.MaxScore=MaxScore;
     this.EarnedScore=EarnedScore;
     }
+
+
 
 
 
@@ -53,6 +57,7 @@ public class Assignment {
     public String toString() {
         return AssignmentID + "\n" +
                 CategoryID + "\n" +
+                AssTitle + "\n" +
                 CourseID + "\n" +
                 AssignedDate + "\n" +
                 DueDate + "\n" +
@@ -60,6 +65,14 @@ public class Assignment {
                MaxScore + "\n" +
                EarnedScore + "\n" + "\n";
    }
+
+    public String getAssTitle() {
+        return AssTitle;
+    }
+
+    public void setAssTitle(String assTitle) {
+        AssTitle = assTitle;
+    }
 
     public int getAssignmentID() {
         return AssignmentID;

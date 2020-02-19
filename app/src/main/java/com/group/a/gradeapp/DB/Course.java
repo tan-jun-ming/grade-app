@@ -17,18 +17,20 @@ public class Course {
     private String Instructor;
     private String Title;
     private String Description;
-    private long Start_date;
-    private long End_date;
+//    private long Start_date;
+//    private long End_date;
+//    long Start_date, long End_date
 
     public Course(){    }
 
     @Ignore
-    public Course(String Instructor, String Title, String Description, long Start_date, long End_date) {
+    public Course(String Instructor, String Title, String Description) {
         this.Instructor = Instructor;
         this.Title = Title;
         this.Description = Description;
-        this.Start_date = Start_date;
-        this.End_date = End_date;
+//        this.Start_date = Start_date;
+//        this.End_date = End_date;
+       this.courseID = courseID;
     }
 
 
@@ -38,8 +40,8 @@ public class Course {
         if (o == null || getClass() != o.getClass()) return false;
         Course Course = (Course) o;
         return Title == Course.Title &&
-                Instructor == Course.Instructor &&
-                Start_date == Course.Start_date;
+                Instructor == Course.Instructor ;
+//                 && Start_date == Course.Start_date;
     }
 
     @Override
@@ -51,8 +53,8 @@ public class Course {
         return Title + "\n" +
                 Instructor + "\n" +
                 Description + "\n" +
-                Start_date + "\n" +
-                End_date + "\n" +
+//                Start_date + "\n" +
+//                End_date + "\n" +
                 courseID + "\n" + "\n";
     }
 
@@ -88,19 +90,19 @@ public class Course {
         Description = description;
     }
 
-    public long getStart_date() {
-        return Start_date;
-    }
-
-    public void setStart_date(long start_date) {
-        Start_date = start_date;
-    }
-
-    public long getEnd_date() {
-        return End_date;
-    }
-
-    public void setEnd_date(long end_date) {
-        End_date = end_date;
-    }
+//    public long getStart_date() {
+//        return Start_date;
+//    }
+//
+//    public void setStart_date(long start_date) {
+//        Start_date = start_date;
+//    }
+//
+//    public long getEnd_date() {
+//        return End_date;
+//    }
+//
+//    public void setEnd_date(long end_date) {
+//        End_date = end_date;
+//    }
 }
