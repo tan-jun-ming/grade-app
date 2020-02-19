@@ -15,7 +15,6 @@ import com.group.a.gradeapp.DB.TypeConverter.DateTypeConverter;
 @TypeConverters(DateTypeConverter.class)
 
 @Entity
-
 public abstract class AppDatabase extends RoomDatabase {
 
     // singleton
@@ -26,7 +25,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract GradeDAO gradeDAO();
     public abstract GradeCategoryDAO gradeCategoryDAO();
     public abstract AssignmentDAO assignmentDAO();
-   // public abstract EnrollmentDAO enrollmentDAO();
+    public abstract EnrollmentDAO enrollmentDAO();
 
     public static final String dbName="GradeDB";
 
@@ -46,38 +45,12 @@ public abstract class AppDatabase extends RoomDatabase {
                     AppDatabase.class,
                     "Grade Database") // database name
                     .allowMainThreadQueries()  // temporary for now
-                    //.fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration()
                     .build();
         }
 
         return instance;
     }
-
-//    public void loadData(Context context){
-//
-//        // if user table is empty, then load data for users
-//
-//        List<User> user_list = AppDatabase.getAppDatabase(context).gradeDAO().getAllUsers();
-//
-//        if (user_list.size() == 0) {
-//            Log.d("GradeRoom", "loading data ");
-//            loadUsers(context);
-//
-//        }
-//    }
-//
-//    private void loadUsers(Context context) {
-//        userDAO gradeDAO = getAppDatabase(context).gradeDAO();
-//
-//        User alice = new User("Alice5!", "Alice5!","Alice", "Wonder");
-//
-//        gradeDAO.addUser(alice);
-//
-//        Log.d("GradeRoom", "1 user added to database");
-//    }
-
-
-
 
 
 }

@@ -184,7 +184,7 @@ public class AddAssignmentActivity extends AppCompatActivity {
 
                 // add the new Assignment into the database
 //                Assignment new_assignment = new Assignment(selected_category.getCategoryID(), assignment_name, assigned, due, assignment_details, assignment_maxscore);
-//                AssignmentDAO assignmentDAO = AppDatabase.getAppDatabase(AddAssignmentActivity.this).courseDAO();
+//                AssignmentDAO assignmentDAO = AppDatabase.getAppDatabase(AddAssignmentActivity.this).assignmentDAO();
 //                assignmentDAO.addAssigment(new_assignment);
 
                 utils.display_toast(getApplicationContext(), "Assignment " + assignment_name + " added successfully");

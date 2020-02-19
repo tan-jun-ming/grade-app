@@ -23,8 +23,7 @@ public class Grade {
     public Grade(){  }
 
     @Ignore
-    public Grade(int gradeID, int score, int assignmentID, int studentID, int courseID, long date_earned) {
-        this.gradeID=gradeID;
+    public Grade(int score, int assignmentID, int studentID, int courseID, long date_earned) {
         this.score=score;
         this.assignmentID=assignmentID;
         this.studentID=studentID;

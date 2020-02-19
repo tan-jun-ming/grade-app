@@ -27,7 +27,6 @@ public class Assignment {
 
    @Ignore
     public Assignment(String AssTitle, String Details, Integer Maxscore, Integer EarnedScore, Integer CategoryID) {
-    this.AssignmentID=AssignmentID;
     this.CategoryID=CategoryID;
     this.CourseID=CourseID;
     this.AssTitle=AssTitle;
