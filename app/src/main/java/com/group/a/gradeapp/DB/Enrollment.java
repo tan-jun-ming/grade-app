@@ -13,6 +13,7 @@ public class Enrollment {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     private int EnrollmentID;
+
     private int UserID; //StudentID?
     private int CourseID;
     private long EnrollmentDate;
