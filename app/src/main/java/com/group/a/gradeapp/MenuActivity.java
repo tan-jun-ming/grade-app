@@ -8,12 +8,24 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class MenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        final AtomicInteger user_id = new AtomicInteger(-1);
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras != null) {
+                user_id.set(extras.getInt("user_id"));
+            }
+        } else {
+            user_id.set((int) savedInstanceState.getSerializable("user_id"));
+        }
 
         Button add_course_button = findViewById(R.id.add_course);
         add_course_button.setOnClickListener(new View.OnClickListener(){
@@ -94,6 +106,7 @@ public class MenuActivity extends AppCompatActivity {
                 // call the view grade list activity
                 Log.d("MenuActivity", "onClick for view grade list activity called");
                 Intent intent = new Intent(MenuActivity.this, ViewGradeListActivity.class);
+                intent.putExtra("user_id", user_id.get());
                 startActivity(intent);
 
             }
