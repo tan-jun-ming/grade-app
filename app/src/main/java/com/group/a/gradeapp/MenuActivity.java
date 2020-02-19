@@ -10,6 +10,10 @@ import android.widget.Button;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Menu activity will call upon buttons that will be displayed in the menu activity layout for user to select.
+ */
+
 public class MenuActivity extends AppCompatActivity {
 
     @Override
