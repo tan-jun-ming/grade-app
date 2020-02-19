@@ -22,8 +22,8 @@ public interface EnrollmentDAO {
     @Query("select * from " + AppDatabase.ENROLLMENT_TABLE)
     List<Enrollment> getEnrollments();
 
-    @Query("select * from assignmenTable where AssTitle = :AssTitle")
-    Enrollment getEnrollmentByID(String AssTitle);
+//    @Query("select * from assignmentTable where AssTitle = :AssTitle")
+//    Enrollment getEnrollmentByID(String AssTitle);
 
     @Insert
     void addEnrollment(Enrollment Enrollment);

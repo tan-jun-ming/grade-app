@@ -39,7 +39,7 @@ public class EnrollCourseActivity extends AppCompatActivity {
 
 
 
-        final Spinner course_spinner = (Spinner) findViewById(R.id.course_spinner);
+        final Spinner course_spinner = findViewById(R.id.course_spinner);
 
 
 
@@ -60,16 +60,12 @@ public class EnrollCourseActivity extends AppCompatActivity {
 
 
 
-                Integer course_id = Integer.parseInt(course_spinner.getSelectedItem().toString());
+                Integer course_id = ((Course) course_spinner.getSelectedItem()).getCourseID();
 
                 // add the new enrollment into the database
                 Enrollment newEnrollment = new Enrollment(user_id.get(), course_id);
                 EnrollmentDAO enrollmentDAO = AppDatabase.getAppDatabase(EnrollCourseActivity.this).enrollmentDAO();
                 enrollmentDAO.addEnrollment(newEnrollment);
-
-
-
-
 
 
                 utils.display_toast(getApplicationContext(), item.toString() + " selected");
@@ -81,7 +77,7 @@ public class EnrollCourseActivity extends AppCompatActivity {
 
     List<Course> get_course_array(){
         return AppDatabase.getAppDatabase(EnrollCourseActivity.this).
-                courseDAO().getCoursesByUser(0);
+                courseDAO().getCoursesAvailable();
     }
 
 

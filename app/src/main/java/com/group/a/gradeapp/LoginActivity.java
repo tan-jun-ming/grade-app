@@ -57,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
                     // successful login
                     HomePageActivity.username = username.getText().toString();
                    // HomePageActivity.userID= user.getUserID();
+
+                    Log.d("8724", "" + (user.getUserID()));
                     Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                     intent.putExtra("user_id", user.getUserID());
                     startActivity(intent);

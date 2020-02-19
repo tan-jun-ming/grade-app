@@ -107,9 +107,18 @@ public class ViewGradeListActivity extends AppCompatActivity {
     }
 
     List<Course> get_course_array(){
-        return AppDatabase.getAppDatabase(ViewGradeListActivity.this).
-                courseDAO().getCoursesByUser(0);
+
+        List<Course> thing =  AppDatabase.getAppDatabase(ViewGradeListActivity.this).
+                courseDAO().getCoursesByUser(1);
+        Log.d("8723", thing.toString());
+        return thing;
+
+//        return AppDatabase.getAppDatabase(ViewGradeListActivity.this).
+//                courseDAO().getCoursesByUser(1);
+
+
     }
+
 
     /**
      * Opens the assigment or category at the position as a Grade Summary or Add Assignment Activity

@@ -39,7 +39,7 @@ public class AddGradeCategoryActivity extends AppCompatActivity {
         final Button end_date = findViewById(R.id.end_date);
 
         all_courses = AppDatabase.getAppDatabase(AddGradeCategoryActivity.this).
-                courseDAO().getAllCourses();
+                courseDAO().getCoursesByUser(1);
 
         int course_id = all_courses.get(0).getCourseID();
 

@@ -15,7 +15,7 @@ public interface CourseDAO {
     @Query("select * from courseTable")
     List<Course> getCoursesAvailable();
 
-    @Query("select * from courseTable natural join enrollmentTable where UserID=UserID")
+    @Query("select * from courseTable natural join enrollmentTable where UserID=:UserID")
     List <Course> getCoursesByUser(Integer UserID);
 
     @Query("select * from " + AppDatabase.COURSE_TABLE)

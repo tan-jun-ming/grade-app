@@ -41,7 +41,7 @@ public class AddAssignmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_assignment);
 
         courses = AppDatabase.getAppDatabase(AddAssignmentActivity.this).
-                courseDAO().getAllCourses();
+                courseDAO().getCoursesAvailable();
 
         categories = new ArrayList<GradeCategory>();
 
