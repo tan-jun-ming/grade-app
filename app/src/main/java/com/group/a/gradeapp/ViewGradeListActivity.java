@@ -163,7 +163,7 @@ public class ViewGradeListActivity extends AppCompatActivity {
             grades.add(new ViewGradeListItem(true, c.getTitle(), c.getCategoryID(), 0));
 
             List<Assignment> assignments = AppDatabase.getAppDatabase(ViewGradeListActivity.this).
-                    assignmentDAO().getAssignmentsByCategory(c.getCategoryID());
+                    assignmentDAO().getAssignmentsByCategory(c.getCategoryID(), user_id);
 
             for (Assignment a: assignments){
                 grades.add(new ViewGradeListItem(false, a.getAssTitle(), a.getCategoryID(), a.getAssignmentID()));

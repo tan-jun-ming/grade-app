@@ -13,7 +13,7 @@ import androidx.room.Update;
 public interface GradeDAO {
 
         @Insert
-        void addGradeLog( Grade gradelog);
+        void addGrade( Grade grade);
 
         @Update
         void update(Grade... grades);

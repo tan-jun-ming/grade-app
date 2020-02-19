@@ -22,10 +22,11 @@ public interface AssignmentDAO {
     @Query("select * from " + AppDatabase.ASSIGNMENT_TABLE)
     List<Assignment> getAssignments();
 
-    @Query("select * from AssignmentTable where CategoryID = :category_id")
+    @Query("select * from AssignmentTable  where CategoryID = :category_id")
     List<Assignment> getAssignmentsByCategory(int category_id);
 
-
+//    @Query("select * from assignmentTable natural join gradeTable where CategoryID=:CategoryID and UserID=:UserID")
+//    List <Assignment> getAssignmentsByCategory(Integer CategoryID, Integer UserID);
 
     @Query("select * from LogRecord order by time desc")
     List<LogRecord> getAllLogRecords();

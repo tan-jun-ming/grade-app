@@ -16,39 +16,29 @@ public class Grade {
 
     private int score;
     private int assignmentID;
-    private int studentID;
+    private int UserID;
     private int courseID;
-    private long date_earned;
+
 
     public Grade(){  }
 
     @Ignore
-    public Grade(int score, int assignmentID, int studentID, int courseID, long date_earned) {
+    public Grade(int score, int assignmentID, int UserID, int courseID) {
         this.score=score;
         this.assignmentID=assignmentID;
-        this.studentID=studentID;
+        this.UserID =UserID;
         this.courseID=courseID;
-        this.date_earned=date_earned;
     }
 
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Grade Grade = (Grade) o;
-//        return  score == Grade.score &&
-//                date_earned == Grade.date_earned ;
-//    }
 
     @Override
     public String toString() {
         return  gradeID + "\n" +
                 score  + "\n" +
                 assignmentID + "\n" +
-                studentID + "\n" +
-                courseID + "\n" +
-                date_earned + "\n" + "\n";
+                UserID + "\n" +
+                courseID + "\n" + "\n";
     }
 
 
@@ -76,12 +66,12 @@ public class Grade {
         this.assignmentID = assignmentID;
     }
 
-    public int getStudentID() {
-        return studentID;
+    public int getUserID() {
+        return UserID;
     }
 
-    public void setStudentID(int studentID) {
-        this.studentID = studentID;
+    public void setUserID(int userID) {
+        this.UserID = userID;
     }
 
     public int getCourseID() {
@@ -92,11 +82,5 @@ public class Grade {
         this.courseID = courseID;
     }
 
-    public long getDate_earned() {
-        return date_earned;
-    }
 
-    public void setDate_earned(long date_earned) {
-        this.date_earned = date_earned;
-    }
 }
