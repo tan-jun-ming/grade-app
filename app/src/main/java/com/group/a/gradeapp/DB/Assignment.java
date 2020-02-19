@@ -21,20 +21,17 @@ public class Assignment {
     private long DueDate;
     private String Details;
     private int MaxScore;
-    private int EarnedScore;
 
    public Assignment() {   }
 
    @Ignore
-    public Assignment(String AssTitle, String Details, Integer Maxscore, Integer EarnedScore, Integer CategoryID) {
+    public Assignment(String AssTitle, String Details, Integer MaxScore, Integer CategoryID, long AssignedDate, long DueDate) {
     this.CategoryID=CategoryID;
-    this.CourseID=CourseID;
     this.AssTitle=AssTitle;
     this.AssignedDate=AssignedDate;
     this.DueDate=DueDate;
     this.Details=Details;
     this.MaxScore=MaxScore;
-    this.EarnedScore=EarnedScore;
     }
 
 
@@ -61,8 +58,7 @@ public class Assignment {
                 AssignedDate + "\n" +
                 DueDate + "\n" +
                Details + "\n" +
-               MaxScore + "\n" +
-               EarnedScore + "\n" + "\n";
+               MaxScore + "\n" + "\n";
    }
 
     public String getAssTitle() {
@@ -127,14 +123,6 @@ public class Assignment {
 
     public void setMaxScore(int maxScore) {
         MaxScore = maxScore;
-    }
-
-    public int getEarnedScore() {
-        return EarnedScore;
-    }
-
-    public void setEarnedScore(int earnedScore) {
-        EarnedScore = earnedScore;
     }
 }
 

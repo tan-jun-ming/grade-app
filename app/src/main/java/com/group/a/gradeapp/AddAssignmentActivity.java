@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.group.a.gradeapp.DB.AppDatabase;
 import com.group.a.gradeapp.DB.Assignment;
+import com.group.a.gradeapp.DB.AssignmentDAO;
 import com.group.a.gradeapp.DB.Course;
 import com.group.a.gradeapp.DB.CourseDAO;
 import com.group.a.gradeapp.DB.GradeCategory;
@@ -26,6 +27,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * The Assignment Activity allows the user to add an assignments to the courses.
+ */
 public class AddAssignmentActivity extends AppCompatActivity {
 
     private List<Course> courses;
@@ -183,9 +187,9 @@ public class AddAssignmentActivity extends AppCompatActivity {
                 GradeCategory selected_category = (GradeCategory) category_spinner.getSelectedItem();
 
                 // add the new Assignment into the database
-//                Assignment new_assignment = new Assignment(selected_category.getCategoryID(), assignment_name, assigned, due, assignment_details, assignment_maxscore);
-//                AssignmentDAO assignmentDAO = AppDatabase.getAppDatabase(AddAssignmentActivity.this).assignmentDAO();
-//                assignmentDAO.addAssigment(new_assignment);
+                Assignment new_assignment = new Assignment(assignment_name, assignment_details, assignment_maxscore, selected_category.getCategoryID(), assigned, due);
+                AssignmentDAO assignmentDAO = AppDatabase.getAppDatabase(AddAssignmentActivity.this).assignmentDAO();
+                assignmentDAO.addAssignment(new_assignment);
 
                 utils.display_toast(getApplicationContext(), "Assignment " + assignment_name + " added successfully");
                 finish();

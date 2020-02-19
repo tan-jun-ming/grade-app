@@ -16,6 +16,10 @@ import com.group.a.gradeapp.DB.AppDatabase;
 import com.group.a.gradeapp.DB.User;
 import com.group.a.gradeapp.DB.UserDAO;
 
+/**
+ * Login activity lets the user to enter a username and password to enter to an account if the account is already created.
+ */
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -54,14 +58,13 @@ public class LoginActivity extends AppCompatActivity {
                     HomePageActivity.username = username.getText().toString();
                    // HomePageActivity.userID= user.getUserID();
                     Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                    intent.putExtra("user_id", user.getUserID());
                     startActivity(intent);
                 }
-
-
             }
+
+
         });
-
     }
-
 
 }
