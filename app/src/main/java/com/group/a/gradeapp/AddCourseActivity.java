@@ -105,6 +105,9 @@ public class AddCourseActivity extends AppCompatActivity {
                     finish();
                 }
 
+                utils.display_toast(getApplicationContext(), "Course " + course_title + " created successfully");
+                finish();
+
             }
         });
     }

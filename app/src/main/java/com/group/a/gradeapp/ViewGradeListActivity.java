@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -43,7 +44,6 @@ public class ViewGradeListActivity extends AppCompatActivity {
         RecyclerItemClickListener listener = new RecyclerItemClickListener() {
             @Override
             public void onClick(View view, int position) {
-                utils.display_toast(ViewGradeListActivity.this, "Item " + position + " Clicked");
                 open_assignment(position);
             }
         };
@@ -65,7 +65,7 @@ public class ViewGradeListActivity extends AppCompatActivity {
         course_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                selected_course_id = position;
+                selected_course_id = course_array.get(position).getCourseID();
                 update_grades();
             }
 
@@ -83,6 +83,7 @@ public class ViewGradeListActivity extends AppCompatActivity {
                 Intent intent = new Intent(ViewGradeListActivity.this, AddGradeCategoryActivity.class);
                 intent.putExtra("course_id", selected_course_id);
                 startActivity(intent);
+
             }
         });
 
@@ -121,7 +122,6 @@ public class ViewGradeListActivity extends AppCompatActivity {
         if (item.is_category){
             Intent intent = new Intent(ViewGradeListActivity.this, AddAssignmentActivity.class);
             intent.putExtra("category_id", item.category_id);
-            intent.putExtra("category_name", item.name);
             startActivity(intent);
         } else {
             // open edit assignment here

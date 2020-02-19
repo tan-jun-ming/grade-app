@@ -14,20 +14,17 @@ public class GradeCategory {
     @NonNull
     private int categoryID;
 
-    private String GradeCatTitle;
+    private String Title;
     private float Weight;
     private int CourseID; //GradeID ?
-    private int AssignedDate;
 
     public GradeCategory() {    }
 
     @Ignore
-    public GradeCategory(String GradeCatTitle, float Weight, int CourseID, int AssignedDate) {
-        this.categoryID=categoryID;
-        this.GradeCatTitle=GradeCatTitle;
+    public GradeCategory(String Title, float Weight, int CourseID) {
+        this.Title=Title;
         this.Weight=Weight;
         this.CourseID = CourseID;
-        this.AssignedDate=AssignedDate;
 
     }
 
@@ -44,22 +41,16 @@ public class GradeCategory {
 
     @Override
     public String toString() {
-        return GradeCatTitle + "\n" +
-                categoryID + "\n" +
-                Weight + "\n" +
-                CourseID + "\n" +
-                AssignedDate + "\n" + "\n";
+        return Title;
     }
 
-    public String getGradeCatTitle() {
-        return GradeCatTitle;
+    public String getTitle() {
+        return Title;
     }
 
-    public void setGradeCatTitle(String gradeCatTitle) {
-        GradeCatTitle = gradeCatTitle;
+    public void setTitle(String title) {
+        Title = title;
     }
-
-
 
     public float getWeight() {
         return Weight;
@@ -75,14 +66,6 @@ public class GradeCategory {
 
     public void setCourseID(int courseID) {
         CourseID = courseID;
-    }
-
-    public int getAssignedDate() {
-        return AssignedDate;
-    }
-
-    public void setAssignedDate(int assignedDate) {
-        AssignedDate = assignedDate;
     }
 
     public int getCategoryID() {
