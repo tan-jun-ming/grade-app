@@ -8,6 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Menu activity will call upon buttons that will be displayed in the menu activity layout for user to select.
+ */
+
 public class MenuActivity extends AppCompatActivity {
 
     @Override
