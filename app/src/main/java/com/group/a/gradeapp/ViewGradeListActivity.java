@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +26,7 @@ import com.group.a.gradeapp.ViewGradeList.RecyclerItemClickListener;
 import com.group.a.gradeapp.ViewGradeList.ViewGradeListAdapter;
 import com.group.a.gradeapp.ViewGradeList.ViewGradeListItem;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -156,10 +158,12 @@ public class ViewGradeListActivity extends AppCompatActivity {
         ViewGradeListItem item = grades.get(position);
 
         if (item.is_category){
-            // open add assignment activity
-            Intent intent = new Intent(ViewGradeListActivity.this, AddAssignmentActivity.class);
-            intent.putExtra("category_id", item.category_id);
-            startActivity(intent);
+            if (item.category_id != -1){ // Total case
+                // open add assignment activity
+                Intent intent = new Intent(ViewGradeListActivity.this, AddAssignmentActivity.class);
+                intent.putExtra("category_id", item.category_id);
+                startActivity(intent);
+            }
         } else {
             // open add grade activity
             Intent intent = new Intent(ViewGradeListActivity.this, AddGradeActivity.class);
@@ -179,9 +183,6 @@ public class ViewGradeListActivity extends AppCompatActivity {
      * @return ArrayList of ViewGradeListItem for displaying in the recycler
      */
     private ArrayList<ViewGradeListItem> get_grades(int selected_course_id){
-        // Placeholder grades
-        // Call a DB-interface method in the future
-
         ArrayList<ViewGradeListItem> grades = new ArrayList<ViewGradeListItem>();
 
         List<GradeCategory> categories = AppDatabase.getAppDatabase(ViewGradeListActivity.this).
@@ -196,23 +197,23 @@ public class ViewGradeListActivity extends AppCompatActivity {
         for (Grade g: grade_list){
             grades_map.put(g.getAssignmentID(), g.getScore());
         }
-        Log.d("12345", ""+selected_course_id);
+
+        ArrayList<Pair<Float, Float>> grade_scores = new ArrayList<>();
+        float max_weight = 0;
 
         for (GradeCategory c: categories){
-            Log.d("12345", ""+c.getCategoryID());
-            ViewGradeListItem cat = new ViewGradeListItem(true, c.getTitle(), c.getCategoryID(), 0, null);
+            ViewGradeListItem cat = new ViewGradeListItem(true, c.getTitle(), c.getCategoryID(), -1, null);
             grades.add(cat);
 
-            int max_score = 0;
-            int earned_score = 0;
+            int max_category_score = 0;
+            int earned_category_score = 0;
 
             List<Assignment> assignments = AppDatabase.getAppDatabase(ViewGradeListActivity.this).
                     assignmentDAO().getAssignmentsByCategory(c.getCategoryID());
 
             for (Assignment a: assignments){
-                Log.d("12345", ""+a.getCategoryID());
                 int a_max = a.getMaxScore();
-                max_score += a_max;
+                max_category_score += a_max;
 
                 Integer a_earned = grades_map.get(a.getAssignmentID());
 
@@ -220,16 +221,29 @@ public class ViewGradeListActivity extends AppCompatActivity {
                 if (a_earned == null){
                     a_earned = 0;
                 } else {
-                    earned_percentage = a_max == 0 ? 0 : ((float)a_earned/(float)a_max)*100;
+                    earned_percentage = utils.calculate_percentage(a_earned, a_max);
                 }
                 grades.add(new ViewGradeListItem(false, a.getAssTitle(), a.getCategoryID(), a.getAssignmentID(), earned_percentage));
 
-                earned_score += a_earned;
+                earned_category_score += a_earned;
             }
-            cat.set_grade(max_score == 0 ? 0 :((float)earned_score/(float)max_score) * 100);
+            float category_percentage = utils.calculate_percentage(earned_category_score, max_category_score);
+            cat.set_grade(category_percentage);
+
+            max_weight += c.getWeight();
+            grade_scores.add(Pair.create(c.getWeight(), category_percentage));
 
         }
 
+        Float total_percentage = null;
+        if (max_weight != 0){
+            total_percentage = 0f;
+            for (Pair<Float, Float> s: grade_scores){
+                total_percentage += (s.first/max_weight) * s.second;
+            }
+        }
+
+        grades.add(new ViewGradeListItem(true, "Total", -1, -1, total_percentage));
         return grades;
     }
 

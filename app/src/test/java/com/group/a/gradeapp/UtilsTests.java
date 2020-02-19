@@ -5,7 +5,9 @@ import org.junit.Test;
 import java.util.Calendar;
 import java.util.Random;
 
+import static java.lang.Float.NaN;
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class UtilsTests {
     @Test
@@ -29,5 +31,25 @@ public class UtilsTests {
         c.set(year, month, day);
 
         assertEquals(utils.format_date(c), String.format("%04d-%02d-%02d", year, month+1, day));
+    }
+
+    @Test
+    public void calculate_percentage(){
+        Random random = new Random();
+
+        float num1 = random.nextFloat() * 1000;
+        float num2 = random.nextFloat() * 1000;
+
+        assertEquals(utils.calculate_percentage(num1, num2), num1 == 0 ? 0 :(num1/num2) * 100);
+    }
+
+    @Test
+    public void calculate_percentage_zero(){
+        Random random = new Random();
+
+        float num1 = random.nextFloat() * 1000;
+        float num2 = 0;
+
+        assertNotEquals(utils.calculate_percentage(num1, num2), NaN);
     }
 }

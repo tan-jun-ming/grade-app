@@ -35,7 +35,7 @@ public class AddGradeCategoryActivity extends AppCompatActivity {
                 courseDAO().getCoursesAvailable();
 
         if (all_courses.size() == 0){
-            alert("Please add a course before viewing this page.");
+            alert("Please add a course before viewing this page.", true);
         }
         int course_id = all_courses.get(0).getCourseID();
 
@@ -74,8 +74,13 @@ public class AddGradeCategoryActivity extends AppCompatActivity {
                 EditText title = findViewById(R.id.title);
                 EditText weight = findViewById(R.id.weight);
 
-                int category_weight = Integer.parseInt(weight.getText().toString());
                 String category_title = title.getText().toString();
+                String weight_text = weight.getText().toString();
+                if (category_title.equals("") || weight_text.equals("")){
+                    alert("Please fill in all fields.", false);
+                    return;
+                }
+                float category_weight = Float.parseFloat(weight_text);
                 Course selected_course = (Course) course_spinner.getSelectedItem();
 
                 // add the new Grade Category into the database
@@ -100,14 +105,16 @@ public class AddGradeCategoryActivity extends AppCompatActivity {
 
     }
 
-    public void alert(String error) {
+    public void alert(String error, final boolean finish_activity) {
         Log.d(TAG, "alerting error");
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Error")
                 .setMessage(error)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        finish();
+                        if (finish_activity){
+                            finish();
+                        }
                     }
                 });
         builder.create();
