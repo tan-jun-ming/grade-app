@@ -6,14 +6,8 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 
-@Entity(tableName = AppDatabase.ENROLLMENT_TABLE)
-
-
+@Entity(tableName = AppDatabase.ENROLLMENT_TABLE, primaryKeys = {"UserID", "CourseID"})
 public class Enrollment {
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    private int EnrollmentID;
-
     private int UserID;
     private int CourseID;
 
@@ -33,17 +27,8 @@ public class Enrollment {
 
     @Override
     public String toString() {
-        return EnrollmentID + "\n" +
-                UserID + "\n" +
+        return  UserID + "\n" +
                 CourseID + "\n" + "\n";
-    }
-
-    public int getEnrollmentID() {
-        return EnrollmentID;
-    }
-
-    public void setEnrollmentID(int enrollmentID) {
-        EnrollmentID = enrollmentID;
     }
 
     public int getUserID() {

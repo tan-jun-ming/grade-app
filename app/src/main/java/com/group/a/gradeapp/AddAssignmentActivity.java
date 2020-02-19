@@ -2,7 +2,9 @@ package com.group.a.gradeapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +37,8 @@ public class AddAssignmentActivity extends AppCompatActivity {
     private List<Course> courses;
     private List<GradeCategory> categories;
 
+    private String no_category_error = "Please add Grade Categories to this course before adding Assignments";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,30 +50,44 @@ public class AddAssignmentActivity extends AppCompatActivity {
         categories = new ArrayList<GradeCategory>();
 
         if (courses.size() == 0){
-            // error and quit here
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Error")
+                    .setMessage("Please add a course before viewing this page.")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finish();
+                        }
+                    });
+
+            builder.create();
+            builder.show();
+
+            return;
         }
         int course_id = courses.get(0).getCourseID();
         update_categories(course_id);
 
-        if (categories.size() == 0){
-            // error here
-        }
+        int category_id = -1;
 
-        int category_id = categories.get(0).getCategoryID();
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if(extras != null) {
-                category_id = extras.getInt("category_id");
+        if (categories.size() > 0) {
+            category_id = categories.get(0).getCategoryID();
+
+            if (savedInstanceState == null) {
+                Bundle extras = getIntent().getExtras();
+                if (extras != null) {
+                    category_id = extras.getInt("category_id");
+                }
+            } else {
+                category_id = (int) savedInstanceState.getSerializable("category_id");
             }
-        } else {
-            category_id = (int) savedInstanceState.getSerializable("category_id");
+            Log.d("1234", "" + category_id);
+            GradeCategory selected_category = AppDatabase.getAppDatabase(AddAssignmentActivity.this).
+                    gradeCategoryDAO().getCategoryByID(category_id);
+
+            course_id = selected_category.getCourseID();
+            update_categories(selected_category.getCourseID());
         }
 
-        GradeCategory selected_category = AppDatabase.getAppDatabase(AddAssignmentActivity.this).
-                gradeCategoryDAO().getCategoryByID(category_id);
-
-        course_id = selected_category.getCourseID();
-        update_categories(selected_category.getCourseID());
 
 
         final Spinner category_spinner = findViewById(R.id.category_spinner);
@@ -101,7 +119,6 @@ public class AddAssignmentActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 update_categories(courses.get(position).getCourseID());
-                Log.d("aaa", "category count = " + categories.size());
                 category_adapter.notifyDataSetChanged();
             }
 
@@ -173,13 +190,25 @@ public class AddAssignmentActivity extends AppCompatActivity {
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (categories.size() == 0){
+                    utils.display_toast(getApplicationContext(), no_category_error);
+                    return;
+                }
+
                 EditText name = findViewById(R.id.name);
                 EditText detailsbox = findViewById(R.id.detailsbox);
                 EditText maxscorebox = findViewById(R.id.maxscorebox);
 
                 String assignment_name = name.getText().toString();
                 String assignment_details = detailsbox.getText().toString();
-                int assignment_maxscore = Integer.parseInt(maxscorebox.getText().toString());
+                String maxscore_text = maxscorebox.getText().toString();
+
+                if (assignment_name.equals("") || maxscore_text.equals("")){
+                    alert("Please fill in the required fields.");
+                    return;
+                }
+
+                int assignment_maxscore = Integer.parseInt(maxscore_text);
 
                 long due = DateTypeConverter.convertDateToLong(d_c);
                 long assigned = DateTypeConverter.convertDateToLong(a_c);
@@ -202,5 +231,23 @@ public class AddAssignmentActivity extends AppCompatActivity {
         List<GradeCategory> new_categories = AppDatabase.getAppDatabase(AddAssignmentActivity.this).
                 gradeCategoryDAO().getCategoriesByCourseID(course_id);
         categories.addAll(new_categories);
+
+        if (categories.size() == 0){
+            alert(no_category_error + ".");
+        }
+    }
+
+    private void alert(String msg){
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddAssignmentActivity.this);
+        builder.setTitle("Error");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.setMessage(msg);
+        dialog.show();
     }
 }

@@ -5,8 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.group.a.gradeapp.DB.AppDatabase;
+import com.group.a.gradeapp.DB.User;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -30,6 +35,12 @@ public class MenuActivity extends AppCompatActivity {
         } else {
             user_id.set((int) savedInstanceState.getSerializable("user_id"));
         }
+
+        User user = AppDatabase.getAppDatabase(MenuActivity.this).
+                userDAO().getUserByID(user_id.get());
+
+        TextView logged_in_name = findViewById(R.id.logged_in_name);
+        logged_in_name.setText(user.getFirst_name() + " " + user.getLast_name());
 
         Button add_course_button = findViewById(R.id.add_course);
         add_course_button.setOnClickListener(new View.OnClickListener(){
@@ -136,8 +147,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // call the home page activity
                 Log.d("Return to home page", "onClick for home page called");
-                Intent intent = new Intent(MenuActivity.this, HomePageActivity.class);
-                startActivity(intent);
+                finish();
 
             }
         });

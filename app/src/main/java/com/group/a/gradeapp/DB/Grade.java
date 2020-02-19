@@ -7,13 +7,8 @@ import androidx.room.PrimaryKey;
 
 
 
-@Entity(tableName = AppDatabase.GRADE_TABLE)
-
+@Entity(tableName = AppDatabase.GRADE_TABLE, primaryKeys = {"UserID", "assignmentID"})
 public class Grade {
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    private int gradeID;
-
     private int score;
     private int assignmentID;
     private int UserID;
@@ -34,20 +29,10 @@ public class Grade {
 
     @Override
     public String toString() {
-        return  gradeID + "\n" +
-                score  + "\n" +
+        return  score  + "\n" +
                 assignmentID + "\n" +
                 UserID + "\n" +
                 courseID + "\n" + "\n";
-    }
-
-
-    public int getGradeID() {
-        return gradeID;
-    }
-
-    public void setGradeID(int gradeID) {
-        this.gradeID = gradeID;
     }
 
     public int getScore() {

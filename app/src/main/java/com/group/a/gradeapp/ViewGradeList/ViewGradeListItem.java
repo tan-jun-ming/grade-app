@@ -19,4 +19,8 @@ public class ViewGradeListItem {
         this(is_category, name, category_id, assignment_id, null);
     }
 
+    public void set_grade(Float grade){
+        this.grade = grade;
+    }
+
 }

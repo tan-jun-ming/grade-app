@@ -25,6 +25,9 @@ public interface AssignmentDAO {
     @Query("select * from AssignmentTable  where CategoryID = :category_id")
     List<Assignment> getAssignmentsByCategory(int category_id);
 
+    @Query("select * from AssignmentTable  where AssignmentID = :AssignmentID")
+    Assignment getAssignmentByID(int AssignmentID);
+
 //    @Query("select * from assignmentTable natural join gradeTable where CategoryID=:CategoryID and UserID=:UserID")
 //    List <Assignment> getAssignmentsByCategory(Integer CategoryID, Integer UserID);
 

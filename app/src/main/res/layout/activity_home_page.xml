@@ -5,16 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
     android:orientation="vertical"
     tools:context=".HomePageActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:gravity="center"
         android:scaleX="2"
         android:scaleY="2"
-        android:gravity="center"
-        android:text="Home Page"/>
+        android:text="Home Page" />
 
     <Button
         android:id="@+id/create_account"
@@ -27,9 +29,8 @@
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
         android:gravity="center_horizontal"
-        />
+        android:text="Login" />
 
 
     <Button
@@ -43,14 +44,8 @@
         android:id="@+id/exit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Exit"
         android:gravity="center_horizontal"
-        />
-
-
-
-
-
+        android:text="Exit" />
 
 
 </LinearLayout>

@@ -13,12 +13,6 @@ import com.group.a.gradeapp.DB.User;
 
 public class HomePageActivity extends AppCompatActivity {
 
-    public static String username = null;   // username if logged in
-    //public static Integer userID = null;
-
-    // check database
-//        AppDatabase.getAppDatabase(HomePageActivity.this).loadData(this);
-
     GradeDAO myGradeDAO;
     User myUser;
 
@@ -26,11 +20,6 @@ public class HomePageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
-//        myGradeDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.dbName)
-//                .allowMainThreadQueries()
-//                .build()
-//                .getGradeLogDAO();
 
         Button create_account_button = findViewById(R.id.create_account);
         create_account_button.setOnClickListener(new View.OnClickListener(){

@@ -23,6 +23,10 @@ public interface UserDAO {
     @Query("select * from userTable where username = :username")
     User getUserByName(String username);
 
+
+    @Query("select * from userTable where UserID = :UserID")
+    User getUserByID(int UserID);
+
     @Insert
     void addUser(User user);
 
