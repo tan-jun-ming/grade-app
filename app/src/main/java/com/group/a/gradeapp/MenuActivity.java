@@ -50,6 +50,7 @@ public class MenuActivity extends AppCompatActivity {
                 // call the enroll course activity
                 Log.d("MenuActivity", "onClick add grade category activity called");
                 Intent intent = new Intent(MenuActivity.this, EnrollCourseActivity.class);
+                intent.putExtra("user_id", user_id.get());
                 startActivity(intent);
 
             }
