@@ -22,8 +22,8 @@ public interface AssignmentDAO {
     @Query("select * from " + AppDatabase.ASSIGNMENT_TABLE)
     List<Assignment> getAssignments();
 
-    @Query("select * from AssignmentTable where AssTitle = :AssTitle")
-    Assignment getAssignmentByTitle(String AssTitle);
+    @Query("select * from AssignmentTable where CategoryID = :category_id")
+    List<Assignment> getAssignmentsByCategory(int category_id);
 
 
 

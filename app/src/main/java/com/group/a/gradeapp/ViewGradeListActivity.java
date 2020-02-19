@@ -32,10 +32,22 @@ public class ViewGradeListActivity extends AppCompatActivity {
     private int selected_course_id;
     private List<Course> course_array;
 
+    int user_id = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_grade_list);
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras != null) {
+                user_id = extras.getInt("user_id");
+            }
+        } else {
+            user_id = (int) savedInstanceState.getSerializable("user_id");
+        }
+
 
         grades = new ArrayList<ViewGradeListItem>();
 
@@ -108,13 +120,8 @@ public class ViewGradeListActivity extends AppCompatActivity {
 
     List<Course> get_course_array(){
 
-        List<Course> thing =  AppDatabase.getAppDatabase(ViewGradeListActivity.this).
-                courseDAO().getCoursesByUser(1);
-        Log.d("8723", thing.toString());
-        return thing;
-
-//        return AppDatabase.getAppDatabase(ViewGradeListActivity.this).
-//                courseDAO().getCoursesByUser(1);
+        return AppDatabase.getAppDatabase(ViewGradeListActivity.this).
+                courseDAO().getCoursesByUser(user_id);
 
 
     }
@@ -155,7 +162,12 @@ public class ViewGradeListActivity extends AppCompatActivity {
         for (GradeCategory c: categories){
             grades.add(new ViewGradeListItem(true, c.getTitle(), c.getCategoryID(), 0));
 
-            List<Assignment> assignments; // Get assignments by category here
+            List<Assignment> assignments = AppDatabase.getAppDatabase(ViewGradeListActivity.this).
+                    assignmentDAO().getAssignmentsByCategory(c.getCategoryID());
+
+            for (Assignment a: assignments){
+                grades.add(new ViewGradeListItem(false, a.getAssTitle(), a.getCategoryID(), a.getAssignmentID()));
+            }
         }
 
         return grades;
