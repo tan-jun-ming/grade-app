@@ -22,8 +22,7 @@ public class Enrollment {
     public Enrollment(){    }
 
     @Ignore
-    public Enrollment(int EnrollmentID, int UserID, int CourseID, long EnrollmentDate) {
-        this.EnrollmentID=EnrollmentID;
+    public Enrollment(int UserID, int CourseID, long EnrollmentDate) {
         this.UserID=UserID;
         this.CourseID=CourseID;
         this.EnrollmentDate=EnrollmentDate;
