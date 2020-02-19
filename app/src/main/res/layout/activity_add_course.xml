@@ -29,6 +29,20 @@
             android:orientation="vertical" >
 
             <TextView
+            android:id="@+id/add_course"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Course ID:" />
+
+            <EditText
+                android:id="@+id/courseID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="CourseID: "
+                android:inputType="textPersonName" />
+
+            <TextView
                 android:id="@+id/editTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -41,22 +55,6 @@
                 android:ems="10"
                 android:hint="Title: "
                 android:inputType="text" />
-
-            <TextView
-                android:id="@+id/editText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Name" />
-
-            <EditText
-                android:id="@+id/Instructor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Course Instructor"
-                android:inputType="textPersonName" />
-
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,7 +69,19 @@
                 android:inputType="textMultiLine" />
 
 
+            <TextView
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name" />
 
+            <EditText
+                android:id="@+id/Instructor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Course Instructor"
+                android:inputType="textPersonName" />
 
             <TextView
                 android:layout_width="match_parent"
