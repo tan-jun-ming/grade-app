@@ -23,6 +23,8 @@ public interface GradeDAO {
         @Query("select * from " + AppDatabase.GRADE_TABLE)
         List<Grade> getGradeLogs();
 
+
+
 //        @Query("SELECT * FROM " + AppDatabase.GRADE_TABLE + " WHERE gLogId = :logID")
 //        Grade getGradeLogWithId(int logID);
 

@@ -17,6 +17,7 @@ import com.group.a.gradeapp.DB.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class EnrollCourseActivity extends AppCompatActivity {
 
@@ -26,7 +27,15 @@ public class EnrollCourseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_enroll_course);
 
 
-
+        final AtomicInteger user_id = new AtomicInteger(-1);
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras != null) {
+                user_id.set(extras.getInt("user_id"));
+            }
+        } else {
+            user_id.set((int) savedInstanceState.getSerializable("user_id"));
+        }
 
 
 
@@ -48,14 +57,13 @@ public class EnrollCourseActivity extends AppCompatActivity {
                 Course item = (Course) course_spinner.getSelectedItem();
 
 
-                int enrollmentId=Enrollment.getEnrollmentID();
-                int userId= User.getUserID();
-                String course_id = course_spinner.getSelectedItem().toString();
-                long enrollmentDate =;
 
 
-                // add the new Grade Category into the database
-                Enrollment newEnrollment = new Enrollment(enrollmentId, userId, course_id, enrollmentDate);
+
+                Integer course_id = Integer.parseInt(course_spinner.getSelectedItem().toString());
+
+                // add the new enrollment into the database
+                Enrollment newEnrollment = new Enrollment(user_id.get(), course_id);
                 EnrollmentDAO enrollmentDAO = AppDatabase.getAppDatabase(EnrollCourseActivity.this).enrollmentDAO();
                 enrollmentDAO.addEnrollment(newEnrollment);
 
@@ -73,7 +81,7 @@ public class EnrollCourseActivity extends AppCompatActivity {
 
     List<Course> get_course_array(){
         return AppDatabase.getAppDatabase(EnrollCourseActivity.this).
-                courseDAO().getAllCourses();
+                courseDAO().getCoursesByUser(0);
     }
 
 

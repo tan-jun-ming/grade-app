@@ -108,7 +108,7 @@ public class ViewGradeListActivity extends AppCompatActivity {
 
     List<Course> get_course_array(){
         return AppDatabase.getAppDatabase(ViewGradeListActivity.this).
-                courseDAO().getAllCourses();
+                courseDAO().getCoursesByUser(0);
     }
 
     /**
