@@ -29,31 +29,17 @@
             android:orientation="vertical" >
 
             <TextView
-            android:id="@+id/add_course"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Course ID:" />
-
-            <EditText
-                android:id="@+id/activity_add_course"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="CourseID: "
-                android:inputType="textPersonName" />
-
-            <TextView
                 android:id="@+id/editTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Title:" />
+                android:text="Title" />
 
             <EditText
                 android:id="@+id/Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Title: "
+                android:hint="Title"
                 android:inputType="text" />
             <TextView
                 android:layout_width="match_parent"
@@ -64,14 +50,16 @@
                 android:id="@+id/descriptionbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
+
+                android:gravity="start|top"
+                android:hint="Description"
                 android:inputType="textMultiLine" />
 
+
             <TextView
-                android:id="@+id/editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Name" />
+                android:text="Course Instructor" />
 
             <EditText
                 android:id="@+id/Instructor"
@@ -96,12 +84,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="End Date: " />
+
             <Button
                 android:id="@+id/end_date"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" 05-15-2020" />
+                android:text=" 2020-05-15" />
 
             <Button
                 android:id="@+id/submit"
@@ -111,5 +100,7 @@
                 android:text="Submit" />
         </LinearLayout>
     </ScrollView>
+
+
 
 </LinearLayout>

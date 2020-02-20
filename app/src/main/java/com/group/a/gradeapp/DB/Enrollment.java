@@ -1,6 +1,5 @@
 /**
  * class for creating the Enrollment object
- * @Primary Key: EnrollmentID
  * @takes in the UserID foreign key from User table
  * @takes in the CourseID foreign key from Course table
  * used to see which students are enrolled in each course and the date of their enrollment

@@ -1,17 +1,20 @@
 package com.group.a.gradeapp.DB.TypeConverter;
 
+import java.util.Calendar;
 import java.util.Date;
 import androidx.room.TypeConverter;
 
 
 public class DateTypeConverter {
     @TypeConverter
-    public long convertDateToLong(Date date){
-        return date.getTime();
+    public static long convertDateToLong(Calendar c){
+        return c.getTimeInMillis();
     }
     @TypeConverter
-    public Date convertLongToDate(long time){
-        return new Date(time);
+    public static Calendar convertLongToDate(long time){
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(time);
+        return c;
     }
 
 }

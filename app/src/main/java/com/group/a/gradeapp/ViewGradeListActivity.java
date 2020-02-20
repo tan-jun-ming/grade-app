@@ -6,14 +6,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 
+import com.group.a.gradeapp.DB.AppDatabase;
+import com.group.a.gradeapp.DB.Assignment;
+import com.group.a.gradeapp.DB.Course;
+import com.group.a.gradeapp.DB.GradeCategory;
 import com.group.a.gradeapp.ViewGradeList.RecyclerItemClickListener;
 import com.group.a.gradeapp.ViewGradeList.ViewGradeListAdapter;
 import com.group.a.gradeapp.ViewGradeList.ViewGradeListItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * View grade list activity which contains methods that logs grades. s
@@ -22,6 +32,8 @@ public class ViewGradeListActivity extends AppCompatActivity {
 
     private ViewGradeListAdapter grade_adapter;
     private ArrayList<ViewGradeListItem> grades;
+    private int selected_course_id;
+    private List<Course> course_array;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +50,6 @@ public class ViewGradeListActivity extends AppCompatActivity {
         RecyclerItemClickListener listener = new RecyclerItemClickListener() {
             @Override
             public void onClick(View view, int position) {
-                utils.display_toast(ViewGradeListActivity.this, "Item " + position + " Clicked");
                 open_assignment(position);
             }
         };
@@ -46,7 +57,42 @@ public class ViewGradeListActivity extends AppCompatActivity {
         grade_adapter = new ViewGradeListAdapter(listener);
         recycler_view.setAdapter(grade_adapter);
 
-        update_grades();
+        final Spinner course_spinner = findViewById(R.id.course_spinner);
+
+        course_array = get_course_array();
+
+        ArrayAdapter<Course> adapter = new ArrayAdapter<Course>(this,
+                android.R.layout.simple_spinner_item, course_array);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        course_spinner.setAdapter(adapter);
+
+        course_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                selected_course_id = course_array.get(position).getCourseID();
+                update_grades();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        Button add_grade_category_button = findViewById(R.id.add_grade_category_button);
+
+        add_grade_category_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewGradeListActivity.this, AddGradeCategoryActivity.class);
+                intent.putExtra("course_id", selected_course_id);
+                startActivity(intent);
+
+            }
+        });
+
     }
 
     @Override
@@ -59,8 +105,13 @@ public class ViewGradeListActivity extends AppCompatActivity {
      * Update grades
      */
     private void update_grades(){
-        grades = get_grades();
+        grades = get_grades(selected_course_id);
         grade_adapter.update(grades);
+    }
+
+    List<Course> get_course_array(){
+        return AppDatabase.getAppDatabase(ViewGradeListActivity.this).
+                courseDAO().getAllCourses();
     }
 
     /**
@@ -74,7 +125,6 @@ public class ViewGradeListActivity extends AppCompatActivity {
         if (item.is_category){
             Intent intent = new Intent(ViewGradeListActivity.this, AddAssignmentActivity.class);
             intent.putExtra("category_id", item.category_id);
-            intent.putExtra("category_name", item.name);
             startActivity(intent);
         } else {
             // open edit assignment here
@@ -87,24 +137,20 @@ public class ViewGradeListActivity extends AppCompatActivity {
      *
      * @return ArrayList of ViewGradeListItem for displaying in the recycler
      */
-    private ArrayList<ViewGradeListItem> get_grades(){
+    private ArrayList<ViewGradeListItem> get_grades(int selected_course_id){
         // Placeholder grades
         // Call a DB-interface method in the future
 
         ArrayList<ViewGradeListItem> grades = new ArrayList<ViewGradeListItem>();
 
-        grades.add(new ViewGradeListItem(true, "Exams", 1, 0));
-        grades.add(new ViewGradeListItem(false, "Test 1", 1, 1, 50.0f));
-        grades.add(new ViewGradeListItem(false, "Test 2", 1, 2, 75.0f));
-        grades.add(new ViewGradeListItem(false, "Test 3", 1, 3, null));
-        grades.add(new ViewGradeListItem(true, "Labs", 1, 0, 90f));
-        grades.add(new ViewGradeListItem(false, "Lab 1", 1, 1, 10.0f));
-        grades.add(new ViewGradeListItem(false, "Lab 2", 1, 2, 0.0f));
-        grades.add(new ViewGradeListItem(false, "Lab 3", 1, 3, 20.0f));
-        grades.add(new ViewGradeListItem(true, "Quizzes", 1, 0, 0f));
-        grades.add(new ViewGradeListItem(false, "Quiz 1", 1, 1, 0.0f));
-        grades.add(new ViewGradeListItem(false, "Quiz 2", 1, 2, 0.0f));
-        grades.add(new ViewGradeListItem(false, "Quiz 3", 1, 3, null));
+        List<GradeCategory> categories = AppDatabase.getAppDatabase(ViewGradeListActivity.this).
+                gradeCategoryDAO().getCategoriesByCourseID(selected_course_id);
+
+        for (GradeCategory c: categories){
+            grades.add(new ViewGradeListItem(true, c.getTitle(), c.getCategoryID(), 0));
+
+            List<Assignment> assignments; // Get assignments by category here
+        }
 
         return grades;
     }

@@ -14,7 +14,7 @@ import android.widget.DatePicker;
 import java.util.Calendar;
 
 /**
- * The type Add grade activity.
+ * The add grade activity will integrate grades onto the database.
  */
 public class AddGradeActivity extends AppCompatActivity {
     /**
