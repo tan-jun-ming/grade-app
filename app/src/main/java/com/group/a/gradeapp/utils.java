@@ -7,12 +7,15 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
+/**
+ * Utils will display types of messages displayed to the user.
+ */
 public class utils {
     /**
      * Display a toast
      *
      * @param intent_context Context of the intent
-     * @param message Message to display
+     * @param message        Message to display
      */
     public static void display_toast(Context intent_context, String message){
         display_toast(intent_context, message, false);
@@ -22,8 +25,8 @@ public class utils {
      * Display a toast
      *
      * @param intent_context Context of the intent
-     * @param message Message to display
-     * @param long_duration Whether or not the duration of the toast is long
+     * @param message        Message to display
+     * @param long_duration  Whether or not the duration of the toast is long
      */
     public static void display_toast(Context intent_context, String message, boolean long_duration){
         Toast.makeText(intent_context, message,
@@ -54,9 +57,9 @@ public class utils {
     /**
      * Formats year, month and day to a date string
      *
-     * @param year The year
+     * @param year  The year
      * @param month The month (zero-indexed)
-     * @param day The day
+     * @param day   The day
      * @return The date string
      */
     public static String format_date(int year, int month, int day){

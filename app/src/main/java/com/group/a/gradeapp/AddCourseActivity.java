@@ -25,11 +25,20 @@ import com.group.a.gradeapp.DB.TypeConverter.DateTypeConverter;
 
 import java.util.Calendar;
 
+/**
+ * Add Course Activity allows the user to add a course and will show a calendar to select the start and end date of the course.
+ */
 public class AddCourseActivity extends AppCompatActivity {
 
+    /**
+     * The constant TAG.
+     */
     public static final String TAG = "AddCourseActivity";
 
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate called");
@@ -119,7 +128,12 @@ public class AddCourseActivity extends AppCompatActivity {
         });
     }
 
-    //In case of error on the on click method will provide an alert dialog.
+    /**
+     * Alert: In case of error on the on click method will provide an alert dialog.
+     *
+     * @param error creates an error to alert user
+     */
+
     public void alert(String error) {
         Log.d(TAG, "alerting error");
         AlertDialog.Builder builder = new AlertDialog.Builder(AddCourseActivity.this);
@@ -134,7 +148,13 @@ public class AddCourseActivity extends AppCompatActivity {
         dialog.setMessage(error);
         dialog.show();
     }
-    //informs user
+
+    /**
+     * Inform.
+     *
+     * @param msg the msg
+     */
+
     public void inform(String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(AddCourseActivity.this);
         builder.setTitle("Success");

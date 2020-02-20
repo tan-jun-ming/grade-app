@@ -1,3 +1,11 @@
+/**
+ * class for creating the Assignment object  (Not sure if this should have earned score or get it from Grade table)
+ * @PrimaryKey: AssignmentID
+ * @takes in the CourseID foreign key from the Course table
+ * @takes in the CategoryID foreign key from the Category table
+ * Gives us the Details of the Assignment, the maximum possible score, the score the student earned,
+ * date the assignment was assigned, and the due date.
+ */
 package com.group.a.gradeapp.DB;
 
 import androidx.annotation.NonNull;

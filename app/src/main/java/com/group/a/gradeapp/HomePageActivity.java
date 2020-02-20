@@ -11,9 +11,15 @@ import android.widget.Button;
 import com.group.a.gradeapp.DB.GradeDAO;
 import com.group.a.gradeapp.DB.User;
 
+/**
+ * Home page activity.
+ */
 public class HomePageActivity extends AppCompatActivity {
 
     GradeDAO myGradeDAO;
+    /**
+     * The My user.
+     */
     User myUser;
 
     @Override

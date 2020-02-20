@@ -20,7 +20,13 @@ import com.group.a.gradeapp.DB.Course;
 import com.group.a.gradeapp.DB.GradeCategory;
 import com.group.a.gradeapp.DB.GradeCategoryDAO;
 
+/**
+ * The type Add grade category activity.
+ */
 public class AddGradeCategoryActivity extends AppCompatActivity {
+    /**
+     * The constant TAG.
+     */
     public static final String TAG = "AddGradeCategoryAct";
     private List<Course> all_courses;
 
@@ -104,7 +110,12 @@ public class AddGradeCategoryActivity extends AppCompatActivity {
         });
 
     }
-
+    /**
+     * Alert.
+     *
+     * @param error the error
+     * @param finish_activity the boolean
+     */
     public void alert(String error, final boolean finish_activity) {
         Log.d(TAG, "alerting error");
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -120,7 +131,13 @@ public class AddGradeCategoryActivity extends AppCompatActivity {
         builder.create();
         builder.show();
     }
-    //informs user
+
+    /**
+     * Informs user by a message that the grade category is set.
+     *
+     * @param msg the msg
+     */
+//informs user
     public void inform(String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(AddGradeCategoryActivity.this);
         builder.setTitle("Success");
