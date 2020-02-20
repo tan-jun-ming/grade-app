@@ -21,17 +21,15 @@ public class Enrollment {
 
 
 /**
- * Instantiates a new Enrollment.
+ * Instantiates a new Enrollment.cou
  */
     public Enrollment(){    }
 
      /**
      * Instantiates a new Enrollment.
      *
-     * @param EnrollmentID   the enrollment id
      * @param UserID         the user id
      * @param CourseID       the course id
-     * @param EnrollmentDate the enrollment date
      */
     @Ignore
     public Enrollment(int UserID, int CourseID) {
