@@ -17,6 +17,9 @@ import com.group.a.gradeapp.DB.AppDatabase;
 import com.group.a.gradeapp.DB.LogRecord;
 
 
+/**
+ * View log activity which contains methods to be able to show the users log.
+ */
 public class ViewLogActivity  extends AppCompatActivity {
 
     private ViewLogAdapter adapter;
@@ -82,9 +85,21 @@ public class ViewLogActivity  extends AppCompatActivity {
         public int getItemCount() { return records.size(); }
     }
     private class ItemHolder extends RecyclerView.ViewHolder {
+        /**
+         * Instantiates a new Item holder.
+         *
+         * @param inflater the inflater
+         * @param parent   the parent
+         */
         public ItemHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.item, parent, false));
         }
+
+        /**
+         * Bind.
+         *
+         * @param rec the rec
+         */
         public void bind(LogRecord rec ) {
             TextView item = itemView.findViewById(R.id.item_id);
             item.setText(rec.toString());

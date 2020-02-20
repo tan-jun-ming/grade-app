@@ -1,7 +1,7 @@
 /**
  * class for creating the Enrollment object
- * in the UserID foreign key from User table
- * in the CourseID foreign key from Course table
+ * @takes in the UserID foreign key from User table
+ * @takes in the CourseID foreign key from Course table
  * used to see which students are enrolled in each course and the date of their enrollment
  */
 package com.group.a.gradeapp.DB;
@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
 
 /**
  * The type Enrollment.
@@ -25,7 +26,7 @@ public class Enrollment {
  */
     public Enrollment(){    }
 
-     /**
+    /**
      * Instantiates a new Enrollment.
      *
      * @param UserID         the user id
@@ -47,18 +48,38 @@ public class Enrollment {
                 CourseID + "\n" + "\n";
     }
 
+    /**
+     * Gets user id.
+     *
+     * @return the user id
+     */
     public int getUserID() {
         return UserID;
     }
 
+    /**
+     * Sets user id.
+     *
+     * @param userID the user id
+     */
     public void setUserID(int userID) {
         UserID = userID;
     }
 
+    /**
+     * Gets course id.
+     *
+     * @return the course id
+     */
     public int getCourseID() {
         return CourseID;
     }
 
+    /**
+     * Sets course id.
+     *
+     * @param courseID the course id
+     */
     public void setCourseID(int courseID) {
         CourseID = courseID;
     }

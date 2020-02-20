@@ -19,7 +19,6 @@ import com.group.a.gradeapp.DB.UserDAO;
 /**
  * Login activity lets the user to enter a username and password to enter to an account if the account is already created.
  */
-
 public class LoginActivity extends AppCompatActivity {
 
     @Override

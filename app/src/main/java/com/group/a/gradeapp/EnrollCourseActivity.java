@@ -26,6 +26,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * The type Enroll course activity.
+ */
 public class EnrollCourseActivity extends AppCompatActivity {
 
     AtomicInteger user_id;
@@ -127,6 +130,11 @@ public class EnrollCourseActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Get course array list.
+     *
+     * @return the list
+     */
     List<Course> get_course_array(){
         return AppDatabase.getAppDatabase(EnrollCourseActivity.this).
                 courseDAO().getCoursesAvailable();

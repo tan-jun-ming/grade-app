@@ -24,4 +24,8 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.group.a.gradeapp", appContext.getPackageName());
     }
+
+    @Test
+    fun user_can_create_account(){
+    }
 }

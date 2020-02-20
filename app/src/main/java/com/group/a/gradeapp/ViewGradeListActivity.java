@@ -32,6 +32,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * View grade list activity which contains methods that logs grades. s
+ */
 public class ViewGradeListActivity extends AppCompatActivity {
     public static final String TAG = "ViewGradeListActivity";
 
@@ -94,7 +97,7 @@ public class ViewGradeListActivity extends AppCompatActivity {
         grade_adapter = new ViewGradeListAdapter(listener);
         recycler_view.setAdapter(grade_adapter);
 
-        final Spinner course_spinner = (Spinner) findViewById(R.id.course_spinner);
+        final Spinner course_spinner = findViewById(R.id.course_spinner);
 
         ArrayAdapter<Course> adapter = new ArrayAdapter<Course>(this,
                 android.R.layout.simple_spinner_item, course_array);

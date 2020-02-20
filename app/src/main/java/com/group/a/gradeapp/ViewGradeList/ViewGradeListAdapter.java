@@ -15,20 +15,35 @@ import java.util.ArrayList;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * The type View grade list adapter.
+ */
 // Adapted from https://developer.android.com/guide/topics/ui/layout/recyclerview
 public class ViewGradeListAdapter extends RecyclerView.Adapter<ViewGradeListAdapter.GradeViewHolder> {
     private RecyclerItemClickListener listener;
     private ArrayList<ViewGradeListItem> mDataset;
 
-    // Provide a reference to the views for each data item
+    /**
+     * The type Grade view holder.
+     */
+// Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public static class GradeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // each data item is just a string in this case
 
+        /**
+         * The Layout.
+         */
         public RelativeLayout layout;
         private RecyclerItemClickListener listener;
 
+        /**
+         * Instantiates a new Grade view holder.
+         *
+         * @param v the v
+         * @param l the l
+         */
         public GradeViewHolder(RelativeLayout v, RecyclerItemClickListener l) {
             super(v);
             layout = v;
@@ -42,12 +57,22 @@ public class ViewGradeListAdapter extends RecyclerView.Adapter<ViewGradeListAdap
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
+    /**
+     * Instantiates a new View grade list adapter.
+     *
+     * @param l the l
+     */
+// Provide a suitable constructor (depends on the kind of dataset)
     public ViewGradeListAdapter(RecyclerItemClickListener l) {
         mDataset = new ArrayList<ViewGradeListItem>();
         listener = l;
     }
 
+    /**
+     * Update.
+     *
+     * @param newdata the newdata
+     */
     public void update(ArrayList<ViewGradeListItem> newdata) {
         mDataset.clear();
         mDataset.addAll(newdata);

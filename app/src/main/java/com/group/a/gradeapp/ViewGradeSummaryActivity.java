@@ -22,6 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 
+/**
+ * View grade summary activity shows the users grade summary.
+ */
 public class ViewGradeSummaryActivity extends AppCompatActivity {
     public static final String TAG = "ViewGradeSummaryAct";
 
