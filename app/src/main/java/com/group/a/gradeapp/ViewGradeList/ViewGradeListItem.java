@@ -22,5 +22,6 @@ public class ViewGradeListItem {
     public void set_grade(Float grade){
         this.grade = grade;
     }
+    public float get_grade_total(String name){ return this.grade;}
 
 }

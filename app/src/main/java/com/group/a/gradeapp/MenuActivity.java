@@ -111,6 +111,7 @@ public class MenuActivity extends AppCompatActivity {
                 // call the view grade summary activity
                 Log.d("MenuActivity", "onClick for view grade summary activity called");
                 Intent intent = new Intent(MenuActivity.this, ViewGradeSummaryActivity.class);
+                intent.putExtra("user_id", user_id.get());
                 startActivity(intent);
 
             }

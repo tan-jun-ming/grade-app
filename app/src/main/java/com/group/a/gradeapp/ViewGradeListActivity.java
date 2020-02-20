@@ -33,6 +33,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ViewGradeListActivity extends AppCompatActivity {
+    public static final String TAG = "ViewGradeListActivity";
+
 
     private ViewGradeListAdapter grade_adapter;
     private ArrayList<ViewGradeListItem> grades;
@@ -54,8 +56,10 @@ public class ViewGradeListActivity extends AppCompatActivity {
         } else {
             user_id = (int) savedInstanceState.getSerializable("user_id");
         }
+        Log.d(TAG, "2727" + user_id);
 
         course_array = get_course_array();
+        Log.d(TAG, "2726" + course_array.toString());
 
         if (course_array.size() == 0){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
