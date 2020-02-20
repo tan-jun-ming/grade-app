@@ -56,7 +56,7 @@ public class ViewGradeSummaryActivity extends AppCompatActivity {
 
         adapter = new ViewSummaryAdapter();
         recycler_view.setAdapter(adapter);
-        
+
 
             // retrieve all courses the user is in
         course_array = get_course_array();
