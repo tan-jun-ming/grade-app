@@ -58,6 +58,19 @@
                 android:textColor="#000000"
                 android:textStyle="bold" />
 
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Details:" />
+
+            <TextView
+                android:id="@+id/assignmentdetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               />// android:text="Assignment Details:"
+
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

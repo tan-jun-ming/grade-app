@@ -73,26 +73,13 @@
         android:gravity="center_horizontal"
         android:text="Add Assignment" />
 
-    <Button
-        android:id="@+id/add_grade"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Add Grade" />
-
-    <Button
-        android:id="@+id/view_assignment_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="View Assignment List" />
 
     <Button
         android:id="@+id/view_grade_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="View Grade List" />
+        android:text="View Assignments/Grades" />
 
     <Button
         android:id="@+id/view_grade_summary"

@@ -37,7 +37,6 @@ public class AddGradeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_grade);
-
         final AtomicInteger user_id = new AtomicInteger(-1);
         final AtomicInteger course_id = new AtomicInteger(-1);
         int assignment_id = -1;
@@ -95,6 +94,11 @@ public class AddGradeActivity extends AppCompatActivity {
             score.setText(Integer.toString(grade.getScore()));
             updating.set(true);
         }
+
+        // print details from assignment toString
+        String assignmentDetails= assignment.toString();
+        TextView assignment_detials = findViewById(R.id.assignmentdetails);
+        assignment_detials.setText(assignmentDetails);
 
         //button is created attached to a setOnClickListener to be able to see when the button submit course is being clicked
         Button submit_button = findViewById(R.id.submit_button);

@@ -91,30 +91,6 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        Button add_grade_button = findViewById(R.id.add_grade);
-        add_grade_button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                // call the add grade activity
-                Log.d("MenuActivity", "onClick for add grade activity called");
-                Intent intent = new Intent(MenuActivity.this, AddGradeActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
-        Button view_assignment_list_button = findViewById(R.id.view_assignment_list);
-        view_assignment_list_button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                // call the view assignment list activity
-                Log.d("MenuActivity", "onClick for view assignment list activity called");
-                Intent intent = new Intent(MenuActivity.this, ViewAssignmentListActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
         Button view_grade_list_button = findViewById(R.id.view_grade_list);
         view_grade_list_button.setOnClickListener(new View.OnClickListener(){
             @Override

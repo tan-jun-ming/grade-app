@@ -34,31 +34,10 @@ public class Assignment {
     this.MaxScore=MaxScore;
     }
 
-
-
-
-
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Course Course = (Course) o;
-//        return Title == Course.Title &&
-//                Instructor == Course.Instructor &&
-//                Start_date == Course.Start_date;
-//    }
-
     @Override
     public String toString() {
-        return AssignmentID + "\n" +
-                CategoryID + "\n" +
-                AssTitle + "\n" +
-                CourseID + "\n" +
-                AssignedDate + "\n" +
-                DueDate + "\n" +
-               Details + "\n" +
-               MaxScore + "\n" + "\n";
+        return
+               Details + "\n";
    }
 
     public String getAssTitle() {
