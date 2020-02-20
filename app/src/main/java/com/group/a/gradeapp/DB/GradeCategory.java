@@ -37,16 +37,6 @@ public class GradeCategory {
     }
 
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Course Course = (Course) o;
-//        return Title == Course.Title &&
-//                Instructor == Course.Instructor &&
-//                Start_date == Course.Start_date;
-//    }
-
     @Override
     public String toString() {
         return Title;

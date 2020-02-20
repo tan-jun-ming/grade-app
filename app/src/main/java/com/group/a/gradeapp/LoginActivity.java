@@ -48,23 +48,19 @@ public class LoginActivity extends AppCompatActivity {
                 if (user == null) {
                     // unsuccessful login
                     TextView msg = findViewById(R.id.message);
-                    msg.setText("User name or password is incorrect.");
-//                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
-//                    startActivity(intent);
-
+                    utils.display_toast(getApplicationContext(), "User name or password is incorrect.");
                 } else {
                     // successful login
-                    HomePageActivity.username = username.getText().toString();
-                   // HomePageActivity.userID= user.getUserID();
+
                     Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                    intent.putExtra("user_id", user.getUserID());
+                    finish();
                     startActivity(intent);
                 }
-
-
             }
+
+
         });
-
     }
-
 
 }

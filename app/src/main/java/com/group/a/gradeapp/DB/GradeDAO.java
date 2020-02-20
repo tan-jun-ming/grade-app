@@ -13,7 +13,7 @@ import androidx.room.Update;
 public interface GradeDAO {
 
         @Insert
-        void addGradeLog( Grade gradelog);
+        void addGrade( Grade grade);
 
         @Update
         void update(Grade... grades);
@@ -21,19 +21,14 @@ public interface GradeDAO {
         void delete(Grade grade);
 
         @Query("select * from " + AppDatabase.GRADE_TABLE)
-        List<Grade> getGradeLogs();
+        List<Grade> getAllGrades();
 
-//        @Query("SELECT * FROM " + AppDatabase.GRADE_TABLE + " WHERE gLogId = :logID")
-//        Grade getGradeLogWithId(int logID);
+        @Query("SELECT * FROM " + AppDatabase.GRADE_TABLE + " WHERE courseId=:courseId AND UserID=:UserID")
+        List<Grade> getGradesByCourseIDAndUserID(int courseId, int UserID);
 
-//        @Query("select * from LogRecord order by time desc")
-//        List<LogRecord> getAllLogRecords();
 
-        @Query("select * from LogRecord order by time desc")
-        List<LogRecord> getAllLogRecords();
-
-        @Insert
-        void addLogRecord(LogRecord rec);
+        @Query("SELECT * FROM " + AppDatabase.GRADE_TABLE + " WHERE assignmentID=:assignmentID AND UserID=:UserID")
+        Grade getGradeByAssignmentIDAndUserID(int assignmentID, int UserID);
 
 
 

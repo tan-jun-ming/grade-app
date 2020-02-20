@@ -110,19 +110,8 @@
                 android:id="@+id/maxscorebox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Earned Score" />
-
-            <EditText
-                android:id="@+id/maxscorebox2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="numberDecimal" />
+                android:inputType="number" />
 
             <Button
                 android:id="@+id/submit_button"

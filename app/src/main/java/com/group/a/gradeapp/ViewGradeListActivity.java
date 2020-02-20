@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,13 +20,17 @@ import android.widget.Spinner;
 import com.group.a.gradeapp.DB.AppDatabase;
 import com.group.a.gradeapp.DB.Assignment;
 import com.group.a.gradeapp.DB.Course;
+import com.group.a.gradeapp.DB.Grade;
 import com.group.a.gradeapp.DB.GradeCategory;
 import com.group.a.gradeapp.ViewGradeList.RecyclerItemClickListener;
 import com.group.a.gradeapp.ViewGradeList.ViewGradeListAdapter;
 import com.group.a.gradeapp.ViewGradeList.ViewGradeListItem;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * View grade list activity which contains methods that logs grades. s
@@ -32,13 +39,42 @@ public class ViewGradeListActivity extends AppCompatActivity {
 
     private ViewGradeListAdapter grade_adapter;
     private ArrayList<ViewGradeListItem> grades;
-    private int selected_course_id;
+    private Course selected_course;
     private List<Course> course_array;
+
+    int user_id = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_grade_list);
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras != null) {
+                user_id = extras.getInt("user_id");
+            }
+        } else {
+            user_id = (int) savedInstanceState.getSerializable("user_id");
+        }
+
+        course_array = get_course_array();
+
+        if (course_array.size() == 0){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Error")
+                .setMessage("Please Enroll in a course before viewing this page.")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                });
+
+            builder.create();
+            builder.show();
+
+            return;
+        }
 
         grades = new ArrayList<ViewGradeListItem>();
 
@@ -59,8 +95,6 @@ public class ViewGradeListActivity extends AppCompatActivity {
 
         final Spinner course_spinner = findViewById(R.id.course_spinner);
 
-        course_array = get_course_array();
-
         ArrayAdapter<Course> adapter = new ArrayAdapter<Course>(this,
                 android.R.layout.simple_spinner_item, course_array);
 
@@ -71,7 +105,7 @@ public class ViewGradeListActivity extends AppCompatActivity {
         course_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                selected_course_id = course_array.get(position).getCourseID();
+                selected_course = course_array.get(position);
                 update_grades();
             }
 
@@ -87,7 +121,7 @@ public class ViewGradeListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ViewGradeListActivity.this, AddGradeCategoryActivity.class);
-                intent.putExtra("course_id", selected_course_id);
+                intent.putExtra("course_id", selected_course.getCourseID());
                 startActivity(intent);
 
             }
@@ -105,14 +139,18 @@ public class ViewGradeListActivity extends AppCompatActivity {
      * Update grades
      */
     private void update_grades(){
-        grades = get_grades(selected_course_id);
+        grades = get_grades(selected_course.getCourseID());
         grade_adapter.update(grades);
     }
 
     List<Course> get_course_array(){
+
         return AppDatabase.getAppDatabase(ViewGradeListActivity.this).
-                courseDAO().getAllCourses();
+                courseDAO().getCoursesByUser(user_id);
+
+
     }
+
 
     /**
      * Opens the assigment or category at the position as a Grade Summary or Add Assignment Activity
@@ -123,11 +161,21 @@ public class ViewGradeListActivity extends AppCompatActivity {
         ViewGradeListItem item = grades.get(position);
 
         if (item.is_category){
-            Intent intent = new Intent(ViewGradeListActivity.this, AddAssignmentActivity.class);
-            intent.putExtra("category_id", item.category_id);
-            startActivity(intent);
+            if (item.category_id != -1){ // Total case
+                // open add assignment activity
+                Intent intent = new Intent(ViewGradeListActivity.this, AddAssignmentActivity.class);
+                intent.putExtra("category_id", item.category_id);
+                startActivity(intent);
+            }
         } else {
-            // open edit assignment here
+            // open add grade activity
+            Intent intent = new Intent(ViewGradeListActivity.this, AddGradeActivity.class);
+            intent.putExtra("user_id", user_id);
+            intent.putExtra("course_id", selected_course.getCourseID());
+            intent.putExtra("assignment_id", item.assignment_id);
+            intent.putExtra("course_name", selected_course.getTitle());
+            intent.putExtra("assignment_name", item.name);
+            startActivity(intent);
         }
 
     }
@@ -138,20 +186,67 @@ public class ViewGradeListActivity extends AppCompatActivity {
      * @return ArrayList of ViewGradeListItem for displaying in the recycler
      */
     private ArrayList<ViewGradeListItem> get_grades(int selected_course_id){
-        // Placeholder grades
-        // Call a DB-interface method in the future
-
         ArrayList<ViewGradeListItem> grades = new ArrayList<ViewGradeListItem>();
 
         List<GradeCategory> categories = AppDatabase.getAppDatabase(ViewGradeListActivity.this).
                 gradeCategoryDAO().getCategoriesByCourseID(selected_course_id);
 
-        for (GradeCategory c: categories){
-            grades.add(new ViewGradeListItem(true, c.getTitle(), c.getCategoryID(), 0));
+        List<Grade> grade_list = AppDatabase.getAppDatabase(ViewGradeListActivity.this).
+                gradeDAO().getGradesByCourseIDAndUserID(selected_course_id, user_id);
 
-            List<Assignment> assignments; // Get assignments by category here
+
+        Map<Integer, Integer> grades_map = new HashMap<Integer, Integer>();
+
+        for (Grade g: grade_list){
+            grades_map.put(g.getAssignmentID(), g.getScore());
         }
 
+        ArrayList<Pair<Float, Float>> grade_scores = new ArrayList<>();
+        float max_weight = 0;
+
+        for (GradeCategory c: categories){
+            ViewGradeListItem cat = new ViewGradeListItem(true, c.getTitle(), c.getCategoryID(), -1, null);
+            grades.add(cat);
+
+            int max_category_score = 0;
+            int earned_category_score = 0;
+
+            List<Assignment> assignments = AppDatabase.getAppDatabase(ViewGradeListActivity.this).
+                    assignmentDAO().getAssignmentsByCategory(c.getCategoryID());
+
+            for (Assignment a: assignments){
+                int a_max = a.getMaxScore();
+                max_category_score += a_max;
+
+                Integer a_earned = grades_map.get(a.getAssignmentID());
+
+                Float earned_percentage = null;
+                if (a_earned == null){
+                    a_earned = 0;
+                } else {
+                    earned_percentage = utils.calculate_percentage(a_earned, a_max);
+                }
+                grades.add(new ViewGradeListItem(false, a.getAssTitle(), a.getCategoryID(), a.getAssignmentID(), earned_percentage));
+
+                earned_category_score += a_earned;
+            }
+            float category_percentage = utils.calculate_percentage(earned_category_score, max_category_score);
+            cat.set_grade(category_percentage);
+
+            max_weight += c.getWeight();
+            grade_scores.add(Pair.create(c.getWeight(), category_percentage));
+
+        }
+
+        Float total_percentage = null;
+        if (max_weight != 0){
+            total_percentage = 0f;
+            for (Pair<Float, Float> s: grade_scores){
+                total_percentage += (s.first/max_weight) * s.second;
+            }
+        }
+
+        grades.add(new ViewGradeListItem(true, "Total", -1, -1, total_percentage));
         return grades;
     }
 

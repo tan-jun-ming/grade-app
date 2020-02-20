@@ -10,8 +10,23 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.group.a.gradeapp.DB.AppDatabase;
+import com.group.a.gradeapp.DB.Assignment;
+import com.group.a.gradeapp.DB.Grade;
+import com.group.a.gradeapp.DB.GradeCategory;
+import com.group.a.gradeapp.DB.GradeDAO;
 
 import java.util.Calendar;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+
+/**
+ * The add grade activity will integrate grades onto the database.
+ */
 
 /**
  * The add grade activity will integrate grades onto the database.
@@ -21,68 +36,118 @@ public class AddGradeActivity extends AppCompatActivity {
      * The constant TAG.
      */
     public static final String TAG = "AddGradeActivity";
+    private List<Grade> all_grades;
+    private List<GradeCategory> all_grade_categories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_grade);
-        final Button start_date = findViewById(R.id.start_date);
-        final Button end_date = findViewById(R.id.end_date);
+        final AtomicInteger user_id = new AtomicInteger(-1);
+        final AtomicInteger course_id = new AtomicInteger(-1);
+        int assignment_id = -1;
+        String course_name = "";
 
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras != null) {
+                user_id.set(extras.getInt("user_id"));
+                course_id.set(extras.getInt("course_id"));
+                assignment_id = extras.getInt("assignment_id");
+                course_name = extras.getString("course_name");
+            }
+        } else {
+            user_id.set((int) savedInstanceState.getSerializable("user_id"));
+            course_id.set((int) savedInstanceState.getSerializable("course_id"));
+            assignment_id = (int) savedInstanceState.getSerializable("assignment_id");
+            course_name = (String) savedInstanceState.getSerializable("course_name");
+        }
 
-        Calendar c = Calendar.getInstance();
+        if (assignment_id == -1){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Error")
+                    .setMessage("Please visit this page via the Grade List.\n\nSomeone please remove the button that leads here too plz.")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
 
-        int mYear = c.get(Calendar.YEAR);
-        int mMonth = c.get(Calendar.MONTH);
-        int mDay = c.get(Calendar.DAY_OF_MONTH);
+            builder.create();
+            builder.show();
 
-        start_date.setText(utils.format_date(c));
-        end_date.setText(utils.format_date(c));
+            return;
+        }
 
-        final DatePickerDialog start_datepicker = new DatePickerDialog(this,
-                new DatePickerDialog.OnDateSetListener() {
+        TextView coursename = findViewById(R.id.coursename);
+        TextView assignmentname = findViewById(R.id.assignmentname);
+        TextView max_score = findViewById(R.id.max_score);
+        final EditText score = findViewById(R.id.score);
 
-                    @Override
-                    public void onDateSet(DatePicker view, int year,
-                                          int monthOfYear, int dayOfMonth) {
+        coursename.setText(course_name);
 
-                        start_date.setText(utils.format_date(year, monthOfYear, dayOfMonth));
+        final Assignment assignment = AppDatabase.getAppDatabase(AddGradeActivity.this).
+                assignmentDAO().getAssignmentByID(assignment_id);
 
-                    }
-                }, mYear, mMonth, mDay);
-        final DatePickerDialog end_datepicker = new DatePickerDialog(this,
-                new DatePickerDialog.OnDateSetListener() {
+        assignmentname.setText(assignment.getAssTitle());
+        max_score.setText(Integer.toString(assignment.getMaxScore()));
 
-                    @Override
-                    public void onDateSet(DatePicker view, int year,
-                                          int monthOfYear, int dayOfMonth) {
+        Grade grade = AppDatabase.getAppDatabase(AddGradeActivity.this).
+                gradeDAO().getGradeByAssignmentIDAndUserID(assignment_id, user_id.get());
 
-                        end_date.setText(utils.format_date(year, monthOfYear, dayOfMonth));
+        final AtomicBoolean updating = new AtomicBoolean(false);
+        if (grade != null){
+            score.setText(Integer.toString(grade.getScore()));
+            updating.set(true);
+        }
 
-                    }
-                }, mYear, mMonth, mDay);
-        start_date.setOnClickListener(
-                new View.OnClickListener(){
-                    public void onClick(View v){
-                        start_datepicker.show();
-                    }
+        // print details from assignment toString
+        String assignmentDetails= assignment.toString();
+        TextView assignment_detials = findViewById(R.id.assignmentdetails);
+        assignment_detials.setText(assignmentDetails);
 
-                }
-        );
-        end_date.setOnClickListener(
-                new View.OnClickListener(){
-                    public void onClick(View v){
-                        end_datepicker.show();
-                    }
-
-                }
-        );
         //button is created attached to a setOnClickListener to be able to see when the button submit course is being clicked
-        Button submit_button = findViewById(R.id.submit);
+        Button submit_button = findViewById(R.id.submit_button);
         submit_button.setOnClickListener(new View.OnClickListener() {
+
+//            EditText score = findViewById(R.id.score);
+//            Integer Score = Integer.parseInt(score.getText().toString());
+//
+//            //all get the values from the spinners
+//            Grade assignment_spinner = (Grade) assignment_spinner.getSelectedItem();
+//            GradeCategory category_spinner = (GradeCategory) category_spinner.getSelectedItem();
+
+
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "submit clicked");
+
+                String grade_score_text = score.getText().toString();
+
+                if (grade_score_text.equals("")) {
+                    alert("Please enter a score.");
+                    return;
+                }
+
+                int grade_score = Integer.parseInt(grade_score_text);
+
+                if (grade_score > assignment.getMaxScore()){
+                    alert("Please enter a score below the maximum.");
+                    return;
+                }
+
+                // add the new grade into the database
+                Grade newGrade = new Grade(grade_score, assignment.getAssignmentID(), user_id.get(), course_id.get());
+                GradeDAO grade_dao = AppDatabase.getAppDatabase(AddGradeActivity.this).gradeDAO();
+
+                if (updating.get()){
+                    grade_dao.update(newGrade);
+                } else {
+                    grade_dao.addGrade(newGrade);
+                }
+
+                utils.display_toast(getApplicationContext(), "Your grade was set");
+                finish();
 
             }
         });

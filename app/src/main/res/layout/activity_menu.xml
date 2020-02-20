@@ -5,16 +5,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
     android:orientation="vertical"
     tools:context=".MenuActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:gravity="center"
         android:scaleX="2"
         android:scaleY="2"
-        android:gravity="center"
-        android:text="Main Menu"/>
+        android:text="Main Menu" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logged in as: " />
+
+            <TextView
+                android:id="@+id/logged_in_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Dave McDaveface"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </RelativeLayout>
 
     <Button
         android:id="@+id/add_course"
@@ -44,26 +73,13 @@
         android:gravity="center_horizontal"
         android:text="Add Assignment" />
 
-    <Button
-        android:id="@+id/add_grade"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Add Grade" />
-
-    <Button
-        android:id="@+id/view_assignment_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="View Assignment List" />
 
     <Button
         android:id="@+id/view_grade_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="View Grade List" />
+        android:text="View Assignments/Grades" />
 
     <Button
         android:id="@+id/view_grade_summary"
@@ -77,10 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Return to Home Page" />
-
-
-
+        android:text="Logout" />
 
 
 </LinearLayout>

@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.group.a.gradeapp.DB.AppDatabase;
 import com.group.a.gradeapp.DB.LogRecord;
-import com.group.a.gradeapp.DB.User;
 
 
 /**
@@ -24,8 +23,6 @@ import com.group.a.gradeapp.DB.User;
 public class ViewLogActivity  extends AppCompatActivity {
 
     private ViewLogAdapter adapter;
-
-    private List<User> users;
     private List<LogRecord> records;
 
     @Override
@@ -33,9 +30,6 @@ public class ViewLogActivity  extends AppCompatActivity {
         Log.d("ViewLogActivity", "onCreate called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_log);
-
-
-
 
         Button return_button = findViewById(R.id.return_button);
         return_button.setOnClickListener(new View.OnClickListener() {

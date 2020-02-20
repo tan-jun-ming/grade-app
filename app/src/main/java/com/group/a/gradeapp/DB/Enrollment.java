@@ -19,70 +19,35 @@ import androidx.room.PrimaryKey;
 
 
 public class Enrollment {
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    private int EnrollmentID;
-    private int UserID; //StudentID?
+    private int UserID;
     private int CourseID;
-    private long EnrollmentDate;
 
 
-    /**
-     * Instantiates a new Enrollment.
-     */
+/**
+ * Instantiates a new Enrollment.
+ */
     public Enrollment(){    }
 
     /**
      * Instantiates a new Enrollment.
      *
-     * @param EnrollmentID   the enrollment id
      * @param UserID         the user id
      * @param CourseID       the course id
-     * @param EnrollmentDate the enrollment date
      */
     @Ignore
-    public Enrollment(int EnrollmentID, int UserID, int CourseID, long EnrollmentDate) {
-        this.EnrollmentID=EnrollmentID;
+    public Enrollment(int UserID, int CourseID) {
         this.UserID=UserID;
         this.CourseID=CourseID;
-        this.EnrollmentDate=EnrollmentDate;
+
     }
 
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Course Course = (Course) o;
-//        return Title == Course.Title &&
-//                Instructor == Course.Instructor &&
-//                Start_date == Course.Start_date;
-//    }
+
 
     @Override
     public String toString() {
-        return EnrollmentID + "\n" +
-                UserID + "\n" +
-                CourseID + "\n" +
-                EnrollmentDate + "\n" + "\n";
-    }
-
-    /**
-     * Gets enrollment id.
-     *
-     * @return the enrollment id
-     */
-    public int getEnrollmentID() {
-        return EnrollmentID;
-    }
-
-    /**
-     * Sets enrollment id.
-     *
-     * @param enrollmentID the enrollment id
-     */
-    public void setEnrollmentID(int enrollmentID) {
-        EnrollmentID = enrollmentID;
+        return  UserID + "\n" +
+                CourseID + "\n" + "\n";
     }
 
     /**
@@ -121,21 +86,4 @@ public class Enrollment {
         CourseID = courseID;
     }
 
-    /**
-     * Gets enrollment date.
-     *
-     * @return the enrollment date
-     */
-    public long getEnrollmentDate() {
-        return EnrollmentDate;
-    }
-
-    /**
-     * Sets enrollment date.
-     *
-     * @param enrollmentDate the enrollment date
-     */
-    public void setEnrollmentDate(long enrollmentDate) {
-        EnrollmentDate = enrollmentDate;
-    }
 }

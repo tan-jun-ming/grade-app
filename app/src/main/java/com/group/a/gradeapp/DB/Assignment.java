@@ -22,52 +22,39 @@ public class Assignment {
     @NonNull
     private int AssignmentID;
 
+    private String AssTitle;
     private int CategoryID;
     private int CourseID;
     private long AssignedDate;
     private long DueDate;
     private String Details;
     private int MaxScore;
-    private int EarnedScore;
 
-   //public Assignment() {   }
+   public Assignment() {   }
 
-   //@Ignore
-    public Assignment() {
-    this.AssignmentID=AssignmentID;
+   @Ignore
+    public Assignment(String AssTitle, String Details, Integer MaxScore, Integer CategoryID, long AssignedDate, long DueDate) {
     this.CategoryID=CategoryID;
-    this.CourseID=CourseID;
+    this.AssTitle=AssTitle;
     this.AssignedDate=AssignedDate;
     this.DueDate=DueDate;
     this.Details=Details;
     this.MaxScore=MaxScore;
-    this.EarnedScore=EarnedScore;
     }
-
-
-
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Course Course = (Course) o;
-//        return Title == Course.Title &&
-//                Instructor == Course.Instructor &&
-//                Start_date == Course.Start_date;
-//    }
 
     @Override
     public String toString() {
-        return AssignmentID + "\n" +
-                CategoryID + "\n" +
-                CourseID + "\n" +
-                AssignedDate + "\n" +
-                DueDate + "\n" +
-               Details + "\n" +
-               MaxScore + "\n" +
-               EarnedScore + "\n" + "\n";
+        return
+               Details + "\n";
    }
+
+    public String getAssTitle() {
+        return AssTitle;
+    }
+
+    public void setAssTitle(String assTitle) {
+        AssTitle = assTitle;
+    }
 
     public int getAssignmentID() {
         return AssignmentID;
@@ -123,14 +110,6 @@ public class Assignment {
 
     public void setMaxScore(int maxScore) {
         MaxScore = maxScore;
-    }
-
-    public int getEarnedScore() {
-        return EarnedScore;
-    }
-
-    public void setEarnedScore(int earnedScore) {
-        EarnedScore = earnedScore;
     }
 }
 

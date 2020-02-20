@@ -65,4 +65,15 @@ public class utils {
     public static String format_date(int year, int month, int day){
         return String.format("%04d-%02d-%02d", year, month+1, day);
     }
+
+    /**
+     * Calculates the percentage of two floats
+     *
+     * @param numerator The numerator
+     * @param denominator The denominator
+     * @return The percentage
+     */
+    public static float calculate_percentage(float numerator, float denominator){
+        return denominator == 0 ? 0 :(numerator/denominator) * 100;
+    }
 }

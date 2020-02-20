@@ -1,4 +1,6 @@
-
+/*
+ * The AddCourseActivity will help in tracking the courses being added and will be integrated into the database
+ */
 package com.group.a.gradeapp;
 
 import android.app.DatePickerDialog;
@@ -115,7 +117,7 @@ public class AddCourseActivity extends AppCompatActivity {
                 long end = DateTypeConverter.convertDateToLong(e_c);
 
                 // add the new Course into the database
-                Course new_course = new Course(course_instructor, course_title, course_desc, start, end);
+                Course new_course = new Course(course_instructor, course_title, course_desc);
                 CourseDAO courseDAO = AppDatabase.getAppDatabase(AddCourseActivity.this).courseDAO();
                 courseDAO.addCourse(new_course);
 

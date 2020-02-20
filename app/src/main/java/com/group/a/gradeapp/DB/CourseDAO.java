@@ -3,6 +3,7 @@ package com.group.a.gradeapp.DB;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.RoomWarnings;
 
 import com.group.a.gradeapp.DB.AppDatabase;
 import com.group.a.gradeapp.DB.Course;
@@ -13,10 +14,17 @@ import java.util.List;
 public interface CourseDAO {
 
     @Query("select * from courseTable")
-    List<Course> getAllCourses();
+    List<Course> getCoursesAvailable();
 
-    @Query("select * from courseTable where courseID = :courseID")
-    Course getCourseByID(int courseID);
+    @Query("select * from courseTable natural join enrollmentTable where UserID=:UserID")
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    List <Course> getCoursesByUser(Integer UserID);
+
+    @Query("select * from " + AppDatabase.COURSE_TABLE)
+    List<Course> getcourse();
+
+    @Query("select * from courseTable where Title = :Title")
+    Course getCourseByTitle(String Title);
 
     @Insert
     void addCourse(Course course);

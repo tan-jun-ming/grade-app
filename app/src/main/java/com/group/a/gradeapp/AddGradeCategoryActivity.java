@@ -3,29 +3,22 @@ package com.group.a.gradeapp;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 
-import java.util.Calendar;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.group.a.gradeapp.DB.AppDatabase;
 import com.group.a.gradeapp.DB.Course;
 import com.group.a.gradeapp.DB.GradeCategory;
 import com.group.a.gradeapp.DB.GradeCategoryDAO;
-import com.group.a.gradeapp.DB.TypeConverter.DateTypeConverter;
-import com.group.a.gradeapp.ViewGradeList.AddGradeCategoryAct;
 
 /**
  * The type Add grade category activity.
@@ -45,8 +38,11 @@ public class AddGradeCategoryActivity extends AppCompatActivity {
         final Button end_date = findViewById(R.id.end_date);
 
         all_courses = AppDatabase.getAppDatabase(AddGradeCategoryActivity.this).
-                courseDAO().getAllCourses();
+                courseDAO().getCoursesAvailable();
 
+        if (all_courses.size() == 0){
+            alert("Please add a course before viewing this page.", true);
+        }
         int course_id = all_courses.get(0).getCourseID();
 
         if (savedInstanceState == null) {
@@ -84,8 +80,13 @@ public class AddGradeCategoryActivity extends AppCompatActivity {
                 EditText title = findViewById(R.id.title);
                 EditText weight = findViewById(R.id.weight);
 
-                int category_weight = Integer.parseInt(weight.getText().toString());
                 String category_title = title.getText().toString();
+                String weight_text = weight.getText().toString();
+                if (category_title.equals("") || weight_text.equals("")){
+                    alert("Please fill in all fields.", false);
+                    return;
+                }
+                float category_weight = Float.parseFloat(weight_text);
                 Course selected_course = (Course) course_spinner.getSelectedItem();
 
                 // add the new Grade Category into the database
@@ -109,27 +110,26 @@ public class AddGradeCategoryActivity extends AppCompatActivity {
         });
 
     }
-
-
     /**
      * Alert.
      *
      * @param error the error
+     * @param finish_activity the boolean
      */
-
-    public void alert(String error) {
+    public void alert(String error, final boolean finish_activity) {
         Log.d(TAG, "alerting error");
-        AlertDialog.Builder builder = new AlertDialog.Builder(AddGradeCategoryActivity.this);
-        builder.setTitle("Error");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.setMessage(error);
-        dialog.show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Error")
+                .setMessage(error)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        if (finish_activity){
+                            finish();
+                        }
+                    }
+                });
+        builder.create();
+        builder.show();
     }
 
     /**

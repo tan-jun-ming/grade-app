@@ -5,8 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.group.a.gradeapp.DB.AppDatabase;
+import com.group.a.gradeapp.DB.User;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
+/**
+ * Menu activity will call upon buttons that will be displayed in the menu activity layout for user to select.
+ */
 
 /**
  * Menu activity will call upon buttons that will be displayed in the menu activity layout for user to select.
@@ -17,6 +28,22 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        final AtomicInteger user_id = new AtomicInteger(-1);
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras != null) {
+                user_id.set(extras.getInt("user_id"));
+            }
+        } else {
+            user_id.set((int) savedInstanceState.getSerializable("user_id"));
+        }
+
+        User user = AppDatabase.getAppDatabase(MenuActivity.this).
+                userDAO().getUserByID(user_id.get());
+
+        TextView logged_in_name = findViewById(R.id.logged_in_name);
+        logged_in_name.setText(user.getFirst_name() + " " + user.getLast_name());
 
         Button add_course_button = findViewById(R.id.add_course);
         add_course_button.setOnClickListener(new View.OnClickListener(){
@@ -37,6 +64,7 @@ public class MenuActivity extends AppCompatActivity {
                 // call the enroll course activity
                 Log.d("MenuActivity", "onClick add grade category activity called");
                 Intent intent = new Intent(MenuActivity.this, EnrollCourseActivity.class);
+                intent.putExtra("user_id", user_id.get());
                 startActivity(intent);
 
             }
@@ -66,30 +94,6 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        Button add_grade_button = findViewById(R.id.add_grade);
-        add_grade_button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                // call the add grade activity
-                Log.d("MenuActivity", "onClick for add grade activity called");
-                Intent intent = new Intent(MenuActivity.this, AddGradeActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
-        Button view_assignment_list_button = findViewById(R.id.view_assignment_list);
-        view_assignment_list_button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                // call the view assignment list activity
-                Log.d("MenuActivity", "onClick for view assignment list activity called");
-                Intent intent = new Intent(MenuActivity.this, ViewAssignmentListActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
         Button view_grade_list_button = findViewById(R.id.view_grade_list);
         view_grade_list_button.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -97,6 +101,7 @@ public class MenuActivity extends AppCompatActivity {
                 // call the view grade list activity
                 Log.d("MenuActivity", "onClick for view grade list activity called");
                 Intent intent = new Intent(MenuActivity.this, ViewGradeListActivity.class);
+                intent.putExtra("user_id", user_id.get());
                 startActivity(intent);
 
             }
@@ -121,8 +126,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // call the home page activity
                 Log.d("Return to home page", "onClick for home page called");
-                Intent intent = new Intent(MenuActivity.this, HomePageActivity.class);
-                startActivity(intent);
+                finish();
 
             }
         });
