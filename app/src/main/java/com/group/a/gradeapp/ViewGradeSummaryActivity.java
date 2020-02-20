@@ -88,8 +88,7 @@ public class ViewGradeSummaryActivity extends AppCompatActivity {
      *
      * @return ArrayList of ViewGradeListItem for displaying in the recycler
      */
-    private ArrayList<ViewGradeListItem> get_grades(int selected_course_id){
-        ArrayList<ViewGradeListItem> grades = new ArrayList<ViewGradeListItem>();
+    private Float get_grade_percentage(int selected_course_id){
 
         List<GradeCategory> categories = AppDatabase.getAppDatabase(ViewGradeSummaryActivity.this).
                 gradeCategoryDAO().getCategoriesByCourseID(selected_course_id);
@@ -108,8 +107,6 @@ public class ViewGradeSummaryActivity extends AppCompatActivity {
         float max_weight = 0;
 
         for (GradeCategory c: categories){
-            ViewGradeListItem cat = new ViewGradeListItem(true, c.getTitle(), c.getCategoryID(), -1, null);
-            grades.add(cat);
 
             int max_category_score = 0;
             int earned_category_score = 0;
@@ -129,12 +126,10 @@ public class ViewGradeSummaryActivity extends AppCompatActivity {
                 } else {
                     earned_percentage = utils.calculate_percentage(a_earned, a_max);
                 }
-                grades.add(new ViewGradeListItem(false, a.getAssTitle(), a.getCategoryID(), a.getAssignmentID(), earned_percentage));
 
                 earned_category_score += a_earned;
             }
             float category_percentage = utils.calculate_percentage(earned_category_score, max_category_score);
-            cat.set_grade(category_percentage);
 
             max_weight += c.getWeight();
             grade_scores.add(Pair.create(c.getWeight(), category_percentage));
@@ -149,8 +144,7 @@ public class ViewGradeSummaryActivity extends AppCompatActivity {
             }
         }
 
-        grades.add(new ViewGradeListItem(true, "Total", -1, -1, total_percentage));
-        return grades;
+        return total_percentage;
     }
 
 
