@@ -22,7 +22,7 @@ public class Enrollment {
 
 
 /**
- * Instantiates a new Enrollment.
+ * Instantiates a new Enrollment.cou
  */
     public Enrollment(){    }
 
