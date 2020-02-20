@@ -17,6 +17,7 @@ public class unitUserTest {
     }
 
 
+    @Test
     public void setUser(){
         User user = new User();
 

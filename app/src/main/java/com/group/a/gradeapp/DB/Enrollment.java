@@ -15,7 +15,7 @@ import androidx.room.PrimaryKey;
 /**
  * The type Enrollment.
  */
-@Entity(tableName = AppDatabase.ENROLLMENT_TABLE)
+@Entity(tableName = AppDatabase.ENROLLMENT_TABLE, primaryKeys = {"UserID", "CourseID"})
 public class Enrollment {
     private int UserID;
     private int CourseID;

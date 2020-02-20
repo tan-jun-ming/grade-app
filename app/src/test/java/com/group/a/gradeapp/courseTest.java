@@ -1,17 +1,22 @@
 package com.group.a.gradeapp;
 
 import com.group.a.gradeapp.DB.Course;
+
+import org.junit.Test;
+
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class courseTest {
 
+    @Test
     public void createCourse(){
         Course course = new Course();
 
         assertNotNull(course);
     }
 
+    @Test
     public void setCourse(){
         Course course = new Course();
         course.setCourseID(438);
