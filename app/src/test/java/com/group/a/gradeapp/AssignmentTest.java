@@ -18,7 +18,7 @@ public class AssignmentTest {
         assignment.setCategoryID(234);
         assignment.setDetails("Project1");
         assignment.setDueDate(2020-20-20);
-        assignment.setEarnedScore(100);
+
         assignment.setMaxScore(100);
 
 

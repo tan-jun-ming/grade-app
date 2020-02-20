@@ -1,12 +1,16 @@
 package com.group.a.gradeapp;
 
 import com.group.a.gradeapp.DB.User;
+
+import org.junit.Test;
+
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class unitUserTest {
 
 
+    @Test
     public void createUser(){
         User user = new User();
         assertNotNull(user);
