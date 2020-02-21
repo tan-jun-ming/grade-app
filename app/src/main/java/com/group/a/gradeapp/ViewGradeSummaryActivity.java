@@ -1,34 +1,32 @@
 package com.group.a.gradeapp;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.view.View;
 import com.group.a.gradeapp.DB.AppDatabase;
 import com.group.a.gradeapp.DB.Assignment;
 import com.group.a.gradeapp.DB.Course;
 import com.group.a.gradeapp.DB.Grade;
 import com.group.a.gradeapp.DB.GradeCategory;
+import com.group.a.gradeapp.ViewGradeList.RecyclerItemClickListener;
+import com.group.a.gradeapp.ViewGradeList.ViewGradeListAdapter;
 import com.group.a.gradeapp.ViewGradeList.ViewGradeListItem;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-/**
- * View grade summary activity shows the users grade summary.
- */
 public class ViewGradeSummaryActivity extends AppCompatActivity {
     public static final String TAG = "ViewGradeSummaryAct";
 
-    private ViewSummaryAdapter adapter;
+    private ViewGradeListAdapter adapter;
     private List<Course> course_array;
 
 
@@ -54,17 +52,28 @@ public class ViewGradeSummaryActivity extends AppCompatActivity {
 
 
         RecyclerView recycler_view = findViewById(R.id.view_courses);
+
         RecyclerView.LayoutManager layout_manager = new LinearLayoutManager(this);
         recycler_view.setLayoutManager(layout_manager);
 
-        adapter = new ViewSummaryAdapter();
+
+        RecyclerItemClickListener listener = new RecyclerItemClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+            }
+        };
+
+        adapter = new ViewGradeListAdapter(listener);
         recycler_view.setAdapter(adapter);
 
+        // retrieve all courses the user is in
+        ArrayList<ViewGradeListItem> course_array = new ArrayList<>();
 
-            // retrieve all courses the user is in
-        course_array = get_course_array();
+        for (Course c: get_course_array()){
+            course_array.add(new ViewGradeListItem(true, c.getTitle(), -1, -1, get_grade_percentage(c.getCourseID())));
+        }
 
-
+        adapter.update(course_array);
 
         Log.d(TAG, "2725" + course_array.toString());
 
@@ -77,13 +86,6 @@ public class ViewGradeSummaryActivity extends AppCompatActivity {
 
 
     }
-
-//    private void grade_total_per_course(){
-//        grades = get_grades(selected_course.getCourseID());
-//
-//
-//    }
-
 
 
     /**
@@ -149,43 +151,6 @@ public class ViewGradeSummaryActivity extends AppCompatActivity {
 
         return total_percentage;
     }
-
-
-    private class ViewSummaryAdapter  extends RecyclerView.Adapter<ItemHolder> {
-        @Override
-        public ItemHolder onCreateViewHolder(ViewGroup parent, int viewType){
-            LayoutInflater layoutInflater = LayoutInflater.from(ViewGradeSummaryActivity.this);
-            return new ItemHolder(layoutInflater, parent);
-        }
-        @Override
-        public void onBindViewHolder(ItemHolder holder, int position){
-            holder.bind(course_array.get(position));
-            //holder.bind2();
-        }
-        @Override
-        public int getItemCount() { return course_array.size(); }
-    }
-    private class ItemHolder extends RecyclerView.ViewHolder {
-        public ItemHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.item, parent, false));
-        }
-        public void bind( Course course ) {
-            TextView item = itemView.findViewById(R.id.item_id);
-            item.setText(course.toString());
-
-        }
-
-//        public void bind2( Grade grade ) {
-//            TextView gradeTotal=itemView.findViewById(R.id.item_id);
-//            gradeTotal.setText();
-//
-//
-//        }
-
-
-    }
-
 }
-
 
 
